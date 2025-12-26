@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❄️ Winter Vibes Radio - TheFasty_67</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --frost-white: #f0f8ff;
+            --ice-blue: #a8d8ea;
+            --deep-blue: #1a3a52;
+            --aurora-purple: #7b68ee;
+            --aurora-green: #98fb98;
+            --snow-glow: rgba(255, 255, 255, 0.8);
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(180deg, #0a1628 0%, #1a3a52 30%, #2d5a7b 60%, #1a3a52 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--frost-white);
+            position: relative;
+            padding-top: 80px;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--frost-white), var(--ice-blue), var(--aurora-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--frost-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            box-shadow: 0 4px 15px rgba(123, 104, 238, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--frost-white);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, rgba(26, 58, 82, 0.98), rgba(10, 22, 40, 0.98));
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Aurora Borealis Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .aurora::before,
+        .aurora::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(123, 104, 238, 0.1) 20%, 
+                rgba(152, 251, 152, 0.15) 40%, 
+                rgba(123, 104, 238, 0.1) 60%, 
+                transparent 100%);
+            animation: aurora 15s ease-in-out infinite;
+            filter: blur(60px);
+        }
+
+        .aurora::after {
+            animation-delay: -7s;
+            top: -30%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(152, 251, 152, 0.1) 30%, 
+                rgba(168, 216, 234, 0.15) 50%, 
+                rgba(123, 104, 238, 0.1) 70%, 
+                transparent 100%);
+        }
+
+        @keyframes aurora {
+            0%, 100% { transform: translateX(-25%) rotate(-5deg); }
+            50% { transform: translateX(25%) rotate(5deg); }
+        }
+
+        /* Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Snowflakes Container */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Interactive Emojis */
+        .emoji-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .falling-emoji {
+            position: absolute;
+            font-size: 2rem;
+            cursor: pointer;
+            pointer-events: auto;
+            animation: fall linear forwards;
+            transition: transform 0.1s;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .falling-emoji:hover {
+            transform: scale(1.3);
+        }
+
+        .falling-emoji.clicked {
+            animation: pop 0.3s ease-out forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--frost-white), var(--ice-blue), var(--aurora-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(168, 216, 234, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--ice-blue);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Glass Card Style */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* Player Section */
+        .player-section {
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .album-art {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 50% 50%, #1a1a2e 0%, #1a1a2e 12%, transparent 12.5%),
+                radial-gradient(circle at 50% 50%, #0d0d1a 12.5%, #0d0d1a 13%, transparent 13.5%),
+                repeating-radial-gradient(circle at 50% 50%, 
+                    #1a1a2e 14%, 
+                    #252540 15%, 
+                    #1a1a2e 16%,
+                    #0f0f1f 17%,
+                    #1a1a2e 18%
+                ),
+                conic-gradient(from 0deg, 
+                    rgba(40, 40, 60, 1), 
+                    rgba(60, 60, 90, 1), 
+                    rgba(30, 30, 50, 1), 
+                    rgba(50, 50, 80, 1),
+                    rgba(40, 40, 60, 1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                inset 0 0 20px rgba(0, 0, 0, 0.4),
+                0 0 0 6px #0a0a15,
+                0 0 0 8px rgba(123, 104, 238, 0.3);
+            position: relative;
+        }
+
+        .album-art::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                transparent 40%, 
+                rgba(0, 0, 0, 0.2) 100%);
+            pointer-events: none;
+        }
+
+        .album-art::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            border-radius: 50%;
+            box-shadow: 
+                inset 0 0 4px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(123, 104, 238, 0.6);
+        }
+
+        .vinyl-label {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--deep-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 
+                inset 0 2px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .album-art.playing {
+            animation: vinylSpin 2s linear infinite;
+        }
+
+        @keyframes vinylSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .track-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--frost-white);
+        }
+
+        .track-info p {
+            color: var(--ice-blue);
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Visualizer */
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            height: 60px;
+            margin: 25px 0;
+        }
+
+        .visualizer-bar {
+            width: 6px;
+            background: linear-gradient(to top, var(--aurora-purple), var(--ice-blue));
+            border-radius: 3px;
+            animation: visualize 0.5s ease-in-out infinite alternate;
+        }
+
+        .visualizer-bar:nth-child(1) { animation-delay: 0s; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.4s; }
+        .visualizer-bar:nth-child(6) { animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(7) { animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(8) { animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(9) { animation-delay: 0.15s; }
+        .visualizer-bar:nth-child(10) { animation-delay: 0.25s; }
+
+        @keyframes visualize {
+            0% { height: 10px; }
+            100% { height: 50px; }
+        }
+
+        .visualizer.paused .visualizer-bar {
+            animation: none;
+            height: 10px;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--frost-white);
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(168, 216, 234, 0.5);
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            border: none;
+        }
+
+        .play-btn:hover {
+            background: linear-gradient(135deg, var(--ice-blue), var(--aurora-purple));
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--aurora-purple), var(--ice-blue));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--ice-blue);
+            opacity: 0.7;
+        }
+
+        /* Volume */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .volume-slider {
+            width: 120px;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--ice-blue), var(--aurora-purple));
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(168, 216, 234, 0.5);
+        }
+
+        /* Playlist Section */
+        .playlist-section {
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .playlist-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .playlist-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: var(--frost-white);
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .playlist-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .playlist-btn.active {
+            background: linear-gradient(135deg, var(--aurora-purple), var(--deep-blue));
+            border-color: var(--aurora-purple);
+        }
+
+        .radio-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .radio-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        #radio-description {
+            color: var(--ice-blue);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lang-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: var(--frost-white);
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--ice-blue), var(--aurora-purple));
+            border-color: var(--ice-blue);
+            box-shadow: 0 5px 20px rgba(168, 216, 234, 0.4);
+        }
+
+        .track-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .track-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .track-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .track-list::-webkit-scrollbar-thumb {
+            background: var(--aurora-purple);
+            border-radius: 3px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .track-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .track-item.active {
+            background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2));
+            border-color: var(--aurora-purple);
+        }
+
+        .track-number {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--ice-blue);
+        }
+
+        .track-item.active .track-number {
+            background: var(--aurora-purple);
+            color: white;
+        }
+
+        .track-details {
+            flex: 1;
+        }
+
+        .track-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .track-artist {
+            font-size: 0.85rem;
+            color: var(--ice-blue);
+            opacity: 0.7;
+        }
+
+        .track-duration {
+            color: var(--ice-blue);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .delete-btn {
+            background: rgba(255, 100, 100, 0.2);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-radius: 8px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 100, 100, 0.4);
+            border-color: rgba(255, 100, 100, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Upload Section */
+        .upload-section {
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        .upload-zone {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--aurora-purple);
+            background: rgba(123, 104, 238, 0.1);
+        }
+
+        .upload-zone.dragover {
+            border-color: var(--ice-blue);
+            background: rgba(168, 216, 234, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: var(--ice-blue);
+            opacity: 0.7;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        /* Promo Carousel Section */
+        .promo-carousel {
+            animation: fadeIn 1s ease-out 0.9s both;
+            position: relative;
+            overflow: visible;
+        }
+
+        .promo-slides-container {
+            position: relative;
+            min-height: 200px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .promo-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .promo-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Twitch Style */
+        .promo-slide.twitch {
+            background: linear-gradient(135deg, #9146ff 0%, #772ce8 50%, #1a3a52 100%);
+        }
+
+        /* X (Twitter) Style */
+        .promo-slide.x-twitter {
+            background: linear-gradient(135deg, #000000 0%, #14171a 50%, #1a3a52 100%);
+        }
+
+        /* Discord Style */
+        .promo-slide.discord {
+            background: linear-gradient(135deg, #5865F2 0%, #4752c4 50%, #1a3a52 100%);
+        }
+
+        /* Promo Navigation Dots */
+        .promo-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            padding: 15px;
+            position: relative;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .promo-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            position: relative;
+            margin: 10px;
+        }
+
+        .promo-dot:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.15);
+        }
+
+        .promo-dot.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+
+        /* Progress ring animation */
+        .promo-dot.active::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: rotate-progress 30s linear;
+        }
+
+        @keyframes rotate-progress {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-30%) translateY(-30%); }
+            50% { transform: translateX(30%) translateY(30%); }
+        }
+
+        .promo-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .promo-logo {
+            font-size: 4rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .promo-text {
+            text-align: center;
+        }
+
+        .promo-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .promo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .promo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 30px;
+            padding: 12px 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .promo-btn:hover {
+            background: white;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .promo-slide.twitch .promo-btn:hover {
+            color: #9146ff;
+        }
+
+        .promo-slide.x-twitter .promo-btn:hover {
+            color: #000000;
+        }
+
+        .promo-slide.discord .promo-btn:hover {
+            color: #5865F2;
+        }
+
+        /* Emoji Picker */
+        .emoji-picker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .emoji-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(123, 104, 238, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .emoji-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .emoji-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 200px;
+        }
+
+        .emoji-menu.open {
+            display: grid;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .emoji-option {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .emoji-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--ice-blue);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .now-playing {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .album-art {
+                width: 100px;
+                height: 100px;
+            }
+
+            .twitch-content {
+                text-align: center;
+            }
+
+            .playlist-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="showPage('accueil')">
+                <span>❄️</span>
+                <span>Winter Vibes Radio</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a class="nav-link active" data-page="accueil">
+                    <span>🏠</span>
+                    <span>Accueil</span>
+                </a>
+                <a class="nav-link" data-page="radio">
+                    <span>📻</span>
+                    <span>Radio</span>
+                </a>
+                <a class="nav-link" data-page="ma-musique">
+                    <span>🎵</span>
+                    <span>Ma Musique</span>
+                </a>
+                <a class="nav-link" data-page="proposer">
+                    <span>📤</span>
+                    <span>Proposer</span>
+                </a>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Aurora Effect -->
+    <div class="aurora"></div>
+
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Snowflakes -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <!-- Interactive Emojis -->
+    <div class="emoji-container" id="emoji-container"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- PAGE: ACCUEIL -->
+        <div class="page-section active" id="page-accueil">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">❄️ Winter Vibes Radio</h1>
+            <p class="tagline">✨ 24/7 Chill & Cozy Music ✨</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="glass-card" style="text-align: center; padding: 50px 30px;">
+            <div style="font-size: 5rem; margin-bottom: 20px; animation: bounce 2s ease-in-out infinite;">🎵</div>
+            <h2 style="font-family: 'Cinzel', serif; font-size: 2.5rem; margin-bottom: 20px;">
+                Bienvenue sur Winter Vibes Radio
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; max-width: 700px; margin: 0 auto 30px; opacity: 0.9;">
+                Ta destination ultime pour une expérience musicale unique ! 
+                Découvre des radios du monde entier, crée ta playlist personnalisée et partage tes sons préférés avec la communauté.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <button class="promo-btn" style="background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); border: none; cursor: pointer;" onclick="showPage('radio')">
+                    <span>📻</span> Écouter les radios
+                </button>
+                <button class="promo-btn" style="background: linear-gradient(135deg, var(--ice-blue), var(--aurora-green)); border: none; cursor: pointer;" onclick="showPage('proposer')">
+                    <span>📤</span> Proposer ma musique
+                </button>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
+            
+            <!-- Feature 1: Radios -->
+            <section class="glass-card" style="text-align: center; padding: 40px 30px; transition: transform 0.3s ease; cursor: pointer;" onclick="showPage('radio')" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📻</div>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px;">Radios 24/7</h3>
+                <p style="opacity: 0.8; line-height: 1.6;">
+                    Écoute des radios en direct du monde entier ! France, Angleterre, Allemagne... Plus de 15 stations disponibles.
+                </p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇫🇷 FR</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇬🇧 EN</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇩🇪 DE</span>
+                </div>
+            </section>
+
+            <!-- Feature 2: Ma Musique -->
+            <section class="glass-card" style="text-align: center; padding: 40px 30px; transition: transform 0.3s ease; cursor: pointer;" onclick="showPage('ma-musique')" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🎵</div>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px;">Ma Playlist</h3>
+                <p style="opacity: 0.8; line-height: 1.6;">
+                    Crée ta collection personnelle ! Upload tes fichiers MP3, gère ta playlist et profite de tes sons préférés.
+                </p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🎧 MP3</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🔀 Shuffle</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🔁 Repeat</span>
+                </div>
+            </section>
+
+            <!-- Feature 3: Proposer -->
+            <section class="glass-card" style="text-align: center; padding: 40px 30px; transition: transform 0.3s ease; cursor: pointer;" onclick="showPage('proposer')" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📤</div>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px;">Partage Tes Sons</h3>
+                <p style="opacity: 0.8; line-height: 1.6;">
+                    Propose tes morceaux pour qu'ils soient diffusés sur la radio ! Partage ta passion avec toute la communauté.
+                </p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">✉️ Formulaire</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">📧 Email</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="glass-card" style="padding: 40px 30px;">
+            <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; margin-bottom: 40px;">
+                🌟 Winter Vibes en chiffres
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+                <div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">15+</div>
+                    <p style="margin-top: 10px; opacity: 0.8;">Radios disponibles</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--ice-blue), var(--aurora-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">24/7</div>
+                    <p style="margin-top: 10px; opacity: 0.8;">Diffusion continue</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">3</div>
+                    <p style="margin-top: 10px; opacity: 0.8;">Langues supportées</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">∞</div>
+                    <p style="margin-top: 10px; opacity: 0.8;">Genres musicaux</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Genres Section -->
+        <section class="glass-card" style="padding: 40px 30px;">
+            <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; margin-bottom: 30px;">
+                🎸 Genres disponibles
+            </h3>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎧 Chill / Lofi</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">⚡ Électro / Dance</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎤 Hip-Hop / Rap</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎸 Rock</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎹 Pop</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎷 Jazz</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎻 Classique</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎅 Noël</span>
+            </div>
+        </section>
+
+        <!-- Comment ça marche -->
+        <section class="glass-card" style="padding: 40px 30px;">
+            <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; margin-bottom: 40px;">
+                💡 Comment ça marche ?
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;">1</div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 10px;">Choisis ta radio</h4>
+                    <p style="opacity: 0.8; line-height: 1.6;">Sélectionne parmi nos radios françaises, anglaises ou allemandes</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--ice-blue), var(--aurora-green)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;">2</div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 10px;">Ajoute tes sons</h4>
+                    <p style="opacity: 0.8; line-height: 1.6;">Upload tes MP3 pour créer ta playlist personnalisée</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;">3</div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 10px;">Partage avec nous</h4>
+                    <p style="opacity: 0.8; line-height: 1.6;">Propose tes morceaux pour être diffusé sur la radio !</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="glass-card" style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(168, 216, 234, 0.2));">
+            <h2 style="font-family: 'Cinzel', serif; font-size: 2.5rem; margin-bottom: 20px;">
+                Prêt à découvrir Winter Vibes ? 🎵
+            </h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Rejoins la communauté et profite d'une expérience musicale unique, 24h/24 et 7j/7 !
+            </p>
+            <button class="promo-btn" style="background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); border: none; cursor: pointer; font-size: 1.2rem; padding: 15px 40px;" onclick="showPage('radio')">
+                <span>🚀</span> Commencer maintenant
+            </button>
+        </section>
+
+        <!-- Promo Carousel -->
+        <section class="glass-card promo-carousel">
+            <!-- Slides Container -->
+            <div class="promo-slides-container">
+                <!-- Twitch Slide -->
+                <div class="promo-slide twitch active" data-promo="twitch">
+                    <div class="promo-content">
+                        <div class="promo-logo">
+                            <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                            </svg>
+                        </div>
+                        <div class="promo-text">
+                            <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                            <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                            <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                                <span>👾</span> Suivre TheFasty_67
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- X (Twitter) Slide -->
+                <div class="promo-slide x-twitter" data-promo="x">
+                    <div class="promo-content">
+                        <div class="promo-logo">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </div>
+                        <div class="promo-text">
+                            <h3>🐦 Suis-moi sur X !</h3>
+                            <p>Actus, clips & moments fun - TheFasty_67</p>
+                            <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                                <span>✨</span> Suivre sur X
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discord Slide -->
+                <div class="promo-slide discord" data-promo="discord">
+                    <div class="promo-content">
+                        <div class="promo-logo">
+                            <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                            </svg>
+                        </div>
+                        <div class="promo-text">
+                            <h3>💬 Rejoins le Discord !</h3>
+                            <p>La communauté, les discussions & les events</p>
+                            <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                                <span>🎉</span> Rejoindre le serveur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="promo-nav">
+                <button class="promo-dot active" data-target="twitch" title="Twitch">
+                    <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </button>
+                <button class="promo-dot" data-target="x" title="X (Twitter)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </button>
+                <button class="promo-dot" data-target="discord" title="Discord">
+                    <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+        </footer>
+        </div>
+        <!-- END PAGE: ACCUEIL -->
+
+        <!-- PAGE: RADIO -->
+        <div class="page-section" id="page-radio">
+            <header class="header">
+                <h1 class="logo">📻 Radios en Direct</h1>
+                <p class="tagline">✨ Écoute 24/7 de radios du monde entier ✨</p>
+            </header>
+
+            <!-- Player Section -->
+            <section class="glass-card player-section">
+                <div class="now-playing">
+                    <div class="album-art" id="album-art">
+                        <div class="vinyl-label" id="vinyl-label">🎵</div>
+                    </div>
+                    <div class="track-info">
+                        <h2 id="track-title">Sélectionnez une radio</h2>
+                        <p id="track-artist">Cliquez sur une station</p>
+                    </div>
+                </div>
+
+                <div class="visualizer" id="visualizer">
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                </div>
+
+                <div class="controls">
+                    <button class="control-btn" id="shuffle-btn" title="Aléatoire">🔀</button>
+                    <button class="control-btn" id="prev-btn" title="Précédent">⏮️</button>
+                    <button class="control-btn play-btn" id="play-btn" title="Lecture">▶️</button>
+                    <button class="control-btn" id="next-btn" title="Suivant">⏭️</button>
+                    <button class="control-btn" id="repeat-btn" title="Répéter">🔁</button>
+                </div>
+
+                <div class="volume-control">
+                    <span>🔈</span>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="70">
+                    <span>🔊</span>
+                </div>
+            </section>
+
+            <!-- Radio Stations Section -->
+            <section class="glass-card playlist-section">
+                <h3 class="section-title">📻 Radios en Direct 24/7</h3>
+                
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="fr">🇫🇷 Française</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 Anglaise</button>
+                    <button class="lang-btn" data-lang="de">🇩🇪 Allemande</button>
+                </div>
+
+                <div class="playlist-controls" id="radio-buttons">
+                    <button class="playlist-btn radio-btn active" data-radio="chill">🎧 NRJ</button>
+                    <button class="playlist-btn radio-btn" data-radio="christmas">🎅 Noël Radio</button>
+                    <button class="playlist-btn radio-btn" data-radio="jazz">🎤 Skyrock</button>
+                    <button class="playlist-btn radio-btn" data-radio="ambient">📻 RTL</button>
+                    <button class="playlist-btn radio-btn" data-radio="electronic">⚡ Fun Radio</button>
+                </div>
+
+                <div class="radio-info" id="radio-info">
+                    <div class="radio-status">
+                        <span class="live-dot"></span>
+                        <span>EN DIRECT</span>
+                    </div>
+                    <p id="radio-description">Sélectionnez une radio pour commencer</p>
+                </div>
+            </section>
+
+            <!-- Promo Carousel -->
+            <section class="glass-card promo-carousel">
+    <!-- Slides Container -->
+    <div class="promo-slides-container">
+        <!-- Twitch Slide -->
+        <div class="promo-slide twitch active" data-promo="twitch">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                        <span>👾</span> Suivre TheFasty_67
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- X (Twitter) Slide -->
+        <div class="promo-slide x-twitter" data-promo="x">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🐦 Suis-moi sur X !</h3>
+                    <p>Actus, clips & moments fun - TheFasty_67</p>
+                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                        <span>✨</span> Suivre sur X
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Slide -->
+        <div class="promo-slide discord" data-promo="discord">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>💬 Rejoins le Discord !</h3>
+                    <p>La communauté, les discussions & les events</p>
+                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                        <span>🎉</span> Rejoindre le serveur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="promo-nav">
+        <button class="promo-dot active" data-target="twitch" title="Twitch">
+            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="x" title="X (Twitter)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="discord" title="Discord">
+            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+            </svg>
+        </button>
+    </div>
+</section>
+
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: RADIO -->
+
+        <!-- PAGE: MA MUSIQUE -->
+        <div class="page-section" id="page-ma-musique">
+            <header class="header">
+                <h1 class="logo">🎵 Ma Playlist Personnelle</h1>
+                <p class="tagline">✨ Gère ta collection de musiques ✨</p>
+            </header>
+
+            <!-- Ma Musique Section -->
+            <section class="glass-card playlist-section">
+                <h3 class="section-title">🎵 Ma Musique</h3>
+                
+                <div class="track-list" id="track-list">
+                    <div style="text-align: center; padding: 40px; opacity: 0.6;">
+                        <p>🎵 Aucune musique ajoutée</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Ajoutez vos fichiers MP3 ci-dessous !</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="glass-card upload-section">
+                <h3 class="section-title">📤 Ajouter ma musique</h3>
+                <div class="upload-zone" id="upload-zone">
+                    <div class="upload-icon">🎵</div>
+                    <p class="upload-text">Glissez vos fichiers MP3 ici</p>
+                    <p class="upload-subtext">ou cliquez pour parcourir</p>
+                </div>
+                <input type="file" id="file-input" accept="audio/*" multiple>
+            </section>
+
+            <!-- Promo Carousel -->
+            <section class="glass-card promo-carousel">
+    <!-- Slides Container -->
+    <div class="promo-slides-container">
+        <!-- Twitch Slide -->
+        <div class="promo-slide twitch active" data-promo="twitch">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                        <span>👾</span> Suivre TheFasty_67
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- X (Twitter) Slide -->
+        <div class="promo-slide x-twitter" data-promo="x">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🐦 Suis-moi sur X !</h3>
+                    <p>Actus, clips & moments fun - TheFasty_67</p>
+                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                        <span>✨</span> Suivre sur X
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Slide -->
+        <div class="promo-slide discord" data-promo="discord">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>💬 Rejoins le Discord !</h3>
+                    <p>La communauté, les discussions & les events</p>
+                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                        <span>🎉</span> Rejoindre le serveur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="promo-nav">
+        <button class="promo-dot active" data-target="twitch" title="Twitch">
+            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="x" title="X (Twitter)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="discord" title="Discord">
+            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+            </svg>
+        </button>
+    </div>
+</section>
+
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: MA MUSIQUE -->
+
+        <!-- PAGE: PROPOSER -->
+        <div class="page-section" id="page-proposer">
+            <header class="header">
+                <h1 class="logo">📤 Propose Ta Musique</h1>
+                <p class="tagline">✨ Partage tes sons avec la communauté ✨</p>
+            </header>
+
+            <!-- Formulaire de soumission -->
+            <section class="glass-card">
+                <h3 class="section-title">🎵 Soumission de musique</h3>
+                
+                <form id="submission-form" style="max-width: 600px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">📁 Fichier MP3 *</label>
+                        <input type="file" id="submit-file" accept="audio/mp3,audio/mpeg" required
+                               style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; color: white;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">🎵 Titre de la chanson *</label>
+                        <input type="text" id="submit-title" required placeholder="Ex: Summer Vibes"
+                               style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; color: white;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">🎤 Artiste *</label>
+                        <input type="text" id="submit-artist" required placeholder="Ex: DJ Cool"
+                               style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; color: white;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">🎸 Genre</label>
+                        <select id="submit-genre"
+                                style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; color: white;">
+                            <option value="">Sélectionne un genre</option>
+                            <option value="chill">Chill / Lofi</option>
+                            <option value="electronic">Électro / Dance</option>
+                            <option value="hip-hop">Hip-Hop / Rap</option>
+                            <option value="rock">Rock</option>
+                            <option value="pop">Pop</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="classical">Classique</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">💬 Message (optionnel)</label>
+                        <textarea id="submit-message" rows="4" placeholder="Dis-nous pourquoi cette musique est spéciale..."
+                                  style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; color: white; resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button type="submit" class="promo-btn" style="background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); border: none; cursor: pointer;">
+                            <span>✉️</span> Envoyer la soumission
+                        </button>
+                        <button type="button" id="email-alternative" class="promo-btn" style="background: linear-gradient(135deg, var(--ice-blue), var(--aurora-green)); border: none; cursor: pointer;">
+                            <span>📧</span> Envoyer par Email
+                        </button>
+                    </div>
+                </form>
+
+                <div id="submission-result" style="margin-top: 20px; text-align: center; display: none;"></div>
+            </section>
+
+            <!-- Infos -->
+            <section class="glass-card">
+                <h3 class="section-title">ℹ️ Informations</h3>
+                <div style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                    <p>📌 <strong>Format accepté :</strong> MP3 uniquement</p>
+                    <p>📌 <strong>Taille max :</strong> 10 MB</p>
+                    <p>📌 <strong>Durée :</strong> Entre 2 et 10 minutes</p>
+                    <p>📌 <strong>Qualité :</strong> Minimum 128 kbps</p>
+                    <p style="margin-top: 20px; opacity: 0.8; font-size: 0.9rem;">
+                        ⚠️ Ta musique sera écoutée et validée avant d'être ajoutée à la radio. 
+                        Seules les musiques de qualité et respectant les droits d'auteur seront acceptées.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Promo Carousel -->
+            <section class="glass-card promo-carousel">
+    <!-- Slides Container -->
+    <div class="promo-slides-container">
+        <!-- Twitch Slide -->
+        <div class="promo-slide twitch active" data-promo="twitch">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                        <span>👾</span> Suivre TheFasty_67
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- X (Twitter) Slide -->
+        <div class="promo-slide x-twitter" data-promo="x">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🐦 Suis-moi sur X !</h3>
+                    <p>Actus, clips & moments fun - TheFasty_67</p>
+                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                        <span>✨</span> Suivre sur X
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Slide -->
+        <div class="promo-slide discord" data-promo="discord">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>💬 Rejoins le Discord !</h3>
+                    <p>La communauté, les discussions & les events</p>
+                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                        <span>🎉</span> Rejoindre le serveur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="promo-nav">
+        <button class="promo-dot active" data-target="twitch" title="Twitch">
+            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="x" title="X (Twitter)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="discord" title="Discord">
+            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+            </svg>
+        </button>
+    </div>
+</section>
+
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: PROPOSER -->
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="emoji-picker">
+        <button class="emoji-toggle" id="emoji-toggle">✨</button>
+        <div class="emoji-menu" id="emoji-menu">
+            <button class="emoji-option" data-emoji="❄️">❄️</button>
+            <button class="emoji-option" data-emoji="⛄">⛄</button>
+            <button class="emoji-option" data-emoji="🎄">🎄</button>
+            <button class="emoji-option" data-emoji="🎁">🎁</button>
+            <button class="emoji-option" data-emoji="⭐">⭐</button>
+            <button class="emoji-option" data-emoji="🌟">🌟</button>
+            <button class="emoji-option" data-emoji="💫">💫</button>
+            <button class="emoji-option" data-emoji="🦌">🦌</button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player" crossorigin="anonymous" preload="none"></audio>
+
+    <script>
+        // Stars Generation
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 60 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.transform = `scale(${Math.random() * 1.5 + 0.5})`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Snowflakes Animation
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = ['❄️', '❅', '❆', '✻', '✼'][Math.floor(Math.random() * 5)];
+            snowflake.style.cssText = `
+                position: absolute;
+                left: ${Math.random() * 100}%;
+                top: -20px;
+                font-size: ${Math.random() * 15 + 10}px;
+                opacity: ${Math.random() * 0.5 + 0.3};
+                animation: fall ${Math.random() * 10 + 10}s linear forwards;
+                pointer-events: none;
+            `;
+            document.getElementById('snowflakes').appendChild(snowflake);
+            setTimeout(() => snowflake.remove(), 20000);
+        }
+
+        // Interactive Falling Emojis with limit
+        const MAX_EMOJIS = 20;
+        let emojiCooldown = false;
+
+        function createFallingEmoji(emoji) {
+            const container = document.getElementById('emoji-container');
+            
+            if (container.children.length >= MAX_EMOJIS) {
+                return;
+            }
+
+            const emojiEl = document.createElement('div');
+            emojiEl.className = 'falling-emoji';
+            emojiEl.innerHTML = emoji;
+            emojiEl.style.left = Math.random() * 90 + 5 + '%';
+            emojiEl.style.animationDuration = Math.random() * 5 + 5 + 's';
+            
+            emojiEl.addEventListener('click', () => {
+                emojiEl.classList.add('clicked');
+                setTimeout(() => emojiEl.remove(), 300);
+            });
+
+            container.appendChild(emojiEl);
+            setTimeout(() => {
+                if (emojiEl.parentNode) emojiEl.remove();
+            }, 10000);
+        }
+
+        // Emoji Picker
+        const emojiToggle = document.getElementById('emoji-toggle');
+        const emojiMenu = document.getElementById('emoji-menu');
+
+        emojiToggle.addEventListener('click', () => {
+            emojiMenu.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.emoji-option').forEach(option => {
+            option.addEventListener('click', () => {
+                if (emojiCooldown) return;
+                emojiCooldown = true;
+                setTimeout(() => emojiCooldown = false, 1000);
+
+                const emoji = option.dataset.emoji;
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => createFallingEmoji(emoji), i * 200);
+                }
+            });
+        });
+
+        // Auto spawn emojis
+        function autoSpawnEmojis() {
+            const container = document.getElementById('emoji-container');
+            if (container.children.length >= MAX_EMOJIS) return;
+            
+            const emojis = ['❄️', '⛄', '⭐', '🎄', '🎁'];
+            const choice = emojis[Math.floor(Math.random() * emojis.length)];
+            createFallingEmoji(choice);
+        }
+
+        // Radio Stations par langue - Flux en direct 24/7
+        // URLs testées et validées pour fonctionner dans les navigateurs
+        const radioStations = {
+            // 🇫🇷 Radios Françaises Populaires
+            fr: {
+                chill: {
+                    name: 'NRJ',
+                    description: 'Hit Music Only 🇫🇷',
+                    url: 'https://scdn.nrjaudio.fm/fr/30001/mp3_128.mp3?origine=radioFR&cdn_path=audio_lbs9',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Noël Radio',
+                    description: 'Musique de Noël 24/7 🎄🇫🇷',
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎅'
+                },
+                jazz: {
+                    name: 'Skyrock',
+                    description: 'Premier sur le Rap 🇫🇷',
+                    url: 'https://icecast.skyrock.net/s/natio_mp3_128k',
+                    emoji: '🎤'
+                },
+                ambient: {
+                    name: 'RTL',
+                    description: 'La première radio de France 🇫🇷',
+                    url: 'https://streamer-02.rtl.fr/rtl-1-44-128',
+                    emoji: '📻'
+                },
+                electronic: {
+                    name: 'Fun Radio',
+                    description: 'La radio des hits et DJ 🇫🇷',
+                    url: 'https://icecast.funradio.fr/fun-1-44-128',
+                    emoji: '⚡'
+                }
+            },
+            // 🇬🇧 Radios Internationales (en anglais)
+            en: {
+                chill: {
+                    name: 'Chillout Radio',
+                    description: 'Relaxing chillout music 🌍',
+                    url: 'https://streaming.exclusive.radio/er/chill/icecast.audio',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Christmas Hits',
+                    description: 'Christmas music 24/7 🎄',
+                    url: 'https://stream.christmashitsstation.com/christmas.mp3',
+                    emoji: '❄️'
+                },
+                jazz: {
+                    name: 'Jazz Radio',
+                    description: 'The best of Jazz 🎷',
+                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'Ambient Radio',
+                    description: 'Ambient & atmospheric music 🌌',
+                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'Electronic Radio',
+                    description: 'Electronic & Dance music ⚡',
+                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    emoji: '⚡'
+                }
+            },
+            // 🇩🇪 Radios Allemandes
+            de: {
+                chill: {
+                    name: 'I Love Chill',
+                    description: 'Chill & Relax Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio17.mp3',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'I Love Christmas',
+                    description: 'Weihnachtsmusik 24/7 🎄🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio8.mp3',
+                    emoji: '🎄'
+                },
+                jazz: {
+                    name: 'I Love Jazz',
+                    description: 'Jazz Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio18.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'I Love Relax',
+                    description: 'Entspannende Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio7.mp3',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'I Love Dance',
+                    description: 'Elektronische Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio2.mp3',
+                    emoji: '⚡'
+                }
+            }
+        };
+
+        let currentLang = 'fr';
+        let currentRadio = 'chill';
+        let isPlayingRadio = true;
+        let customTracks = [];
+
+        // Audio Player
+        const audioPlayer = document.getElementById('audio-player');
+        console.log('Audio player element:', audioPlayer);
+        
+        if (!audioPlayer) {
+            console.error('ERREUR: Audio player not found!');
+        }
+        
+        const playBtn = document.getElementById('play-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const repeatBtn = document.getElementById('repeat-btn');
+        const volumeSlider = document.getElementById('volume-slider');
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalTimeEl = document.getElementById('total-time');
+        const visualizer = document.getElementById('visualizer');
+        const albumArt = document.getElementById('album-art');
+        
+        console.log('Controls found:', {
+            playBtn: !!playBtn,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn,
+            visualizer: !!visualizer,
+            albumArt: !!albumArt
+        });
+
+        // Play Radio
+        function playRadio(lang, radioType) {
+            currentLang = lang;
+            currentRadio = radioType;
+            const radio = radioStations[lang][radioType];
+            
+            console.log('Playing radio:', radio.name, radio.url);
+            
+            // Stop current playback
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            
+            // Set new source
+            audioPlayer.src = radio.url;
+            audioPlayer.load(); // Force reload
+            
+            // Play with error handling and retry
+            const attemptPlay = (retries = 3) => {
+                const playPromise = audioPlayer.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('✅ Radio started successfully');
+                        isPlayingRadio = true;
+                        isPlaying = true;
+                        if (playBtn) playBtn.textContent = '⏸️';
+                        if (visualizer) visualizer.classList.remove('paused');
+                        if (albumArt) albumArt.classList.add('playing');
+                    }).catch(error => {
+                        console.error('❌ Error playing radio:', error.name, error.message);
+                        
+                        if (retries > 0 && error.name === 'NotSupportedError') {
+                            console.log('🔄 Retrying... (' + retries + ' attempts left)');
+                            setTimeout(() => {
+                                audioPlayer.load();
+                                attemptPlay(retries - 1);
+                            }, 1000);
+                        } else if (error.name === 'NotAllowedError') {
+                            alert('🔊 Cliquez sur le bouton Play ▶️ pour démarrer la radio.\n(Le navigateur bloque la lecture automatique)');
+                        } else {
+                            alert('❌ Impossible de lire cette radio.\nEssayez une autre station ou vérifiez votre connexion.');
+                        }
+                    });
+                }
+            };
+            
+            attemptPlay();
+            
+            // Update UI (only if elements exist)
+            const trackTitle = document.getElementById('track-title');
+            const trackArtist = document.getElementById('track-artist');
+            const vinylLabel = document.getElementById('vinyl-label');
+            const radioDescription = document.getElementById('radio-description');
+            
+            if (trackTitle) trackTitle.textContent = radio.name;
+            if (trackArtist) trackArtist.textContent = 'Radio en direct 24/7';
+            if (vinylLabel) vinylLabel.textContent = radio.emoji;
+            if (radioDescription) radioDescription.textContent = radio.description;
+            
+            // Hide progress for radio (live stream)
+            if (progressFill) progressFill.style.width = '100%';
+            if (currentTimeEl) currentTimeEl.textContent = 'LIVE';
+            if (totalTimeEl) totalTimeEl.textContent = '24/7';
+        }
+
+        // Update radio button names based on language
+        function updateRadioButtons(lang) {
+            const radioKeys = ['chill', 'christmas', 'jazz', 'ambient', 'electronic'];
+            
+            // Update all radio buttons on all pages
+            document.querySelectorAll('.radio-btn').forEach((btn) => {
+                const radioType = btn.dataset.radio;
+                const radio = radioStations[lang][radioType];
+                if (radio) {
+                    btn.innerHTML = `${radio.emoji} ${radio.name}`;
+                }
+            });
+        }
+
+        // Language Button Handlers - Use event delegation to work on all pages
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('lang-btn') || e.target.closest('.lang-btn')) {
+                const btn = e.target.classList.contains('lang-btn') ? e.target : e.target.closest('.lang-btn');
+                
+                // Update active state only for buttons in the same container
+                const container = btn.closest('.language-selector');
+                if (container) {
+                    container.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                }
+                
+                currentLang = btn.dataset.lang;
+                
+                // Update button names
+                updateRadioButtons(currentLang);
+                
+                // Play the same radio type in new language
+                playRadio(currentLang, currentRadio);
+            }
+        });
+
+        // Radio Button Handlers - Use event delegation to work on all pages
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('radio-btn') || e.target.closest('.radio-btn')) {
+                const btn = e.target.classList.contains('radio-btn') ? e.target : e.target.closest('.radio-btn');
+                
+                // Update active state only for buttons in the same container
+                const container = btn.closest('.playlist-controls');
+                if (container) {
+                    container.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                }
+                
+                playRadio(currentLang, btn.dataset.radio);
+            }
+        });
+
+        let isPlaying = false;
+        let currentTrackIndex = 0;
+
+        // Render Custom Playlist
+        function renderPlaylist() {
+            const trackList = document.getElementById('track-list');
+            
+            if (!trackList) return; // Si l'élément n'existe pas, ne rien faire
+            
+            if (customTracks.length === 0) {
+                trackList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; opacity: 0.6;">
+                        <p>🎵 Aucune musique ajoutée</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Ajoutez vos fichiers MP3 ci-dessous !</p>
+                    </div>
+                `;
+                return;
+            }
+
+            trackList.innerHTML = customTracks.map((track, index) => `
+                <div class="track-item ${index === currentTrackIndex && !isPlayingRadio ? 'active' : ''}" 
+                     data-index="${index}">
+                    <div class="track-number">${track.emoji || (index + 1)}</div>
+                    <div class="track-details">
+                        <div class="track-name">${track.title}</div>
+                        <div class="track-artist">${track.artist}</div>
+                    </div>
+                    <div class="track-duration">${track.duration}</div>
+                    <button class="delete-btn" data-index="${index}" title="Supprimer">🗑️</button>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.track-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('delete-btn')) return;
+                    
+                    const index = parseInt(item.dataset.index);
+                    playCustomTrack(index);
+                });
+            });
+
+            // Add delete handlers
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const index = parseInt(btn.dataset.index);
+                    deleteTrack(index);
+                });
+            });
+        }
+
+        // Delete track from custom playlist
+        function deleteTrack(index) {
+            customTracks.splice(index, 1);
+            
+            if (currentTrackIndex >= customTracks.length) {
+                currentTrackIndex = Math.max(0, customTracks.length - 1);
+            }
+            
+            if (customTracks.length === 0 && !isPlayingRadio) {
+                audioPlayer.pause();
+                audioPlayer.src = '';
+                isPlaying = false;
+                if (playBtn) playBtn.textContent = '▶️';
+                if (visualizer) visualizer.classList.add('paused');
+                if (albumArt) albumArt.classList.remove('playing');
+            }
+            
+            renderPlaylist();
+        }
+
+        // Play Custom Track
+        function playCustomTrack(index) {
+            isPlayingRadio = false;
+            currentTrackIndex = index;
+            const track = customTracks[index];
+            
+            // Deselect radio buttons
+            document.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active'));
+            
+            if (track && track.file) {
+                const url = URL.createObjectURL(track.file);
+                audioPlayer.src = url;
+                audioPlayer.play();
+                isPlaying = true;
+                if (playBtn) playBtn.textContent = '⏸️';
+                if (visualizer) visualizer.classList.remove('paused');
+                if (albumArt) albumArt.classList.add('playing');
+                
+                const trackTitle = document.getElementById('track-title');
+                const trackArtist = document.getElementById('track-artist');
+                const vinylLabel = document.getElementById('vinyl-label');
+                
+                if (trackTitle) trackTitle.textContent = track.title;
+                if (trackArtist) trackArtist.textContent = track.artist;
+                if (vinylLabel) vinylLabel.textContent = track.emoji || '🎵';
+                
+                renderPlaylist();
+            }
+        }
+
+        // Play/Pause
+        if (playBtn) {
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                    isPlaying = false;
+                    playBtn.textContent = '▶️';
+                    if (visualizer) visualizer.classList.add('paused');
+                    if (albumArt) albumArt.classList.remove('playing');
+                } else {
+                    if (audioPlayer.src) {
+                        audioPlayer.play();
+                        isPlaying = true;
+                        playBtn.textContent = '⏸️';
+                        if (visualizer) visualizer.classList.remove('paused');
+                        if (albumArt) albumArt.classList.add('playing');
+                    } else {
+                        // Default: play first radio in current language
+                        playRadio(currentLang, 'chill');
+                    }
+                }
+            });
+        }
+
+        // Previous/Next for custom tracks
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (!isPlayingRadio && customTracks.length > 0) {
+                    currentTrackIndex = (currentTrackIndex - 1 + customTracks.length) % customTracks.length;
+                    playCustomTrack(currentTrackIndex);
+                } else {
+                    // Cycle through radios
+                    const radioKeys = Object.keys(radioStations[currentLang]);
+                    const currentIndex = radioKeys.indexOf(currentRadio);
+                    const prevIndex = (currentIndex - 1 + radioKeys.length) % radioKeys.length;
+                    document.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active'));
+                    const prevRadioBtn = document.querySelector(`[data-radio="${radioKeys[prevIndex]}"]`);
+                    if (prevRadioBtn) prevRadioBtn.classList.add('active');
+                    playRadio(currentLang, radioKeys[prevIndex]);
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (!isPlayingRadio && customTracks.length > 0) {
+                    currentTrackIndex = (currentTrackIndex + 1) % customTracks.length;
+                    playCustomTrack(currentTrackIndex);
+                } else {
+                    // Cycle through radios
+                    const radioKeys = Object.keys(radioStations[currentLang]);
+                    const currentIndex = radioKeys.indexOf(currentRadio);
+                    const nextIndex = (currentIndex + 1) % radioKeys.length;
+                    document.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active'));
+                    const nextRadioBtn = document.querySelector(`[data-radio="${radioKeys[nextIndex]}"]`);
+                    if (nextRadioBtn) nextRadioBtn.classList.add('active');
+                    playRadio(currentLang, radioKeys[nextIndex]);
+                }
+            });
+        }
+
+        // Shuffle/Repeat (only for custom tracks)
+        let isShuffle = false;
+        let isRepeat = false;
+
+        if (shuffleBtn) {
+            shuffleBtn.addEventListener('click', () => {
+                isShuffle = !isShuffle;
+                shuffleBtn.style.opacity = isShuffle ? '1' : '0.5';
+                shuffleBtn.style.background = isShuffle ? 
+                    'linear-gradient(135deg, var(--aurora-purple), var(--ice-blue))' : '';
+            });
+        }
+
+        if (repeatBtn) {
+            repeatBtn.addEventListener('click', () => {
+                isRepeat = !isRepeat;
+                repeatBtn.style.opacity = isRepeat ? '1' : '0.5';
+                repeatBtn.style.background = isRepeat ? 
+                    'linear-gradient(135deg, var(--aurora-purple), var(--ice-blue))' : '';
+                audioPlayer.loop = isRepeat;
+            });
+        }
+
+        // Volume
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', (e) => {
+                audioPlayer.volume = e.target.value / 100;
+            });
+        }
+
+        // Progress Bar (only for custom tracks)
+        audioPlayer.addEventListener('timeupdate', () => {
+            if (!isPlayingRadio && audioPlayer.duration && progressFill && currentTimeEl && totalTimeEl) {
+                const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressFill.style.width = percent + '%';
+                currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+                totalTimeEl.textContent = formatTime(audioPlayer.duration);
+            }
+        });
+
+        if (progressBar) {
+            progressBar.addEventListener('click', (e) => {
+                if (!isPlayingRadio && audioPlayer.duration) {
+                    const rect = progressBar.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    audioPlayer.currentTime = percent * audioPlayer.duration;
+                }
+            });
+        }
+
+        audioPlayer.addEventListener('ended', () => {
+            if (!isPlayingRadio && !isRepeat && customTracks.length > 0) {
+                if (isShuffle) {
+                    currentTrackIndex = Math.floor(Math.random() * customTracks.length);
+                } else {
+                    currentTrackIndex = (currentTrackIndex + 1) % customTracks.length;
+                }
+                playCustomTrack(currentTrackIndex);
+            }
+        });
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // File Upload
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('file-input');
+
+        if (uploadZone && fileInput) {
+            uploadZone.addEventListener('click', () => fileInput.click());
+
+            uploadZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', () => {
+                uploadZone.classList.remove('dragover');
+            });
+
+            uploadZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('audio/')) {
+                    const track = {
+                        title: file.name.replace(/\.[^/.]+$/, ''),
+                        artist: 'Ma Musique',
+                        duration: '--:--',
+                        emoji: '🎵',
+                        file: file
+                    };
+                    
+                    const audio = new Audio();
+                    audio.src = URL.createObjectURL(file);
+                    audio.addEventListener('loadedmetadata', () => {
+                        track.duration = formatTime(audio.duration);
+                        renderPlaylist();
+                    });
+
+                    customTracks.push(track);
+                    renderPlaylist();
+                }
+            });
+        }
+
+        // Initialize
+        createStars();
+        renderPlaylist();
+        if (visualizer) visualizer.classList.add('paused');
+
+        // Set initial UI (only if elements exist)
+        const trackTitleEl = document.getElementById('track-title');
+        const trackArtistEl = document.getElementById('track-artist');
+        const vinylLabelEl = document.getElementById('vinyl-label');
+        
+        if (trackTitleEl) trackTitleEl.textContent = 'Winter Vibes Radio';
+        if (trackArtistEl) trackArtistEl.textContent = 'Cliquez sur ▶️ pour écouter';
+        if (vinylLabelEl) vinylLabelEl.textContent = '🎧';
+
+        setInterval(createSnowflake, 500);
+        setInterval(autoSpawnEmojis, 8000);
+
+        audioPlayer.volume = 0.7;
+
+        // ========================================
+        // NAVIGATION MANAGEMENT
+        // ========================================
+        
+        // Page Navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageName);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu
+            document.getElementById('nav-links').classList.remove('open');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Réinitialiser le carrousel pour la page actuelle
+            setTimeout(() => {
+                initCarouselForCurrentPage();
+            }, 100);
+        }
+        
+        // Nav link click handlers
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const page = link.dataset.page;
+                showPage(page);
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        
+        // ========================================
+        // FORMULAIRE DE SOUMISSION
+        // ========================================
+        
+        const submissionForm = document.getElementById('submission-form');
+        const emailAlternative = document.getElementById('email-alternative');
+        const submissionResult = document.getElementById('submission-result');
+        
+        // Soumission du formulaire
+        if (submissionForm) {
+            submissionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const file = document.getElementById('submit-file').files[0];
+                const title = document.getElementById('submit-title').value;
+                const artist = document.getElementById('submit-artist').value;
+                const genre = document.getElementById('submit-genre').value;
+                const message = document.getElementById('submit-message').value;
+                
+                // Validation taille fichier (10 MB max)
+                if (file && file.size > 10 * 1024 * 1024) {
+                    if (submissionResult) {
+                        submissionResult.style.display = 'block';
+                        submissionResult.style.background = 'rgba(255, 100, 100, 0.2)';
+                        submissionResult.style.padding = '15px';
+                        submissionResult.style.borderRadius = '12px';
+                        submissionResult.innerHTML = '❌ Le fichier est trop volumineux (max 10 MB)';
+                    }
+                    return;
+                }
+                
+                // Simulation d'envoi (à remplacer par vraie API)
+                if (submissionResult) {
+                    submissionResult.style.display = 'block';
+                    submissionResult.style.background = 'rgba(152, 251, 152, 0.2)';
+                    submissionResult.style.padding = '15px';
+                    submissionResult.style.borderRadius = '12px';
+                    submissionResult.innerHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">✅</div>
+                            <h3 style="margin-bottom: 10px;">Soumission reçue !</h3>
+                            <p><strong>Titre :</strong> ${title}</p>
+                            <p><strong>Artiste :</strong> ${artist}</p>
+                            <p><strong>Genre :</strong> ${genre || 'Non spécifié'}</p>
+                            <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">
+                                Ta musique sera écoutée et tu recevras une réponse sous 48h !
+                            </p>
+                        </div>
+                    `;
+                    
+                    // Auto-hide après 10 secondes
+                    setTimeout(() => {
+                        submissionResult.style.display = 'none';
+                    }, 10000);
+                }
+                
+                // Reset form
+                submissionForm.reset();
+            });
+        }
+        
+        // Alternative email
+        if (emailAlternative) {
+            emailAlternative.addEventListener('click', () => {
+                const subject = 'Proposition de musique pour Winter Vibes Radio';
+                const body = `Bonjour TheFasty_67,
+
+Je souhaite proposer ma musique pour la radio Winter Vibes :
+
+📝 Informations :
+- Titre : [Ton titre]
+- Artiste : [Ton nom d'artiste]
+- Genre : [Genre musical]
+- Durée : [Durée]
+
+💬 Message :
+[Pourquoi cette musique devrait être sur la radio]
+
+🎵 Le fichier MP3 est joint à cet email.
+
+Merci !`;
+                
+                window.location.href = `mailto:contact@wintervibesradio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+        }
+
+        // ========================================
+        // PROMO CAROUSEL MANAGEMENT
+        // ========================================
+        
+        let currentPromo = 0;
+        let promoInterval;
+
+        function initCarouselForCurrentPage() {
+            // Stop any existing rotation
+            stopPromoRotation();
+            
+            // Get only visible slides and dots (from active page)
+            const activePage = document.querySelector('.page-section.active');
+            if (!activePage) return;
+            
+            const promoSlides = activePage.querySelectorAll('.promo-slide');
+            const promoDots = activePage.querySelectorAll('.promo-dot');
+            
+            if (promoSlides.length === 0) return;
+            
+            currentPromo = 0;
+            
+            // Show first slide
+            promoSlides.forEach((slide, index) => {
+                if (index === 0) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            
+            promoDots.forEach((dot, index) => {
+                if (index === 0) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Setup manual navigation
+            promoDots.forEach((dot, index) => {
+                // Remove old listeners by cloning
+                const newDot = dot.cloneNode(true);
+                dot.parentNode.replaceChild(newDot, dot);
+                
+                newDot.addEventListener('click', () => {
+                    showPromoForPage(index, promoSlides, promoDots);
+                    stopPromoRotation();
+                    startPromoRotation();
+                });
+            });
+            
+            // Start auto-rotation
+            startPromoRotation();
+        }
+
+        function showPromoForPage(index, slides, dots) {
+            // Remove active from all
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active to current
+            if (slides[index]) slides[index].classList.add('active');
+            if (dots[index]) {
+                dots[index].classList.add('active');
+                
+                // Reset animation
+                setTimeout(() => {
+                    dots[index].classList.remove('active');
+                    void dots[index].offsetWidth;
+                    dots[index].classList.add('active');
+                }, 10);
+            }
+            
+            currentPromo = index;
+        }
+
+        function nextPromo() {
+            const activePage = document.querySelector('.page-section.active');
+            if (!activePage) return;
+            
+            const promoSlides = activePage.querySelectorAll('.promo-slide');
+            const promoDots = activePage.querySelectorAll('.promo-dot');
+            
+            if (promoSlides.length === 0) return;
+            
+            currentPromo = (currentPromo + 1) % promoSlides.length;
+            showPromoForPage(currentPromo, promoSlides, promoDots);
+        }
+
+        function startPromoRotation() {
+            stopPromoRotation();
+            const activePage = document.querySelector('.page-section.active');
+            if (activePage && activePage.querySelectorAll('.promo-slide').length > 0) {
+                promoInterval = setInterval(nextPromo, 30000);
+            }
+        }
+
+        function stopPromoRotation() {
+            if (promoInterval) {
+                clearInterval(promoInterval);
+                promoInterval = null;
+            }
+        }
+        
+        // Initialize carousel on page load
+        initCarouselForCurrentPage();
+    </script>
+</body>
+</html>
