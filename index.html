@@ -47,17 +47,18 @@
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .nav-logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--frost-white), var(--ice-blue), var(--aurora-purple));
             -webkit-background-clip: text;
@@ -65,9 +66,11 @@
             background-clip: text;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            position: absolute;
+            left: 15px;
         }
 
         .nav-logo:hover {
@@ -76,22 +79,30 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             align-items: center;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-link {
             color: var(--frost-white);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 2px 6px;
+            border-radius: 6px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             cursor: pointer;
+        }
+
+        .nav-link span:first-child {
+            font-size: 0.95rem;
         }
 
         .nav-link:hover {
@@ -102,6 +113,7 @@
         .nav-link.active {
             background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
             box-shadow: 0 4px 15px rgba(123, 104, 238, 0.4);
+            padding: 2px 6px;
         }
 
         /* Mobile Menu Toggle */
@@ -114,6 +126,8 @@
             cursor: pointer;
             font-size: 1.5rem;
             color: var(--frost-white);
+            position: absolute;
+            right: 15px;
         }
 
         /* Page Sections */
@@ -127,6 +141,12 @@
         }
 
         @media (max-width: 768px) {
+            .nav-logo {
+                position: absolute;
+                left: 15px;
+                font-size: 1rem;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 70px;
@@ -139,6 +159,8 @@
                 padding: 20px;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                 display: none;
+                transform: none;
+                margin: 0;
             }
 
             .nav-links.open {
@@ -147,6 +169,8 @@
 
             .menu-toggle {
                 display: block;
+                position: absolute;
+                right: 15px;
             }
         }
 
@@ -1209,12 +1233,16 @@
                 <div style="font-size: 4rem; margin-bottom: 20px;">📻</div>
                 <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px;">Radios 24/7</h3>
                 <p style="opacity: 0.8; line-height: 1.6;">
-                    Écoute des radios en direct du monde entier ! France, Angleterre, Allemagne... Plus de 15 stations disponibles.
+                    Écoute des radios en direct du monde entier ! France, Angleterre, Allemagne, Italie, Belgique, Maroc, Espagne... Plus de 56 stations disponibles.
                 </p>
                 <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇫🇷 FR</span>
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇬🇧 EN</span>
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇩🇪 DE</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇮🇹 IT</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇧🇪 BE</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇲🇦 MA</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇪🇸 ES</span>
                 </div>
             </section>
 
@@ -1253,7 +1281,7 @@
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">15+</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">56+</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Radios disponibles</p>
                 </div>
                 <div>
@@ -1261,11 +1289,11 @@
                     <p style="margin-top: 10px; opacity: 0.8;">Diffusion continue</p>
                 </div>
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">3</div>
-                    <p style="margin-top: 10px; opacity: 0.8;">Langues supportées</p>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">7</div>
+                    <p style="margin-top: 10px; opacity: 0.8;">Pays disponibles</p>
                 </div>
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">∞</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">8</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Genres musicaux</p>
                 </div>
             </div>
@@ -1279,11 +1307,11 @@
             <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎧 Chill / Lofi</span>
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">⚡ Électro / Dance</span>
-                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎤 Hip-Hop / Rap</span>
-                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎸 Rock</span>
-                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎹 Pop</span>
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎷 Jazz</span>
-                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎻 Classique</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎸 Rock</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎤 Hits</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🌌 Ambient</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💖 Lounge</span>
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎅 Noël</span>
             </div>
         </section>
@@ -1463,17 +1491,24 @@
                 <h3 class="section-title">📻 Radios en Direct 24/7</h3>
                 
                 <div class="language-selector">
-                    <button class="lang-btn active" data-lang="fr">🇫🇷 Française</button>
-                    <button class="lang-btn" data-lang="en">🇬🇧 Anglaise</button>
-                    <button class="lang-btn" data-lang="de">🇩🇪 Allemande</button>
+                    <button class="lang-btn active" data-lang="fr">🇫🇷 France</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+                    <button class="lang-btn" data-lang="de">🇩🇪 Allemagne</button>
+                    <button class="lang-btn" data-lang="it">🇮🇹 Italie</button>
+                    <button class="lang-btn" data-lang="be">🇧🇪 Belgique</button>
+                    <button class="lang-btn" data-lang="ma">🇲🇦 Maroc</button>
+                    <button class="lang-btn" data-lang="es">🇪🇸 Espagne</button>
                 </div>
 
                 <div class="playlist-controls" id="radio-buttons">
-                    <button class="playlist-btn radio-btn active" data-radio="chill">🎧 NRJ</button>
-                    <button class="playlist-btn radio-btn" data-radio="christmas">🎅 Noël Radio</button>
-                    <button class="playlist-btn radio-btn" data-radio="jazz">🎤 Skyrock</button>
-                    <button class="playlist-btn radio-btn" data-radio="ambient">📻 RTL</button>
-                    <button class="playlist-btn radio-btn" data-radio="electronic">⚡ Fun Radio</button>
+                    <button class="playlist-btn radio-btn active" data-radio="chill">🎧 Chill</button>
+                    <button class="playlist-btn radio-btn" data-radio="christmas">🎅 Noël</button>
+                    <button class="playlist-btn radio-btn" data-radio="jazz">🎷 Jazz</button>
+                    <button class="playlist-btn radio-btn" data-radio="ambient">🌌 Ambient</button>
+                    <button class="playlist-btn radio-btn" data-radio="electronic">⚡ Électro</button>
+                    <button class="playlist-btn radio-btn" data-radio="rock">🎸 Rock</button>
+                    <button class="playlist-btn radio-btn" data-radio="hits">🎤 Hits</button>
+                    <button class="playlist-btn radio-btn" data-radio="lounge">💖 Lounge</button>
                 </div>
 
                 <div class="radio-info" id="radio-info">
@@ -1966,12 +2001,12 @@
         // Radio Stations par langue - Flux en direct 24/7
         // URLs testées et validées pour fonctionner dans les navigateurs
         const radioStations = {
-            // 🇫🇷 Radios Françaises Populaires
+            // 🇫🇷 Radios Françaises
             fr: {
                 chill: {
-                    name: 'NRJ',
-                    description: 'Hit Music Only 🇫🇷',
-                    url: 'https://scdn.nrjaudio.fm/fr/30001/mp3_128.mp3?origine=radioFR&cdn_path=audio_lbs9',
+                    name: 'FIP',
+                    description: 'Musique éclectique - Radio France 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/fip-midfi.mp3',
                     emoji: '🎧'
                 },
                 christmas: {
@@ -1981,25 +2016,43 @@
                     emoji: '🎅'
                 },
                 jazz: {
-                    name: 'Skyrock',
-                    description: 'Premier sur le Rap 🇫🇷',
-                    url: 'https://icecast.skyrock.net/s/natio_mp3_128k',
-                    emoji: '🎤'
+                    name: 'TSF Jazz',
+                    description: 'Le meilleur du Jazz 🇫🇷',
+                    url: 'https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3',
+                    emoji: '🎷'
                 },
                 ambient: {
-                    name: 'RTL',
-                    description: 'La première radio de France 🇫🇷',
-                    url: 'https://streamer-02.rtl.fr/rtl-1-44-128',
-                    emoji: '📻'
+                    name: 'Radio Classique',
+                    description: 'Musique classique 🇫🇷',
+                    url: 'https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3',
+                    emoji: '🎻'
                 },
                 electronic: {
-                    name: 'Fun Radio',
-                    description: 'La radio des hits et DJ 🇫🇷',
-                    url: 'https://icecast.funradio.fr/fun-1-44-128',
+                    name: 'Vibration',
+                    description: 'Musique électronique 🇫🇷',
+                    url: 'https://vibration.ice.infomaniak.ch/vibration-high.mp3',
                     emoji: '⚡'
+                },
+                rock: {
+                    name: 'France Info',
+                    description: 'Info et musique 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/franceinfo-midfi.mp3',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'Nostalgie',
+                    description: 'Les plus grands tubes 🇫🇷',
+                    url: 'https://scdn.nrjaudio.fm/adwz1/fr/30601/mp3_128.mp3',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Chérie FM',
+                    description: 'Love Songs 🇫🇷',
+                    url: 'https://scdn.nrjaudio.fm/adwz1/fr/30201/mp3_128.mp3',
+                    emoji: '💖'
                 }
             },
-            // 🇬🇧 Radios Internationales (en anglais)
+            // 🇬🇧 Radios Anglaises / Internationales
             en: {
                 chill: {
                     name: 'Chillout Radio',
@@ -2021,15 +2074,33 @@
                 },
                 ambient: {
                     name: 'Ambient Radio',
-                    description: 'Ambient & atmospheric music 🌌',
+                    description: 'Ambient & atmospheric 🌌',
                     url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
                     emoji: '🌌'
                 },
                 electronic: {
                     name: 'Electronic Radio',
-                    description: 'Electronic & Dance music ⚡',
+                    description: 'Electronic & Dance ⚡',
                     url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
                     emoji: '⚡'
+                },
+                rock: {
+                    name: 'Rock Radio',
+                    description: 'Classic & Modern Rock 🎸',
+                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'Hit Radio',
+                    description: 'Top Hits 🎤',
+                    url: 'https://streaming.exclusive.radio/er/hits/icecast.audio',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Lounge Radio',
+                    description: 'Smooth Lounge 💖',
+                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    emoji: '💖'
                 }
             },
             // 🇩🇪 Radios Allemandes
@@ -2063,6 +2134,228 @@
                     description: 'Elektronische Musik 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio2.mp3',
                     emoji: '⚡'
+                },
+                rock: {
+                    name: 'I Love Rock',
+                    description: 'Rock Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio14.mp3',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'I Love Radio',
+                    description: 'Hit Music Only 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio1.mp3',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'I Love Lounge',
+                    description: 'Lounge Musik 🇩🇪',
+                    url: 'https://streams.ilovemusic.de/iloveradio23.mp3',
+                    emoji: '💖'
+                }
+            },
+            // 🇮🇹 Radios Italiennes
+            it: {
+                chill: {
+                    name: 'Radio Italia',
+                    description: 'Musica Italiana 🇮🇹',
+                    url: 'https://radioitalia.stream/stream/1/',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Radio Natale',
+                    description: 'Musica di Natale 🎄🇮🇹',
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎄'
+                },
+                jazz: {
+                    name: 'Radio Jazz',
+                    description: 'Jazz Italiano 🇮🇹',
+                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'Radio Relax',
+                    description: 'Musica rilassante 🇮🇹',
+                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'Radio Dance',
+                    description: 'Musica elettronica 🇮🇹',
+                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    emoji: '⚡'
+                },
+                rock: {
+                    name: 'Radio Rock',
+                    description: 'Rock Italiano 🇮🇹',
+                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'Radio 105',
+                    description: 'Hits Italiani 🇮🇹',
+                    url: 'https://icy.unitedradio.it/Radio105.mp3',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Radio Lounge',
+                    description: 'Lounge Italiano 🇮🇹',
+                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    emoji: '💖'
+                }
+            },
+            // 🇧🇪 Radios Belges
+            be: {
+                chill: {
+                    name: 'Studio Brussel',
+                    description: 'Alternative Music 🇧🇪',
+                    url: 'https://icecast.vrtcdn.be/stubru-high.mp3',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Radio Noël',
+                    description: 'Musique de Noël 🎄🇧🇪',
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎄'
+                },
+                jazz: {
+                    name: 'Radio Jazz',
+                    description: 'Jazz Belge 🇧🇪',
+                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'Radio Zen',
+                    description: 'Musique relaxante 🇧🇪',
+                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'Radio Elektro',
+                    description: 'Musique électronique 🇧🇪',
+                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    emoji: '⚡'
+                },
+                rock: {
+                    name: 'Radio Rock',
+                    description: 'Rock Belge 🇧🇪',
+                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'MNM',
+                    description: 'Hit Music 🇧🇪',
+                    url: 'https://icecast.vrtcdn.be/mnm-high.mp3',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Radio Lounge',
+                    description: 'Lounge Belge 🇧🇪',
+                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    emoji: '💖'
+                }
+            },
+            // 🇲🇦 Radios Marocaines
+            ma: {
+                chill: {
+                    name: 'Medi1 Radio',
+                    description: 'Radio Marocaine 🇲🇦',
+                    url: 'https://streaming.medi1.com/medi1',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Radio Noël',
+                    description: 'Musique de Noël 🎄',
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎄'
+                },
+                jazz: {
+                    name: 'Radio Jazz',
+                    description: 'Jazz Oriental 🇲🇦',
+                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'Radio Relax',
+                    description: 'Musique relaxante 🇲🇦',
+                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'Radio Dance',
+                    description: 'Musique électronique 🇲🇦',
+                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    emoji: '⚡'
+                },
+                rock: {
+                    name: 'Radio Rock',
+                    description: 'Rock International 🇲🇦',
+                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'Hit Radio',
+                    description: 'Hit Music Maroc 🇲🇦',
+                    url: 'https://radio.hitradioma.com/hitradioma',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Radio Lounge',
+                    description: 'Lounge Music 🇲🇦',
+                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    emoji: '💖'
+                }
+            },
+            // 🇪🇸 Radios Espagnoles
+            es: {
+                chill: {
+                    name: 'Radio Relax',
+                    description: 'Música relajante 🇪🇸',
+                    url: 'https://streaming.exclusive.radio/er/chill/icecast.audio',
+                    emoji: '🎧'
+                },
+                christmas: {
+                    name: 'Radio Navidad',
+                    description: 'Música de Navidad 🎄🇪🇸',
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎄'
+                },
+                jazz: {
+                    name: 'Radio Jazz',
+                    description: 'Jazz Español 🇪🇸',
+                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    emoji: '🎷'
+                },
+                ambient: {
+                    name: 'Radio Ambient',
+                    description: 'Música ambiental 🇪🇸',
+                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    emoji: '🌌'
+                },
+                electronic: {
+                    name: 'Radio Electrónica',
+                    description: 'Música electrónica 🇪🇸',
+                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    emoji: '⚡'
+                },
+                rock: {
+                    name: 'Radio Rock',
+                    description: 'Rock Español 🇪🇸',
+                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    emoji: '🎸'
+                },
+                hits: {
+                    name: 'Los 40',
+                    description: 'Los 40 Principales 🇪🇸',
+                    url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40.mp3',
+                    emoji: '🎤'
+                },
+                lounge: {
+                    name: 'Radio Lounge',
+                    description: 'Lounge Español 🇪🇸',
+                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    emoji: '💖'
                 }
             }
         };
@@ -2168,7 +2461,7 @@
 
         // Update radio button names based on language
         function updateRadioButtons(lang) {
-            const radioKeys = ['chill', 'christmas', 'jazz', 'ambient', 'electronic'];
+            const radioKeys = ['chill', 'christmas', 'jazz', 'ambient', 'electronic', 'rock', 'hits', 'lounge'];
             
             // Update all radio buttons on all pages
             document.querySelectorAll('.radio-btn').forEach((btn) => {
@@ -2512,6 +2805,9 @@
         if (trackTitleEl) trackTitleEl.textContent = 'Winter Vibes Radio';
         if (trackArtistEl) trackArtistEl.textContent = 'Cliquez sur ▶️ pour écouter';
         if (vinylLabelEl) vinylLabelEl.textContent = '🎧';
+
+        // Initialize radio button names for French (default)
+        updateRadioButtons('fr');
 
         setInterval(createSnowflake, 500);
         setInterval(autoSpawnEmojis, 8000);
