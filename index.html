@@ -1998,10 +1998,10 @@
             createFallingEmoji(choice);
         }
 
-        // Radio Stations par langue - Flux en direct 24/7
-        // URLs testées et validées pour fonctionner dans les navigateurs
+        // Radio Stations par langue - Radios NATIONALES par pays
+        // URLs testées - Radios locales authentiques
         const radioStations = {
-            // 🇫🇷 Radios Françaises
+            // 🇫🇷 Radios Françaises AUTHENTIQUES
             fr: {
                 chill: {
                     name: 'FIP',
@@ -2017,93 +2017,93 @@
                 },
                 jazz: {
                     name: 'TSF Jazz',
-                    description: 'Le meilleur du Jazz 🇫🇷',
+                    description: 'Le meilleur du Jazz français 🇫🇷',
                     url: 'https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
                     name: 'Radio Classique',
-                    description: 'Musique classique 🇫🇷',
+                    description: 'Musique classique française 🇫🇷',
                     url: 'https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3',
                     emoji: '🎻'
                 },
                 electronic: {
-                    name: 'Vibration',
-                    description: 'Musique électronique 🇫🇷',
-                    url: 'https://vibration.ice.infomaniak.ch/vibration-high.mp3',
+                    name: 'FIP Électro',
+                    description: 'Électro - Radio France 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/fipelectro-midfi.mp3',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'France Info',
-                    description: 'Info et musique 🇫🇷',
-                    url: 'https://icecast.radiofrance.fr/franceinfo-midfi.mp3',
+                    name: 'FIP Rock',
+                    description: 'Rock - Radio France 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/fiprock-midfi.mp3',
                     emoji: '🎸'
                 },
                 hits: {
-                    name: 'Nostalgie',
-                    description: 'Les plus grands tubes 🇫🇷',
-                    url: 'https://scdn.nrjaudio.fm/adwz1/fr/30601/mp3_128.mp3',
+                    name: 'Mouv',
+                    description: 'Hip-Hop & Urbain français 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/mouv-midfi.mp3',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Chérie FM',
-                    description: 'Love Songs 🇫🇷',
-                    url: 'https://scdn.nrjaudio.fm/adwz1/fr/30201/mp3_128.mp3',
+                    name: 'FIP Groove',
+                    description: 'Soul, Funk français 🇫🇷',
+                    url: 'https://icecast.radiofrance.fr/fipgroove-midfi.mp3',
                     emoji: '💖'
                 }
             },
-            // 🇬🇧 Radios Anglaises / Internationales
+            // 🇬🇧 Radios Britanniques/Internationales ANGLAISES
             en: {
                 chill: {
-                    name: 'Chillout Radio',
-                    description: 'Relaxing chillout music 🌍',
-                    url: 'https://streaming.exclusive.radio/er/chill/icecast.audio',
+                    name: 'BBC Radio 2',
+                    description: 'Popular Music - BBC UK 🇬🇧',
+                    url: 'http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_two.m3u8',
                     emoji: '🎧'
                 },
                 christmas: {
-                    name: 'Christmas Hits',
+                    name: 'Christmas Radio',
                     description: 'Christmas music 24/7 🎄',
-                    url: 'https://stream.christmashitsstation.com/christmas.mp3',
-                    emoji: '❄️'
+                    url: 'https://noel.ice.infomaniak.ch/noel-128.mp3',
+                    emoji: '🎅'
                 },
                 jazz: {
-                    name: 'Jazz Radio',
-                    description: 'The best of Jazz 🎷',
+                    name: 'Jazz FM London',
+                    description: 'Jazz from London UK 🇬🇧',
                     url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
-                    name: 'Ambient Radio',
-                    description: 'Ambient & atmospheric 🌌',
-                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    name: 'BBC Radio 3',
+                    description: 'Classical Music - BBC UK 🇬🇧',
+                    url: 'http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_three.m3u8',
                     emoji: '🌌'
                 },
                 electronic: {
-                    name: 'Electronic Radio',
-                    description: 'Electronic & Dance ⚡',
-                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    name: 'BBC Radio 1',
+                    description: 'Dance & Electronic - BBC UK 🇬🇧',
+                    url: 'http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_one.m3u8',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'Rock Radio',
-                    description: 'Classic & Modern Rock 🎸',
-                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    name: 'BBC 6 Music',
+                    description: 'Alternative Rock - BBC UK 🇬🇧',
+                    url: 'http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_6music.m3u8',
                     emoji: '🎸'
                 },
                 hits: {
-                    name: 'Hit Radio',
-                    description: 'Top Hits 🎤',
-                    url: 'https://streaming.exclusive.radio/er/hits/icecast.audio',
+                    name: 'Capital FM',
+                    description: 'UK Hit Music 🇬🇧',
+                    url: 'https://media-ssl.musicradio.com/CapitalMP3',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Lounge Radio',
-                    description: 'Smooth Lounge 💖',
-                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    name: 'Smooth Radio',
+                    description: 'Easy Listening UK 🇬🇧',
+                    url: 'https://media-ssl.musicradio.com/SmoothMP3',
                     emoji: '💖'
                 }
             },
-            // 🇩🇪 Radios Allemandes
+            // 🇩🇪 Radios Allemandes AUTHENTIQUES
             de: {
                 chill: {
                     name: 'I Love Chill',
@@ -2113,37 +2113,37 @@
                 },
                 christmas: {
                     name: 'I Love Christmas',
-                    description: 'Weihnachtsmusik 24/7 🎄🇩🇪',
+                    description: 'Weihnachtsmusik 24/7 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio8.mp3',
                     emoji: '🎄'
                 },
                 jazz: {
                     name: 'I Love Jazz',
-                    description: 'Jazz Musik 🇩🇪',
+                    description: 'Jazz aus Deutschland 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio18.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
                     name: 'I Love Relax',
-                    description: 'Entspannende Musik 🇩🇪',
+                    description: 'Entspannungsmusik 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio7.mp3',
                     emoji: '🌌'
                 },
                 electronic: {
                     name: 'I Love Dance',
-                    description: 'Elektronische Musik 🇩🇪',
+                    description: 'Dance & Techno 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio2.mp3',
                     emoji: '⚡'
                 },
                 rock: {
                     name: 'I Love Rock',
-                    description: 'Rock Musik 🇩🇪',
+                    description: 'Rock aus Deutschland 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio14.mp3',
                     emoji: '🎸'
                 },
                 hits: {
                     name: 'I Love Radio',
-                    description: 'Hit Music Only 🇩🇪',
+                    description: 'Deutsche Hits 🇩🇪',
                     url: 'https://streams.ilovemusic.de/iloveradio1.mp3',
                     emoji: '🎤'
                 },
@@ -2154,12 +2154,12 @@
                     emoji: '💖'
                 }
             },
-            // 🇮🇹 Radios Italiennes
+            // 🇮🇹 Radios Italiennes AUTHENTIQUES
             it: {
                 chill: {
-                    name: 'Radio Italia',
-                    description: 'Musica Italiana 🇮🇹',
-                    url: 'https://radioitalia.stream/stream/1/',
+                    name: 'RTL 102.5',
+                    description: 'Radio italiana popolare 🇮🇹',
+                    url: 'https://streamingv2.shoutcast.com/rtl-1025',
                     emoji: '🎧'
                 },
                 christmas: {
@@ -2169,48 +2169,48 @@
                     emoji: '🎄'
                 },
                 jazz: {
-                    name: 'Radio Jazz',
-                    description: 'Jazz Italiano 🇮🇹',
-                    url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
+                    name: 'Radio Monte Carlo',
+                    description: 'Jazz italiano 🇮🇹',
+                    url: 'https://icy.unitedradio.it/RMC.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
-                    name: 'Radio Relax',
-                    description: 'Musica rilassante 🇮🇹',
-                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    name: 'Radio Italia Anni 60',
+                    description: 'Musica italiana classica 🇮🇹',
+                    url: 'https://streamingv2.shoutcast.com/radioitalia-anni60',
                     emoji: '🌌'
                 },
                 electronic: {
-                    name: 'Radio Dance',
-                    description: 'Musica elettronica 🇮🇹',
-                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    name: 'Radio Deejay',
+                    description: 'Dance italiana 🇮🇹',
+                    url: 'https://streamingv2.shoutcast.com/radiodeejay',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'Radio Rock',
-                    description: 'Rock Italiano 🇮🇹',
-                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    name: 'Virgin Radio',
+                    description: 'Rock italiano 🇮🇹',
+                    url: 'https://icy.unitedradio.it/Virgin.mp3',
                     emoji: '🎸'
                 },
                 hits: {
                     name: 'Radio 105',
-                    description: 'Hits Italiani 🇮🇹',
+                    description: 'Hit italiani 🇮🇹',
                     url: 'https://icy.unitedradio.it/Radio105.mp3',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Radio Lounge',
-                    description: 'Lounge Italiano 🇮🇹',
-                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    name: 'Radio Capital',
+                    description: 'Musica italiana 🇮🇹',
+                    url: 'https://icy.unitedradio.it/Capital.mp3',
                     emoji: '💖'
                 }
             },
-            // 🇧🇪 Radios Belges
+            // 🇧🇪 Radios Belges AUTHENTIQUES
             be: {
                 chill: {
-                    name: 'Studio Brussel',
-                    description: 'Alternative Music 🇧🇪',
-                    url: 'https://icecast.vrtcdn.be/stubru-high.mp3',
+                    name: 'Radio Contact',
+                    description: 'Hit Music Belgique 🇧🇪',
+                    url: 'https://radiocontact.ice.infomaniak.ch/radiocontact-mp3-128.mp3',
                     emoji: '🎧'
                 },
                 christmas: {
@@ -2220,48 +2220,48 @@
                     emoji: '🎄'
                 },
                 jazz: {
-                    name: 'Radio Jazz',
-                    description: 'Jazz Belge 🇧🇪',
+                    name: 'Jazz Radio BE',
+                    description: 'Jazz belge 🇧🇪',
                     url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
-                    name: 'Radio Zen',
-                    description: 'Musique relaxante 🇧🇪',
-                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    name: 'Classic 21',
+                    description: 'Rock classique belge 🇧🇪',
+                    url: 'https://radios.rtbf.be/classic21-128.mp3',
                     emoji: '🌌'
                 },
                 electronic: {
-                    name: 'Radio Elektro',
-                    description: 'Musique électronique 🇧🇪',
-                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    name: 'NRJ Belgique',
+                    description: 'Dance & Hits 🇧🇪',
+                    url: 'https://scdn.nrjaudio.fm/be/55505/mp3_128.mp3',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'Radio Rock',
-                    description: 'Rock Belge 🇧🇪',
-                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    name: 'Pure FM',
+                    description: 'Rock belge 🇧🇪',
+                    url: 'https://radios.rtbf.be/pure-128.mp3',
                     emoji: '🎸'
                 },
                 hits: {
-                    name: 'MNM',
-                    description: 'Hit Music 🇧🇪',
-                    url: 'https://icecast.vrtcdn.be/mnm-high.mp3',
+                    name: 'La Première',
+                    description: 'Info & Culture RTBF 🇧🇪',
+                    url: 'https://radios.rtbf.be/laprem1ere-128.mp3',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Radio Lounge',
-                    description: 'Lounge Belge 🇧🇪',
-                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    name: 'Musiq3',
+                    description: 'Musique classique RTBF 🇧🇪',
+                    url: 'https://radios.rtbf.be/musiq3-128.mp3',
                     emoji: '💖'
                 }
             },
-            // 🇲🇦 Radios Marocaines
+            // 🇲🇦 Radios Marocaines AUTHENTIQUES
             ma: {
                 chill: {
-                    name: 'Medi1 Radio',
-                    description: 'Radio Marocaine 🇲🇦',
-                    url: 'https://streaming.medi1.com/medi1',
+                    name: 'Hit Radio Maroc',
+                    description: 'Radio marocaine populaire 🇲🇦',
+                    url: 'https://listen.radioking.com/radio/3787/stream/15865',
                     emoji: '🎧'
                 },
                 christmas: {
@@ -2271,48 +2271,48 @@
                     emoji: '🎄'
                 },
                 jazz: {
-                    name: 'Radio Jazz',
-                    description: 'Jazz Oriental 🇲🇦',
+                    name: 'Jazz Radio MA',
+                    description: 'Jazz oriental 🇲🇦',
                     url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
-                    name: 'Radio Relax',
-                    description: 'Musique relaxante 🇲🇦',
-                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    name: 'Radio 2M',
+                    description: 'Radio nationale marocaine 🇲🇦',
+                    url: 'https://broadcast.ice.infomaniak.ch/radio2m-high.mp3',
                     emoji: '🌌'
                 },
                 electronic: {
-                    name: 'Radio Dance',
-                    description: 'Musique électronique 🇲🇦',
-                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    name: 'Atlantic Radio',
+                    description: 'Hits marocains 🇲🇦',
+                    url: 'https://broadcast.ice.infomaniak.ch/atlanticradio-high.mp3',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'Radio Rock',
-                    description: 'Rock International 🇲🇦',
-                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    name: 'Radio Mars',
+                    description: 'Musique marocaine 🇲🇦',
+                    url: 'https://listen.radioking.com/radio/8850/stream/18152',
                     emoji: '🎸'
                 },
                 hits: {
-                    name: 'Hit Radio',
-                    description: 'Hit Music Maroc 🇲🇦',
-                    url: 'https://radio.hitradioma.com/hitradioma',
+                    name: 'Med Radio',
+                    description: 'Radio marocaine 🇲🇦',
+                    url: 'https://listen.radioking.com/radio/3788/stream/15866',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Radio Lounge',
-                    description: 'Lounge Music 🇲🇦',
-                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    name: 'Radio Casablanca',
+                    description: 'Musique du Maroc 🇲🇦',
+                    url: 'https://listen.radioking.com/radio/2524/stream/5702',
                     emoji: '💖'
                 }
             },
-            // 🇪🇸 Radios Espagnoles
+            // 🇪🇸 Radios Espagnoles AUTHENTIQUES
             es: {
                 chill: {
-                    name: 'Radio Relax',
-                    description: 'Música relajante 🇪🇸',
-                    url: 'https://streaming.exclusive.radio/er/chill/icecast.audio',
+                    name: 'Cadena Dial',
+                    description: 'Música romántica española 🇪🇸',
+                    url: 'https://cadenadial.cope.es/net2',
                     emoji: '🎧'
                 },
                 christmas: {
@@ -2322,39 +2322,39 @@
                     emoji: '🎄'
                 },
                 jazz: {
-                    name: 'Radio Jazz',
-                    description: 'Jazz Español 🇪🇸',
+                    name: 'Jazz Radio ES',
+                    description: 'Jazz español 🇪🇸',
                     url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3',
                     emoji: '🎷'
                 },
                 ambient: {
-                    name: 'Radio Ambient',
-                    description: 'Música ambiental 🇪🇸',
-                    url: 'https://streaming.exclusive.radio/er/ambient/icecast.audio',
+                    name: 'Radio Clásica',
+                    description: 'Música clásica RNE 🇪🇸',
+                    url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne_clasica.mp3',
                     emoji: '🌌'
                 },
                 electronic: {
-                    name: 'Radio Electrónica',
-                    description: 'Música electrónica 🇪🇸',
-                    url: 'https://streaming.exclusive.radio/er/electronic/icecast.audio',
+                    name: 'Máxima FM',
+                    description: 'Dance & Electrónica 🇪🇸',
+                    url: 'https://server5.emisionlocal.com:19532/stream',
                     emoji: '⚡'
                 },
                 rock: {
-                    name: 'Radio Rock',
-                    description: 'Rock Español 🇪🇸',
-                    url: 'https://streaming.exclusive.radio/er/rock/icecast.audio',
+                    name: 'Rock FM España',
+                    description: 'Rock español 🇪🇸',
+                    url: 'https://rockfm.cope.es/net2',
                     emoji: '🎸'
                 },
                 hits: {
-                    name: 'Los 40',
-                    description: 'Los 40 Principales 🇪🇸',
+                    name: 'Los 40 Principales',
+                    description: 'Top Hits España 🇪🇸',
                     url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40.mp3',
                     emoji: '🎤'
                 },
                 lounge: {
-                    name: 'Radio Lounge',
-                    description: 'Lounge Español 🇪🇸',
-                    url: 'https://streaming.exclusive.radio/er/lounge/icecast.audio',
+                    name: 'Radio 3 RNE',
+                    description: 'Música alternativa española 🇪🇸',
+                    url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne3.mp3',
                     emoji: '💖'
                 }
             }
