@@ -1275,6 +1275,7 @@
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇧🇪 BE</span>
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇲🇦 MA</span>
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇪🇸 ES</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇯🇵 JP</span>
                 </div>
             </section>
 
@@ -1313,7 +1314,7 @@
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">56+</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">72+</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Radios disponibles</p>
                 </div>
                 <div>
@@ -1321,11 +1322,11 @@
                     <p style="margin-top: 10px; opacity: 0.8;">Diffusion continue</p>
                 </div>
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">7</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-green), var(--aurora-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">8</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Pays disponibles</p>
                 </div>
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">8</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">9</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Genres musicaux</p>
                 </div>
             </div>
@@ -1345,6 +1346,7 @@
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🌌 Ambient</span>
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💖 Lounge</span>
                 <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎅 Noël</span>
+                <span style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.3), rgba(168, 216, 234, 0.2)); border: 1px solid rgba(255,255,255,0.3); padding: 12px 25px; border-radius: 25px; font-size: 1rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🎌 Anime / J-Pop</span>
             </div>
         </section>
 
@@ -1357,7 +1359,7 @@
                 <div style="text-align: center;">
                     <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;">1</div>
                     <h4 style="font-size: 1.3rem; margin-bottom: 10px;">Choisis ta radio</h4>
-                    <p style="opacity: 0.8; line-height: 1.6;">Sélectionne parmi nos radios françaises, anglaises ou allemandes</p>
+                    <p style="opacity: 0.8; line-height: 1.6;">Sélectionne parmi nos radios du monde entier : France, UK, Allemagne, Italie, Belgique, Maroc, Espagne, Japon</p>
                 </div>
                 <div style="text-align: center;">
                     <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--ice-blue), var(--aurora-green)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;">2</div>
@@ -2037,101 +2039,101 @@
         // Radio Stations - UNIQUEMENT DES RADIOS QUI FONCTIONNENT
         // Test OK - Radios nationales
         const radioStations = {
-            // 🇫🇷 FRANCE
+            // 🇫🇷 FRANCE - Radio France (service public)
             fr: {
-                chill: { name: 'FIP', description: 'Musique éclectique 🇫🇷', url: 'https://icecast.radiofrance.fr/fip-midfi.mp3', emoji: '🎧' },
-                christmas: { name: 'Noël Radio', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎅' },
-                jazz: { name: 'TSF Jazz', description: 'Jazz 🎷', url: 'https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3', emoji: '🎷' },
+                chill: { name: 'FIP', description: 'Éclectique 🇫🇷', url: 'https://icecast.radiofrance.fr/fip-midfi.mp3', emoji: '🎧' },
+                christmas: { name: 'Noël Radio', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
+                jazz: { name: 'TSF Jazz', description: 'Jazz FR 🎷', url: 'https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3', emoji: '🎷' },
                 ambient: { name: 'France Musique', description: 'Classique 🎻', url: 'https://icecast.radiofrance.fr/francemusique-midfi.mp3', emoji: '🌌' },
-                electronic: { name: 'FIP Électro', description: 'Électro ⚡', url: 'https://icecast.radiofrance.fr/fipelectro-midfi.mp3', emoji: '⚡' },
-                rock: { name: 'FIP Rock', description: 'Rock 🎸', url: 'https://icecast.radiofrance.fr/fiprock-midfi.mp3', emoji: '🎸' },
-                hits: { name: 'Skyrock', description: 'Rap & Hip-Hop 🎤', url: 'https://icecast.skyrock.net/s/natio_mp3_128k', emoji: '🎤' },
+                electronic: { name: 'FIP Électro', description: 'Électro FR ⚡', url: 'https://icecast.radiofrance.fr/fipelectro-midfi.mp3', emoji: '⚡' },
+                rock: { name: 'FIP Rock', description: 'Rock FR 🎸', url: 'https://icecast.radiofrance.fr/fiprock-midfi.mp3', emoji: '🎸' },
+                hits: { name: 'Skyrock', description: 'Rap FR 🎤', url: 'https://icecast.skyrock.net/s/natio_mp3_128k', emoji: '🎤' },
                 lounge: { name: 'FIP Groove', description: 'Soul & Funk 💖', url: 'https://icecast.radiofrance.fr/fipgroove-midfi.mp3', emoji: '💖' },
-                anime: { name: 'J-Pop Powerplay', description: 'Anime & J-Pop 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
+                anime: { name: 'J-Pop Powerplay', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
-            // 🇬🇧 UK
+            // 🇬🇧 UK - BBC & UK Radios
             en: {
-                chill: { name: 'Groove Salad', description: 'Chill & Lounge 🎧', url: 'https://ice1.somafm.com/groovesalad-128-mp3', emoji: '🎧' },
-                christmas: { name: 'Christmas', description: 'Christmas 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎅' },
-                jazz: { name: 'Smooth Jazz', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Drone Zone', description: 'Ambient Space 🌌', url: 'https://ice1.somafm.com/dronezone-128-mp3', emoji: '🌌' },
-                electronic: { name: 'Beat Blender', description: 'Electronic Mix ⚡', url: 'https://ice1.somafm.com/beatblender-128-mp3', emoji: '⚡' },
-                rock: { name: 'Indie Pop', description: 'Alternative Rock 🎸', url: 'https://ice1.somafm.com/indiepop-128-mp3', emoji: '🎸' },
-                hits: { name: 'PopTron', description: 'Electropop Hits 🎤', url: 'https://ice1.somafm.com/poptron-128-mp3', emoji: '🎤' },
-                lounge: { name: 'Suburbs of Goa', description: 'Lounge & Downtempo 💖', url: 'https://ice1.somafm.com/suburbsofgoa-128-mp3', emoji: '💖' },
-                anime: { name: 'AnimeNfo Radio', description: 'Anime Music 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                chill: { name: 'BBC Radio 2', description: 'UK Pop 🇬🇧', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two', emoji: '🎧' },
+                christmas: { name: 'Christmas UK', description: 'Xmas 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
+                jazz: { name: 'Jazz FM', description: 'UK Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
+                ambient: { name: 'BBC Radio 3', description: 'Classical 🎻', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_three', emoji: '🌌' },
+                electronic: { name: 'BBC Radio 1', description: 'Dance UK ⚡', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one', emoji: '⚡' },
+                rock: { name: 'BBC 6 Music', description: 'Alternative 🎸', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_6music', emoji: '🎸' },
+                hits: { name: 'Heart Radio', description: 'UK Hits 🎤', url: 'https://media-ssl.musicradio.com/HeartLondonMP3', emoji: '🎤' },
+                lounge: { name: 'Smooth FM', description: 'Easy UK 💖', url: 'https://media-ssl.musicradio.com/SmoothLondonMP3', emoji: '💖' },
+                anime: { name: 'AnimeNfo', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
             },
-            // 🇩🇪 ALLEMAGNE
+            // 🇩🇪 ALLEMAGNE - I Love Music
             de: {
-                chill: { name: 'I Love Chill', description: 'Chill 🇩🇪', url: 'https://streams.ilovemusic.de/iloveradio17.mp3', emoji: '🎧' },
+                chill: { name: 'I Love Chill', description: 'Chill DE 🇩🇪', url: 'https://streams.ilovemusic.de/iloveradio17.mp3', emoji: '🎧' },
                 christmas: { name: 'I Love Christmas', description: 'Weihnachten 🎄', url: 'https://streams.ilovemusic.de/iloveradio8.mp3', emoji: '🎄' },
-                jazz: { name: 'I Love Jazz', description: 'Jazz 🎷', url: 'https://streams.ilovemusic.de/iloveradio18.mp3', emoji: '🎷' },
-                ambient: { name: 'I Love Relax', description: 'Relax 🌌', url: 'https://streams.ilovemusic.de/iloveradio7.mp3', emoji: '🌌' },
-                electronic: { name: 'I Love Dance', description: 'Dance ⚡', url: 'https://streams.ilovemusic.de/iloveradio2.mp3', emoji: '⚡' },
-                rock: { name: 'I Love Rock', description: 'Rock 🎸', url: 'https://streams.ilovemusic.de/iloveradio14.mp3', emoji: '🎸' },
-                hits: { name: 'I Love Radio', description: 'Hits 🎤', url: 'https://streams.ilovemusic.de/iloveradio1.mp3', emoji: '🎤' },
-                lounge: { name: 'I Love Lounge', description: 'Lounge 💖', url: 'https://streams.ilovemusic.de/iloveradio23.mp3', emoji: '💖' },
-                anime: { name: 'Anime Radio', description: 'Anime & J-Pop 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
+                jazz: { name: 'I Love Jazz', description: 'Jazz DE 🎷', url: 'https://streams.ilovemusic.de/iloveradio18.mp3', emoji: '🎷' },
+                ambient: { name: 'I Love Relax', description: 'Relax DE 🌌', url: 'https://streams.ilovemusic.de/iloveradio7.mp3', emoji: '🌌' },
+                electronic: { name: 'I Love Dance', description: 'Dance DE ⚡', url: 'https://streams.ilovemusic.de/iloveradio2.mp3', emoji: '⚡' },
+                rock: { name: 'I Love Rock', description: 'Rock DE 🎸', url: 'https://streams.ilovemusic.de/iloveradio14.mp3', emoji: '🎸' },
+                hits: { name: 'I Love Radio', description: 'Hits DE 🎤', url: 'https://streams.ilovemusic.de/iloveradio1.mp3', emoji: '🎤' },
+                lounge: { name: 'I Love Lounge', description: 'Lounge DE 💖', url: 'https://streams.ilovemusic.de/iloveradio23.mp3', emoji: '💖' },
+                anime: { name: 'Anime DE', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
-            // 🇮🇹 ITALIE
+            // 🇮🇹 ITALIE - United Radio Italy
             it: {
-                chill: { name: 'Radio Monte Carlo', description: 'Italiana 🇮🇹', url: 'https://icy.unitedradio.it/RMC.mp3', emoji: '🎧' },
+                chill: { name: 'Radio Italia', description: 'Pop IT 🇮🇹', url: 'https://stream.radioitalia.it/radioitalia.mp3', emoji: '🎧' },
                 christmas: { name: 'Natale', description: 'Natale 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Radio Relax', description: 'Relax 🌌', url: 'https://ice1.somafm.com/dronezone-128-mp3', emoji: '🌌' },
-                electronic: { name: 'Radio Dance', description: 'Dance 🇮🇹', url: 'https://icy.unitedradio.it/m2o.mp3', emoji: '⚡' },
-                rock: { name: 'Virgin Radio', description: 'Rock 🇮🇹', url: 'https://icy.unitedradio.it/Virgin.mp3', emoji: '🎸' },
-                hits: { name: 'Radio 105', description: 'Hits 🎤', url: 'https://icy.unitedradio.it/Radio105.mp3', emoji: '🎤' },
-                lounge: { name: 'Radio Capital', description: 'Lounge 🇮🇹', url: 'https://icy.unitedradio.it/Capital.mp3', emoji: '💖' },
-                anime: { name: 'Radio Anime', description: 'Anime Music 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                jazz: { name: 'Radio Monte Carlo', description: 'Jazz IT 🎷', url: 'https://icy.unitedradio.it/RMC.mp3', emoji: '🎷' },
+                ambient: { name: 'Radio Classica', description: 'Classica 🎻', url: 'https://stream.radioitalia.it/radioitaliaclassica.mp3', emoji: '🌌' },
+                electronic: { name: 'Radio m2o', description: 'Dance IT ⚡', url: 'https://icy.unitedradio.it/m2o.mp3', emoji: '⚡' },
+                rock: { name: 'Virgin Radio', description: 'Rock IT 🎸', url: 'https://icy.unitedradio.it/Virgin.mp3', emoji: '🎸' },
+                hits: { name: 'Radio 105', description: 'Hits IT 🎤', url: 'https://icy.unitedradio.it/Radio105.mp3', emoji: '🎤' },
+                lounge: { name: 'Radio Capital', description: 'Lounge IT 💖', url: 'https://icy.unitedradio.it/Capital.mp3', emoji: '💖' },
+                anime: { name: 'Anime IT', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
             },
-            // 🇧🇪 BELGIQUE
+            // 🇧🇪 BELGIQUE - RTBF & Radio Contact
             be: {
-                chill: { name: 'Radio Contact', description: 'Hits 🇧🇪', url: 'https://radiocontact.ice.infomaniak.ch/radiocontact-mp3-128.mp3', emoji: '🎧' },
-                christmas: { name: 'Noël', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Radio Zen', description: 'Ambient 🌌', url: 'https://ice1.somafm.com/dronezone-128-mp3', emoji: '🌌' },
-                electronic: { name: 'Radio Dance', description: 'Electronic ⚡', url: 'https://ice1.somafm.com/beatblender-128-mp3', emoji: '⚡' },
-                rock: { name: 'Radio Rock', description: 'Rock & Indie 🎸', url: 'https://ice1.somafm.com/indiepop-128-mp3', emoji: '🎸' },
-                hits: { name: 'Radio Hits', description: 'Hit Music 🎤', url: 'https://ice1.somafm.com/poptron-128-mp3', emoji: '🎤' },
-                lounge: { name: 'Radio Lounge', description: 'Lounge 💖', url: 'https://ice1.somafm.com/suburbsofgoa-128-mp3', emoji: '💖' },
-                anime: { name: 'Radio Anime', description: 'Anime & J-Pop 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
+                chill: { name: 'Radio Contact', description: 'Hits BE 🇧🇪', url: 'https://radiocontact.ice.infomaniak.ch/radiocontact-mp3-128.mp3', emoji: '🎧' },
+                christmas: { name: 'Noël BE', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
+                jazz: { name: 'Jazz Radio BE', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
+                ambient: { name: 'La Première', description: 'Culture 🌌', url: 'https://radios.rtbf.be/laprem1ere-128.mp3', emoji: '🌌' },
+                electronic: { name: 'Studio Brussel', description: 'Alternative ⚡', url: 'https://icecast.vrtcdn.be/stubru-high.mp3', emoji: '⚡' },
+                rock: { name: 'Classic 21', description: 'Rock BE 🎸', url: 'https://radios.rtbf.be/classic21-128.mp3', emoji: '🎸' },
+                hits: { name: 'Bel RTL', description: 'Hits BE 🎤', url: 'https://belrtl.ice.infomaniak.ch/belrtl-mp3-128.mp3', emoji: '🎤' },
+                lounge: { name: 'Musiq3', description: 'Classique 💖', url: 'https://radios.rtbf.be/musiq3-128.mp3', emoji: '💖' },
+                anime: { name: 'Anime BE', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
-            // 🇲🇦 MAROC
+            // 🇲🇦 MAROC - Radios marocaines
             ma: {
-                chill: { name: 'Radio Maroc', description: 'Chill 🇲🇦', url: 'https://ice1.somafm.com/groovesalad-128-mp3', emoji: '🎧' },
-                christmas: { name: 'Noël', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Radio Zen', description: 'Ambient 🌌', url: 'https://ice1.somafm.com/dronezone-128-mp3', emoji: '🌌' },
-                electronic: { name: 'Radio Dance', description: 'Electronic ⚡', url: 'https://ice1.somafm.com/beatblender-128-mp3', emoji: '⚡' },
-                rock: { name: 'Radio Rock', description: 'Rock 🎸', url: 'https://ice1.somafm.com/indiepop-128-mp3', emoji: '🎸' },
-                hits: { name: 'Radio Hits', description: 'Hit Music 🎤', url: 'https://ice1.somafm.com/poptron-128-mp3', emoji: '🎤' },
-                lounge: { name: 'Radio Lounge', description: 'Lounge 💖', url: 'https://ice1.somafm.com/suburbsofgoa-128-mp3', emoji: '💖' },
-                anime: { name: 'Radio Anime', description: 'Anime & J-Pop 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
+                chill: { name: 'Hit Radio MA', description: 'Hits MA 🇲🇦', url: 'https://stream.rcs.revma.com/aw72yxyv138uv', emoji: '🎧' },
+                christmas: { name: 'Noël MA', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
+                jazz: { name: 'Jazz MA', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
+                ambient: { name: 'Medi1', description: 'Medi1 🌌', url: 'https://radio.medi1.com/medi1', emoji: '🌌' },
+                electronic: { name: 'Atlantic Radio', description: 'Dance MA ⚡', url: 'https://stream.rcs.revma.com/fsx1cc238f3vv', emoji: '⚡' },
+                rock: { name: 'Aswat', description: 'Aswat MA 🎸', url: 'https://stream.rcs.revma.com/8rfxu5vxhm0uv', emoji: '🎸' },
+                hits: { name: 'Cap Radio', description: 'Hits MA 🎤', url: 'https://stream.rcs.revma.com/4wg72b238f3vv', emoji: '🎤' },
+                lounge: { name: 'Radio Plus', description: 'Lounge MA 💖', url: 'https://stream.radioplus.ma/radioplus', emoji: '💖' },
+                anime: { name: 'Anime MA', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
             },
-            // 🇪🇸 ESPAGNE
+            // 🇪🇸 ESPAGNE - COPE & RNE
             es: {
-                chill: { name: 'Radio Chill', description: 'Chill 🇪🇸', url: 'https://ice1.somafm.com/groovesalad-128-mp3', emoji: '🎧' },
+                chill: { name: 'Cadena 100', description: 'Pop ES 🇪🇸', url: 'https://server10.emisionlocal.com/proxy/cadena100?mp=/stream', emoji: '🎧' },
                 christmas: { name: 'Navidad', description: 'Navidad 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Radio Ambient', description: 'Ambient 🌌', url: 'https://ice1.somafm.com/dronezone-128-mp3', emoji: '🌌' },
-                electronic: { name: 'Radio Dance', description: 'Electronic ⚡', url: 'https://ice1.somafm.com/beatblender-128-mp3', emoji: '⚡' },
-                rock: { name: 'Radio Rock', description: 'Rock 🎸', url: 'https://ice1.somafm.com/indiepop-128-mp3', emoji: '🎸' },
-                hits: { name: 'Los 40', description: 'Hits 🎤', url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40.mp3', emoji: '🎤' },
-                lounge: { name: 'Radio Lounge', description: 'Lounge 💖', url: 'https://ice1.somafm.com/suburbsofgoa-128-mp3', emoji: '💖' },
-                anime: { name: 'Radio Anime', description: 'Anime & J-Pop 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
+                jazz: { name: 'Jazz ES', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
+                ambient: { name: 'RNE Clásica', description: 'Clásica 🎻', url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne_clasica.mp3', emoji: '🌌' },
+                electronic: { name: 'Los 40 Dance', description: 'Dance ES ⚡', url: 'https://flucast-m04-06.flumotion.com/playlist.m3u8', emoji: '⚡' },
+                rock: { name: 'Rock FM', description: 'Rock ES 🎸', url: 'https://rockfm-cope-rrcast.flumotion.com/cope/rockfm.mp3', emoji: '🎸' },
+                hits: { name: 'Los 40', description: 'Top 40 ES 🎤', url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40.mp3', emoji: '🎤' },
+                lounge: { name: 'Radio 3', description: 'Indie ES 💖', url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne3.mp3', emoji: '💖' },
+                anime: { name: 'Anime ES', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
             // 🇯🇵 JAPON - Radios japonaises authentiques
             jp: {
-                chill: { name: 'J1 Hits', description: 'J-Pop Hits 🇯🇵', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎧' },
-                christmas: { name: 'Christmas JP', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz Japan', description: 'Jazz japonais 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Anime Lofi', description: 'Lofi Anime 🌌', url: 'https://stream.zeno.fm/f8d6vssuam0uv', emoji: '🌌' },
-                electronic: { name: 'Tokyo Beats', description: 'Electronic JP ⚡', url: 'https://ice1.somafm.com/beatblender-128-mp3', emoji: '⚡' },
-                rock: { name: 'J-Rock Radio', description: 'Japanese Rock 🎸', url: 'https://ice1.somafm.com/indiepop-128-mp3', emoji: '🎸' },
-                hits: { name: 'J-Pop Station', description: 'J-Pop & Idol 🎤', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎤' },
-                lounge: { name: 'Sakura Lounge', description: 'Lounge japonais 💖', url: 'https://ice1.somafm.com/suburbsofgoa-128-mp3', emoji: '💖' },
-                anime: { name: 'Anison Radio', description: 'Anime Songs 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                chill: { name: 'J1 Hits', description: 'J-Pop 🇯🇵', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎧' },
+                christmas: { name: 'Xmas JP', description: 'Christmas 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
+                jazz: { name: 'Jazz Japan', description: 'Jazz JP 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
+                ambient: { name: 'Miku Radio', description: 'Miku 💙', url: 'https://listen.moe/stream', emoji: '🌌' },
+                electronic: { name: 'Tokyo Beats', description: 'Electronic JP ⚡', url: 'https://pool.anison.fm/stream/1/', emoji: '⚡' },
+                rock: { name: 'J-Rock', description: 'J-Rock 🎸', url: 'https://pool.anison.fm/stream/2/', emoji: '🎸' },
+                hits: { name: 'J-Pop Now', description: 'J-Pop Hits 🎤', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎤' },
+                lounge: { name: 'Sakura FM', description: 'Lounge JP 💖', url: 'https://stream.zeno.fm/f8d6vssuam0uv', emoji: '💖' },
+                anime: { name: 'Anison FM', description: 'Anison 🎌', url: 'https://pool.anison.fm/stream/1/', emoji: '🎌' }
             }
         };
 
