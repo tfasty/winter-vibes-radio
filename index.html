@@ -2123,21 +2123,22 @@
                 lounge: { name: 'Radio 3', description: 'Indie ES 💖', url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne3.mp3', emoji: '💖' },
                 anime: { name: 'Anime ES', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
-            // 🇯🇵 JAPON - Radios japonaises authentiques
+            // 🇯🇵 JAPON - Radios japonaises & anime authentiques
             jp: {
-                chill: { name: 'J1 Hits', description: 'J-Pop 🇯🇵', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎧' },
-                christmas: { name: 'Xmas JP', description: 'Christmas 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
-                jazz: { name: 'Jazz Japan', description: 'Jazz JP 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Miku Radio', description: 'Miku 💙', url: 'https://listen.moe/stream', emoji: '🌌' },
-                electronic: { name: 'Tokyo Beats', description: 'Electronic JP ⚡', url: 'https://pool.anison.fm/stream/1/', emoji: '⚡' },
-                rock: { name: 'J-Rock', description: 'J-Rock 🎸', url: 'https://pool.anison.fm/stream/2/', emoji: '🎸' },
-                hits: { name: 'J-Pop Now', description: 'J-Pop Hits 🎤', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎤' },
-                lounge: { name: 'Sakura FM', description: 'Lounge JP 💖', url: 'https://stream.zeno.fm/f8d6vssuam0uv', emoji: '💖' },
-                anime: { name: 'Anison FM', description: 'Anison 🎌', url: 'https://pool.anison.fm/stream/1/', emoji: '🎌' }
+                chill: { name: 'AnimNfo Radio', description: 'Anime Music 🇯🇵', url: 'https://relay.animenfo.com:443/radio', emoji: '🎧' },
+                christmas: { name: 'J-Pop Christmas', description: 'Xmas JP 🎄', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '🎄' },
+                jazz: { name: 'Tokyo Jazz', description: 'Jazz JP 🎷', url: 'http://www.studio-apps.com:8000/jazz.mp3', emoji: '🎷' },
+                ambient: { name: 'LISTEN.moe', description: 'K-Pop & J-Pop 💙', url: 'https://listen.moe/stream', emoji: '🌌' },
+                electronic: { name: 'Anime Remix', description: 'Electronic Anime ⚡', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '⚡' },
+                rock: { name: 'Anime Rock', description: 'Anisong Rock 🎸', url: 'https://relay.animenfo.com:8000/radio', emoji: '🎸' },
+                hits: { name: 'J-Hero Radio', description: 'Anime Hits 🎤', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '🎤' },
+                lounge: { name: 'Nihon Vibes', description: 'Lounge JP 💖', url: 'http://www.studio-apps.com:8000/lounge.mp3', emoji: '💖' },
+                anime: { name: 'Anison.FM', description: 'Anisongs 24/7 🎌', url: 'https://pool.anison.fm/stream/1/', emoji: '🎌' }
             }
         };
 
-        let currentLang = 'fr';
+        
+                let currentLang = 'fr';
         let currentRadio = 'chill';
         let isPlayingRadio = true;
         let customTracks = [];
