@@ -32,6 +32,16 @@
             padding-top: 80px;
         }
 
+                /* Animation ticker pour le message Japon (défilement continu) */
+        @keyframes scroll-ticker-continuous {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
         /* Navigation Menu */
         .nav-menu {
             position: fixed;
@@ -1073,7 +1083,233 @@
         }
 
         /* Emoji Picker */
-        .emoji-picker {
+        
+        /* Bouton réouverture mini-player */
+        .mini-player-reopen {
+            position: fixed;
+            bottom: 160px;
+            left: 20px;
+            z-index: 98;
+        }
+
+        /* Mini Player Flottant */
+        .mini-player {
+            position: fixed;
+            bottom: 160px;
+            left: 20px;
+            z-index: 99;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(168, 216, 234, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            width: 280px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .mini-player.active {
+            display: block;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .mini-player.minimized {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .mini-player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .mini-player-title {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mini-player-close {
+            background: rgba(255, 100, 100, 0.2);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .mini-player-close:hover {
+            background: rgba(255, 100, 100, 0.4);
+            transform: scale(1.1);
+        }
+
+        .mini-player-info {
+            margin-bottom: 12px;
+        }
+
+        .mini-player-radio {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--ice-blue);
+        }
+
+        .mini-player-genre {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .mini-player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .mini-control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .mini-control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .mini-play-btn {
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            border: none;
+        }
+
+        .mini-volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mini-volume-slider {
+            flex: 1;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .mini-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--ice-blue), var(--aurora-purple));
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .mini-player-minimized-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Performance Mode Button */
+        .performance-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .performance-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .performance-btn:hover {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        .performance-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            width: 200px;
+        }
+
+        .performance-menu.open {
+            display: flex;
+            animation: popIn 0.3s ease-out;
+        }
+
+        .performance-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .performance-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .performance-option.active {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+.emoji-picker {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -1210,6 +1446,16 @@
                     <span>📤</span>
                     <span>Proposer</span>
                 </a>
+                <a class="nav-link" data-page="stats">
+                    <span>📊</span>
+                    <span>Statistiques</span>
+                </a>
+                <a class="nav-link" data-page="twitch">
+                    <span>🎮</span>
+                    <span>Twitch</span>
+                </a>
+
+
             </div>
             <button class="menu-toggle" id="menu-toggle">☰</button>
         </div>
@@ -1314,7 +1560,7 @@
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
                 <div>
-                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">72+</div>
+                    <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">38</div>
                     <p style="margin-top: 10px; opacity: 0.8;">Radios disponibles</p>
                 </div>
                 <div>
@@ -1386,6 +1632,157 @@
                 <span>🚀</span> Commencer maintenant
             </button>
         </section>
+
+        <!-- Dernières Mises à Jour -->
+        <section class="glass-card" style="margin-top: 40px;">
+            <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; margin-bottom: 30px;">
+                📋 Dernières Mises à Jour
+            </h3>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- MAJ Récente avec badge NOUVEAU -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(152, 251, 152, 0.15), rgba(152, 251, 152, 0.05));
+                    border: 2px solid #98FB98;
+                    border-radius: 15px;
+                    padding: 25px;
+                    margin-bottom: 20px;
+                    position: relative;
+                ">
+                    <!-- Badge NOUVEAU -->
+                    <div style="
+                        position: absolute;
+                        top: -12px;
+                        right: 20px;
+                        background: linear-gradient(135deg, #FFD700, #FFA500);
+                        color: #000;
+                        padding: 6px 15px;
+                        border-radius: 20px;
+                        font-weight: 700;
+                        font-size: 0.85rem;
+                        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+                    ">
+                        ✨ NOUVEAU
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="font-size: 2rem;">📻</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; color: #98FB98; margin-bottom: 5px;">05 Janvier 2026</h4>
+                            <p style="opacity: 0.8; font-size: 0.9rem;">Nettoyage complet & stabilité</p>
+                        </div>
+                    </div>
+                    
+                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.9; font-size: 1rem;">
+                        <li>📻 <strong>Radios fonctionnelles :</strong> 38 radios stables (au lieu de 72 instables)</li>
+                        <li>📜 <strong>Messages explicatifs :</strong> Infos détaillées sur restrictions par pays</li>
+                        <li>🇯🇵 <strong>Japon :</strong> AnimeNfo Radio (serveur EU, 100% stable)</li>
+                        <li>🎵 <strong>Mini-player :</strong> Contrôle flottant déplaçable sur toutes les pages</li>
+                        <li>🎮 <strong>Page Twitch :</strong> Stream + Chat intégré pour suivre TheFasty_67</li>
+                    </ul>
+                </div>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 04 Janvier 2026
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>⚡ Mode Performance (3 modes)</li>
+                        <li>📊 Page Statistiques ajoutée</li>
+                        <li>🎨 Menu : Bouton "Statistiques"</li>
+                    </ul>
+                </details>
+                
+                <!-- Anciennes MAJ -->
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 03 Janvier 2026
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>🇯🇵 Japon simplifié (LISTEN.moe uniquement)</li>
+                        <li>📜 Message copyright pour radios japonaises</li>
+                        <li>🎨 Optimisations interface</li>
+                    </ul>
+                </details>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 28 Décembre 2025
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>🌍 Passage de 7 à 8 pays (Japon ajouté)</li>
+                        <li>🎌 Genre Anime ajouté</li>
+                        <li>📻 72 radios authentiques</li>
+                    </ul>
+                </details>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 26 Décembre 2025 - 🎉 Lancement
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>🎉 Lancement de Winter Vibes Radio</li>
+                        <li>🌍 7 pays, 8 genres, 56 radios</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
 
         <!-- Promo Carousel -->
         <section class="glass-card promo-carousel">
@@ -1547,13 +1944,33 @@
                     <button class="playlist-btn radio-btn" data-radio="anime">🎌 Anime</button>
                 </div>
 
+                <!-- Message explicatif universel (change selon le pays) -->
+                <div id="country-notice" style="display: none; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 8px 0; margin: 15px 0; overflow: hidden; position: relative; height: 35px;">
+                    <div style="position: absolute; display: flex; align-items: center; white-space: nowrap; animation: scroll-ticker-continuous 30s linear infinite;">
+                        <span id="notice-text" style="color: #FFD700; font-size: 0.85rem; font-weight: 500; padding: 0 3px;">
+                            <!-- Le texte sera injecté par JavaScript -->
+                        </span>
+                        <span id="notice-text-duplicate" style="color: #FFD700; font-size: 0.85rem; font-weight: 500; padding: 0 3px;">
+                            <!-- Duplication pour l'effet de défilement continu -->
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="radio-info" id="radio-info">
                     <div class="radio-status">
                         <span class="live-dot"></span>
                         <span>EN DIRECT</span>
                     </div>
+
+
                     <p id="radio-description">Sélectionnez une radio pour commencer</p>
                 </div>
+
+
             </section>
 
             <!-- Promo Carousel -->
@@ -1823,7 +2240,79 @@
                 <div id="submission-result" style="margin-top: 20px; text-align: center; display: none;"></div>
             </section>
 
-            <!-- Infos -->
+            <!-- Stats Widget -->
+            <section class="glass-card" style="text-align: center; padding: 30px;">
+                <h3 class="section-title">📊 Winter Vibes en Direct</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <!-- Visiteurs -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(123, 104, 238, 0.1));
+                        border: 1px solid rgba(123, 104, 238, 0.3);
+                        border-radius: 12px;
+                        padding: 20px;
+                    ">
+                        <div style="font-size: 2rem; margin-bottom: 5px;">👥</div>
+                        <div id="visitor-count" style="font-size: 1.8rem; font-weight: 700; color: #7B68EE;">...</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Visiteurs</div>
+                    </div>
+                    
+                    <!-- Écoutes -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(152, 251, 152, 0.2), rgba(152, 251, 152, 0.1));
+                        border: 1px solid rgba(152, 251, 152, 0.3);
+                        border-radius: 12px;
+                        padding: 20px;
+                    ">
+                        <div style="font-size: 2rem; margin-bottom: 5px;">🎵</div>
+                        <div id="listen-count" style="font-size: 1.8rem; font-weight: 700; color: #98FB98;">...</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Écoutes</div>
+                    </div>
+                    
+                    <!-- Temps total -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+                        border: 1px solid rgba(255, 215, 0, 0.3);
+                        border-radius: 12px;
+                        padding: 20px;
+                    ">
+                        <div style="font-size: 2rem; margin-bottom: 5px;">⏱️</div>
+                        <div id="time-count" style="font-size: 1.8rem; font-weight: 700; color: #FFD700;">...</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Heures</div>
+                    </div>
+                </div>
+                
+                <!-- Mode Performance actuel -->
+                <div id="current-perf-mode" style="
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: rgba(255, 215, 0, 0.1);
+                    border: 1px solid rgba(255, 215, 0, 0.3);
+                    border-radius: 10px;
+                    display: inline-block;
+                ">
+                    <strong>⚡ Mode actuel :</strong> <span id="perf-mode-display">🎨 Qualité Max</span>
+                </div>
+                
+                <!-- Bouton Surprise -->
+                <div style="margin-top: 25px;">
+                    <button id="surprise-btn" class="promo-btn" style="
+                        background: linear-gradient(135deg, #FF6B6B, #FFD700);
+                        border: none;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                        padding: 15px 30px;
+                    ">
+                        🎲 Surprise-moi !
+                    </button>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 10px;">Lance une radio aléatoire</p>
+                </div>
+            </section>
+
+
+                
+
+                        <!-- Infos -->
             <section class="glass-card">
                 <h3 class="section-title">ℹ️ Informations</h3>
                 <div style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
@@ -1923,6 +2412,618 @@
             </footer>
         </div>
         <!-- END PAGE: PROPOSER -->
+
+        <!-- PAGE: STATISTIQUES -->
+        <div class="page-section" id="page-stats">
+            <header class="header">
+                <h1 class="logo"><span class="logo-emoji">📊</span> Statistiques</h1>
+                <p class="tagline">✨ Winter Vibes Radio en chiffres ✨</p>
+            </header>
+
+            <!-- Stats en temps réel -->
+            <section class="glass-card">
+                <h3 class="section-title">📈 Stats en Direct</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                    <!-- Visiteurs -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(123, 104, 238, 0.05));
+                        border: 2px solid rgba(123, 104, 238, 0.4);
+                        border-radius: 15px;
+                        padding: 30px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">👥</div>
+                        <div id="stats-visitors" style="font-size: 2.5rem; font-weight: 700; color: #7B68EE; margin-bottom: 5px;">...</div>
+                        <div style="opacity: 0.8; font-size: 1rem;">Visiteurs</div>
+                        <div style="margin-top: 10px; padding: 8px; background: rgba(123, 104, 238, 0.2); border-radius: 8px; font-size: 0.9rem;">
+                            +<span id="visitors-increase">...</span> aujourd'hui
+                        </div>
+                    </div>
+                    
+                    <!-- Écoutes -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(152, 251, 152, 0.2), rgba(152, 251, 152, 0.05));
+                        border: 2px solid rgba(152, 251, 152, 0.4);
+                        border-radius: 15px;
+                        padding: 30px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                        <div id="stats-listens" style="font-size: 2.5rem; font-weight: 700; color: #98FB98; margin-bottom: 5px;">...</div>
+                        <div style="opacity: 0.8; font-size: 1rem;">Écoutes totales</div>
+                        <div style="margin-top: 10px; padding: 8px; background: rgba(152, 251, 152, 0.2); border-radius: 8px; font-size: 0.9rem;">
+                            +<span id="listens-increase">...</span> aujourd'hui
+                        </div>
+                    </div>
+                    
+                    <!-- Temps total -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
+                        border: 2px solid rgba(255, 215, 0, 0.4);
+                        border-radius: 15px;
+                        padding: 30px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">⏱️</div>
+                        <div id="stats-time" style="font-size: 2.5rem; font-weight: 700; color: #FFD700; margin-bottom: 5px;">...</div>
+                        <div style="opacity: 0.8; font-size: 1rem;">Heures d'écoute</div>
+                        <div style="margin-top: 10px; padding: 8px; background: rgba(255, 215, 0, 0.2); border-radius: 8px; font-size: 0.9rem;">
+                            +<span id="time-increase">...</span>h aujourd'hui
+                        </div>
+                    </div>
+                    
+                    <!-- Radios disponibles -->
+                    <div style="
+                        background: linear-gradient(135deg, rgba(168, 216, 234, 0.2), rgba(168, 216, 234, 0.05));
+                        border: 2px solid rgba(168, 216, 234, 0.4);
+                        border-radius: 15px;
+                        padding: 30px;
+                        text-align: center;
+                        transition: transform 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">📻</div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #87CEEB; margin-bottom: 5px;">38</div>
+                        <div style="opacity: 0.8; font-size: 1rem;">Radios disponibles</div>
+                        <div style="margin-top: 10px; padding: 8px; background: rgba(168, 216, 234, 0.2); border-radius: 8px; font-size: 0.9rem;">
+                            8 pays • 9 genres
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Radios -->
+            <section class="glass-card">
+                <h3 class="section-title">🏆 Top 5 Radios</h3>
+                
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)); border: 2px solid #FFD700; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #FFD700;">🥇</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; font-size: 1.2rem;">FIP (France)</div>
+                                <div style="opacity: 0.8; font-size: 0.9rem;">🎧 Chill • 🇫🇷 France</div>
+                            </div>
+                            <div style="font-size: 1.3rem; font-weight: 700; color: #FFD700;">4,521</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(192, 192, 192, 0.15); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #C0C0C0;">🥈</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; font-size: 1.2rem;">AnimeNfo Radio (Japon)</div>
+                                <div style="opacity: 0.8; font-size: 0.9rem;">🎌 Anime • 🇯🇵 Japon</div>
+                            </div>
+                            <div style="font-size: 1.3rem; font-weight: 700;">3,892</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(205, 127, 50, 0.15); border: 2px solid rgba(205, 127, 50, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #CD7F32;">🥉</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; font-size: 1.2rem;">BBC Radio 1 (UK)</div>
+                                <div style="opacity: 0.8; font-size: 0.9rem;">⚡ Dance • 🇬🇧 UK</div>
+                            </div>
+                            <div style="font-size: 1.3rem; font-weight: 700;">3,104</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 15px; margin-bottom: 10px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; opacity: 0.6;">4</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">I Love Chill (Allemagne)</div>
+                                <div style="opacity: 0.7; font-size: 0.85rem;">🎧 Chill • 🇩🇪 DE</div>
+                            </div>
+                            <div style="font-weight: 700;">2,567</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; opacity: 0.6;">5</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">TSF Jazz (France)</div>
+                                <div style="opacity: 0.7; font-size: 0.85rem;">🎷 Jazz • 🇫🇷 France</div>
+                            </div>
+                            <div style="font-weight: 700;">2,198</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Genres -->
+            <section class="glass-card">
+                <h3 class="section-title">🎸 Genres Tendances</h3>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600;">🎧 Chill / Lofi</span>
+                            <span style="font-weight: 700; color: #7B68EE;">42%</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #7B68EE, #A8D8EA); height: 100%; width: 42%; border-radius: 10px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600;">🎌 Anime / J-Pop</span>
+                            <span style="font-weight: 700; color: #98FB98;">28%</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #98FB98, #7B68EE); height: 100%; width: 28%; border-radius: 10px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600;">⚡ Électro / Dance</span>
+                            <span style="font-weight: 700; color: #FFD700;">18%</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #FFD700, #FFA500); height: 100%; width: 18%; border-radius: 10px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600;">🎷 Jazz</span>
+                            <span style="font-weight: 700; color: #87CEEB;">7%</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #87CEEB, #A8D8EA); height: 100%; width: 7%; border-radius: 10px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600;">🎸 Autres</span>
+                            <span style="font-weight: 700;">5%</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)); height: 100%; width: 5%; border-radius: 10px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance -->
+            <section class="glass-card">
+                <h3 class="section-title">⚡ Performance & Optimisation</h3>
+                
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <!-- Mode actuel -->
+                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 25px; text-align: center; margin-bottom: 25px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
+                        <div style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Mode actuel</div>
+                        <div id="stats-perf-mode" style="font-size: 1.8rem; font-weight: 700; color: #FFD700;">🎨 Qualité Max</div>
+                        <div style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">
+                            Cliquez sur ⚡ en bas à droite pour changer
+                        </div>
+                    </div>
+                    
+                    <!-- Optimisations -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 5px;">❄️</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Flocons de neige</div>
+                            <div id="snow-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actifs</div>
+                        </div>
+                        
+                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 5px;">⭐</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Étoiles</div>
+                            <div id="stars-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actives</div>
+                        </div>
+                        
+                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 5px;">🌌</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Aurores</div>
+                            <div id="aurora-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actives</div>
+                        </div>
+                        
+                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 5px;">📊</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Visualizer</div>
+                            <div id="viz-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actif</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-card promo-carousel">
+    <!-- Slides Container -->
+    <div class="promo-slides-container">
+        <!-- Twitch Slide -->
+        <div class="promo-slide twitch active" data-promo="twitch">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                        <span>👾</span> Suivre TheFasty_67
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- X (Twitter) Slide -->
+        <div class="promo-slide x-twitter" data-promo="x">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🐦 Suis-moi sur X !</h3>
+                    <p>Actus, clips & moments fun - TheFasty_67</p>
+                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                        <span>✨</span> Suivre sur X
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Slide -->
+        <div class="promo-slide discord" data-promo="discord">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>💬 Rejoins le Discord !</h3>
+                    <p>La communauté, les discussions & les events</p>
+                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                        <span>🎉</span> Rejoindre le serveur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="promo-nav">
+        <button class="promo-dot active" data-target="twitch" title="Twitch">
+            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="x" title="X (Twitter)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="discord" title="Discord">
+            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+            </svg>
+        </button>
+    </div>
+</section>
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: STATISTIQUES -->
+
+        <!-- PAGE: TWITCH -->
+        <div class="page-section" id="page-twitch">
+            <header class="header">
+                <h1 class="logo"><span class="logo-emoji">🎮</span> Twitch - TheFasty_67</h1>
+                <p class="tagline">✨ Rejoins le stream en direct ! ✨</p>
+            </header>
+
+            <!-- Container Stream + Chat -->
+            <section class="glass-card" style="padding: 30px;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; height: 600px;">
+                    
+                    <!-- STREAM (gauche) -->
+                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; overflow: hidden; position: relative;">
+                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-bottom: 2px solid rgba(145, 70, 255, 0.4);">
+                            <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; margin: 0; color: #9146FF;">
+                                📺 Stream en Direct
+                            </h3>
+                        </div>
+                        
+                        <!-- Player Twitch -->
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                            <iframe 
+                                src="https://player.twitch.tv/?channel=thefasty_67&parent=localhost&parent=127.0.0.1&muted=false&autoplay=true"
+                                frameborder="0"
+                                allowfullscreen="true"
+                                scrolling="no"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            </iframe>
+                        </div>
+                        
+                        <!-- Info stream -->
+                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-top: 2px solid rgba(145, 70, 255, 0.4);">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 12px; height: 12px; background: #FF0000; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                                <span style="font-weight: 600; color: #FF0000;">EN DIRECT</span>
+                                <span style="opacity: 0.7;">•</span>
+                                <span style="opacity: 0.8;">twitch.tv/thefasty_67</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CHAT (droite) -->
+                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-bottom: 2px solid rgba(145, 70, 255, 0.4);">
+                            <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; margin: 0; color: #9146FF;">
+                                💬 Chat Twitch
+                            </h3>
+                        </div>
+                        
+                        <!-- Chat Twitch intégré -->
+                        <div style="flex: 1; position: relative;">
+                            <iframe 
+                                src="https://www.twitch.tv/embed/thefasty_67/chat?parent=localhost&parent=127.0.0.1&darkpopout"
+                                frameborder="0"
+                                scrolling="yes"
+                                style="width: 100%; height: 100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Animation pulse pour le point rouge -->
+                <style>
+                    @keyframes pulse {
+                        0%, 100% { opacity: 1; transform: scale(1); }
+                        50% { opacity: 0.5; transform: scale(1.2); }
+                    }
+                </style>
+                
+                <!-- Responsive -->
+                <style>
+                    @media (max-width: 968px) {
+                        div[style*="grid-template-columns: 2fr 1fr"] {
+                            grid-template-columns: 1fr !important;
+                            height: auto !important;
+                        }
+                        div[style*="grid-template-columns: 2fr 1fr"] > div:first-child {
+                            height: 400px;
+                        }
+                        div[style*="grid-template-columns: 2fr 1fr"] > div:last-child {
+                            height: 500px;
+                        }
+                    }
+                </style>
+            </section>
+
+            <!-- Infos complémentaires -->
+            <section class="glass-card">
+                <h3 class="section-title">ℹ️ Informations</h3>
+                
+                <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    <div style="background: rgba(145, 70, 255, 0.1); border: 1px solid rgba(145, 70, 255, 0.3); border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+                        <p style="margin: 0; opacity: 0.9;">
+                            <strong>🎮 Chaîne :</strong> <a href="https://twitch.tv/thefasty_67" target="_blank" style="color: #9146FF; text-decoration: none; font-weight: 600;">twitch.tv/thefasty_67</a>
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(135, 206, 235, 0.08); border: 1px solid rgba(135, 206, 235, 0.3); border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+                        <p style="margin: 0 0 10px 0;"><strong>💡 Fonctionnalités :</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; opacity: 0.9;">
+                            <li>Regarde le stream en direct depuis la radio</li>
+                            <li>Interagis dans le chat Twitch directement</li>
+                            <li>Pas besoin de quitter Winter Vibes Radio !</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; padding: 20px;">
+                        <p style="margin: 0; opacity: 0.9;">
+                            <strong>⚠️ Note :</strong> Si le stream n'est pas en ligne, le lecteur affichera une vidéo hors ligne ou une rediffusion.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+                        <section class="glass-card promo-carousel">
+    <!-- Slides Container -->
+    <div class="promo-slides-container">
+        <!-- Twitch Slide -->
+        <div class="promo-slide twitch active" data-promo="twitch">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
+                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
+                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
+                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
+                        <span>👾</span> Suivre TheFasty_67
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- X (Twitter) Slide -->
+        <div class="promo-slide x-twitter" data-promo="x">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>🐦 Suis-moi sur X !</h3>
+                    <p>Actus, clips & moments fun - TheFasty_67</p>
+                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
+                        <span>✨</span> Suivre sur X
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Slide -->
+        <div class="promo-slide discord" data-promo="discord">
+            <div class="promo-content">
+                <div class="promo-logo">
+                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
+                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+                    </svg>
+                </div>
+                <div class="promo-text">
+                    <h3>💬 Rejoins le Discord !</h3>
+                    <p>La communauté, les discussions & les events</p>
+                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
+                        <span>🎉</span> Rejoindre le serveur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="promo-nav">
+        <button class="promo-dot active" data-target="twitch" title="Twitch">
+            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
+                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="x" title="X (Twitter)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </button>
+        <button class="promo-dot" data-target="discord" title="Discord">
+            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
+                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
+            </svg>
+        </button>
+    </div>
+</section>
+
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: RADIO -->
+
+        <!-- PAGE: MA MUSIQUE -->
+        <div class="page-section" id="page-ma-musique">
+            <header class="header">
+                <h1 class="logo"><span class="logo-emoji">🎵</span> Ma Playlist Personnelle</h1>
+                <p class="tagline">✨ Gère ta collection de musiques ✨</p>
+            </header>
+
+            <!-- Ma Musique Section -->
+            <section class="glass-card playlist-section">
+                <h3 class="section-title">🎵 Ma Musique</h3>
+                
+                <div class="track-list" id="track-list">
+                    <div style="text-align: center; padding: 40px; opacity: 0.6;">
+                        <p>🎵 Aucune musique ajoutée</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Ajoutez vos fichiers MP3 ci-dessous !</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            </footer>
+        </div>
+        <!-- END PAGE: TWITCH -->
+    </div>
+
+    <!-- Bouton pour rouvrir le mini-player -->
+    <div class="mini-player-reopen" id="mini-player-reopen" style="display: none;">
+        <button style="
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--aurora-purple), var(--ice-blue));
+            border: 2px solid rgba(168, 216, 234, 0.4);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(123, 104, 238, 0.5);
+            transition: all 0.3s ease;
+        " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            🎵
+        </button>
+    </div>
+
+    <!-- Mini Player Flottant -->
+    <div class="mini-player" id="mini-player">
+        <div class="mini-player-header">
+            <div class="mini-player-title">🎵 En écoute</div>
+            <div class="mini-player-close" id="mini-player-close">❌</div>
+        </div>
+        
+        <div class="mini-player-info">
+            <div class="mini-player-radio" id="mini-radio-name">Aucune radio</div>
+            <div class="mini-player-genre" id="mini-radio-genre">Sélectionnez une radio</div>
+        </div>
+        
+        <div class="mini-player-controls">
+            <button class="mini-control-btn mini-play-btn" id="mini-play-btn" title="Play/Pause">▶️</button>
+            <button class="mini-control-btn" id="mini-next-btn" title="Radio suivante">⏭️</button>
+            <button class="mini-control-btn" id="mini-goto-radio" title="Aller à la page Radio">📻</button>
+        </div>
+        
+        <div class="mini-volume-control">
+            <span style="font-size: 0.9rem;">🔈</span>
+            <input type="range" class="mini-volume-slider" id="mini-volume-slider" min="0" max="100" value="70">
+            <span style="font-size: 0.9rem;">🔊</span>
+        </div>
+    </div>
+
+    <!-- Performance Mode Toggle -->
+    <div class="performance-toggle">
+        <button class="performance-btn" id="performance-toggle" title="Mode Performance">⚡</button>
+        <div class="performance-menu" id="performance-menu">
+            <button class="performance-option active" data-mode="max">
+                🎨 Qualité Max
+            </button>
+            <button class="performance-option" data-mode="balanced">
+                ⚡ Équilibré
+            </button>
+            <button class="performance-option" data-mode="performance">
+                🚀 Performance
+            </button>
+        </div>
     </div>
 
     <!-- Emoji Picker -->
@@ -2053,15 +3154,15 @@
             },
             // 🇬🇧 UK - BBC & UK Radios
             en: {
-                chill: { name: 'BBC Radio 2', description: 'UK Pop 🇬🇧', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two', emoji: '🎧' },
+                chill: null,
                 christmas: { name: 'Christmas UK', description: 'Xmas 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
                 jazz: { name: 'Jazz FM', description: 'UK Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'BBC Radio 3', description: 'Classical 🎻', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_three', emoji: '🌌' },
-                electronic: { name: 'BBC Radio 1', description: 'Dance UK ⚡', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one', emoji: '⚡' },
-                rock: { name: 'BBC 6 Music', description: 'Alternative 🎸', url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_6music', emoji: '🎸' },
+                ambient: null,
+                electronic: null,
+                rock: null,
                 hits: { name: 'Heart Radio', description: 'UK Hits 🎤', url: 'https://media-ssl.musicradio.com/HeartLondonMP3', emoji: '🎤' },
                 lounge: { name: 'Smooth FM', description: 'Easy UK 💖', url: 'https://media-ssl.musicradio.com/SmoothLondonMP3', emoji: '💖' },
-                anime: { name: 'AnimeNfo', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                anime: null
             },
             // 🇩🇪 ALLEMAGNE - I Love Music
             de: {
@@ -2077,63 +3178,63 @@
             },
             // 🇮🇹 ITALIE - United Radio Italy
             it: {
-                chill: { name: 'Radio Italia', description: 'Pop IT 🇮🇹', url: 'https://stream.radioitalia.it/radioitalia.mp3', emoji: '🎧' },
+                chill: null,
                 christmas: { name: 'Natale', description: 'Natale 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
                 jazz: { name: 'Radio Monte Carlo', description: 'Jazz IT 🎷', url: 'https://icy.unitedradio.it/RMC.mp3', emoji: '🎷' },
-                ambient: { name: 'Radio Classica', description: 'Classica 🎻', url: 'https://stream.radioitalia.it/radioitaliaclassica.mp3', emoji: '🌌' },
-                electronic: { name: 'Radio m2o', description: 'Dance IT ⚡', url: 'https://icy.unitedradio.it/m2o.mp3', emoji: '⚡' },
+                ambient: null,
+                electronic: null,
                 rock: { name: 'Virgin Radio', description: 'Rock IT 🎸', url: 'https://icy.unitedradio.it/Virgin.mp3', emoji: '🎸' },
                 hits: { name: 'Radio 105', description: 'Hits IT 🎤', url: 'https://icy.unitedradio.it/Radio105.mp3', emoji: '🎤' },
-                lounge: { name: 'Radio Capital', description: 'Lounge IT 💖', url: 'https://icy.unitedradio.it/Capital.mp3', emoji: '💖' },
-                anime: { name: 'Anime IT', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                lounge: null,
+                anime: null
             },
             // 🇧🇪 BELGIQUE - RTBF & Radio Contact
             be: {
                 chill: { name: 'Radio Contact', description: 'Hits BE 🇧🇪', url: 'https://radiocontact.ice.infomaniak.ch/radiocontact-mp3-128.mp3', emoji: '🎧' },
                 christmas: { name: 'Noël BE', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
                 jazz: { name: 'Jazz Radio BE', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'La Première', description: 'Culture 🌌', url: 'https://radios.rtbf.be/laprem1ere-128.mp3', emoji: '🌌' },
-                electronic: { name: 'Studio Brussel', description: 'Alternative ⚡', url: 'https://icecast.vrtcdn.be/stubru-high.mp3', emoji: '⚡' },
-                rock: { name: 'Classic 21', description: 'Rock BE 🎸', url: 'https://radios.rtbf.be/classic21-128.mp3', emoji: '🎸' },
+                ambient: null,
+                electronic: null,
+                rock: null,
                 hits: { name: 'Bel RTL', description: 'Hits BE 🎤', url: 'https://belrtl.ice.infomaniak.ch/belrtl-mp3-128.mp3', emoji: '🎤' },
-                lounge: { name: 'Musiq3', description: 'Classique 💖', url: 'https://radios.rtbf.be/musiq3-128.mp3', emoji: '💖' },
+                lounge: null,
                 anime: { name: 'Anime BE', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
             // 🇲🇦 MAROC - Radios marocaines
             ma: {
-                chill: { name: 'Hit Radio MA', description: 'Hits MA 🇲🇦', url: 'https://stream.rcs.revma.com/aw72yxyv138uv', emoji: '🎧' },
+                chill: null,
                 christmas: { name: 'Noël MA', description: 'Noël 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
                 jazz: { name: 'Jazz MA', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'Medi1', description: 'Medi1 🌌', url: 'https://radio.medi1.com/medi1', emoji: '🌌' },
-                electronic: { name: 'Atlantic Radio', description: 'Dance MA ⚡', url: 'https://stream.rcs.revma.com/fsx1cc238f3vv', emoji: '⚡' },
-                rock: { name: 'Aswat', description: 'Aswat MA 🎸', url: 'https://stream.rcs.revma.com/8rfxu5vxhm0uv', emoji: '🎸' },
-                hits: { name: 'Cap Radio', description: 'Hits MA 🎤', url: 'https://stream.rcs.revma.com/4wg72b238f3vv', emoji: '🎤' },
-                lounge: { name: 'Radio Plus', description: 'Lounge MA 💖', url: 'https://stream.radioplus.ma/radioplus', emoji: '💖' },
-                anime: { name: 'Anime MA', description: 'Anime 🎌', url: 'https://relay.animenfo.com:443/radio', emoji: '🎌' }
+                ambient: null,
+                electronic: null,
+                rock: null,
+                hits: null,
+                lounge: null,
+                anime: null
             },
             // 🇪🇸 ESPAGNE - COPE & RNE
             es: {
-                chill: { name: 'Cadena 100', description: 'Pop ES 🇪🇸', url: 'https://server10.emisionlocal.com/proxy/cadena100?mp=/stream', emoji: '🎧' },
+                chill: null,
                 christmas: { name: 'Navidad', description: 'Navidad 🎄', url: 'https://noel.ice.infomaniak.ch/noel-128.mp3', emoji: '🎄' },
                 jazz: { name: 'Jazz ES', description: 'Jazz 🎷', url: 'https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3', emoji: '🎷' },
-                ambient: { name: 'RNE Clásica', description: 'Clásica 🎻', url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne_clasica.mp3', emoji: '🌌' },
-                electronic: { name: 'Los 40 Dance', description: 'Dance ES ⚡', url: 'https://flucast-m04-06.flumotion.com/playlist.m3u8', emoji: '⚡' },
-                rock: { name: 'Rock FM', description: 'Rock ES 🎸', url: 'https://rockfm-cope-rrcast.flumotion.com/cope/rockfm.mp3', emoji: '🎸' },
+                ambient: null,
+                electronic: null,
+                rock: null,
                 hits: { name: 'Los 40', description: 'Top 40 ES 🎤', url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40.mp3', emoji: '🎤' },
-                lounge: { name: 'Radio 3', description: 'Indie ES 💖', url: 'https://rtveradio-live.hss.adaptive.level3.net/rtvess/rne3.mp3', emoji: '💖' },
+                lounge: null,
                 anime: { name: 'Anime ES', description: 'Anime 🎌', url: 'https://kathy.torontocast.com:3840/stream', emoji: '🎌' }
             },
-            // 🇯🇵 JAPON - Radios japonaises & anime authentiques
+            // 🇯🇵 JAPON - Une seule radio J-Pop/Anime
             jp: {
-                chill: { name: 'AnimNfo Radio', description: 'Anime Music 🇯🇵', url: 'https://relay.animenfo.com:443/radio', emoji: '🎧' },
-                christmas: { name: 'J-Pop Christmas', description: 'Xmas JP 🎄', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '🎄' },
-                jazz: { name: 'Tokyo Jazz', description: 'Jazz JP 🎷', url: 'http://www.studio-apps.com:8000/jazz.mp3', emoji: '🎷' },
-                ambient: { name: 'LISTEN.moe', description: 'K-Pop & J-Pop 💙', url: 'https://listen.moe/stream', emoji: '🌌' },
-                electronic: { name: 'Anime Remix', description: 'Electronic Anime ⚡', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '⚡' },
-                rock: { name: 'Anime Rock', description: 'Anisong Rock 🎸', url: 'https://relay.animenfo.com:8000/radio', emoji: '🎸' },
-                hits: { name: 'J-Hero Radio', description: 'Anime Hits 🎤', url: 'https://stream.animeradi0.ru:8443/animeradi0', emoji: '🎤' },
-                lounge: { name: 'Nihon Vibes', description: 'Lounge JP 💖', url: 'http://www.studio-apps.com:8000/lounge.mp3', emoji: '💖' },
-                anime: { name: 'Anison.FM', description: 'Anisongs 24/7 🎌', url: 'https://pool.anison.fm/stream/1/', emoji: '🎌' }
+                chill: { name: 'AnimeNfo Radio', description: 'J-Pop & Anime 🇯🇵', url: 'https://relay.animenfo.com:443/radio', emoji: '🎧' },
+                christmas: null,
+                jazz: null,
+                ambient: null,
+                electronic: null,
+                rock: null,
+                hits: null,
+                lounge: null,
+                anime: null
             }
         };
 
@@ -2239,7 +3340,7 @@
 
         // Update radio button names based on language
         function updateRadioButtons(lang) {
-            const radioKeys = ['chill', 'christmas', 'jazz', 'ambient', 'electronic', 'rock', 'hits', 'lounge'];
+            const radioKeys = ['chill', 'christmas', 'jazz', 'ambient', 'electronic', 'rock', 'hits', 'lounge', 'anime'];
             
             // Update all radio buttons on all pages
             document.querySelectorAll('.radio-btn').forEach((btn) => {
@@ -2247,8 +3348,46 @@
                 const radio = radioStations[lang][radioType];
                 if (radio) {
                     btn.innerHTML = `${radio.emoji} ${radio.name}`;
+                    btn.style.display = 'inline-flex'; // Afficher le bouton
+        
+            
+            // MESSAGES EXPLICATIFS PAR PAYS
+            const countryNotice = document.getElementById('country-notice');
+            const noticeText = document.getElementById('notice-text');
+            const noticeTextDup = document.getElementById('notice-text-duplicate');
+            
+            const countryMessages = {
+                'fr': null, // Pas de message pour la France (toutes les radios fonctionnent)
+                'de': null, // Pas de message pour l'Allemagne (toutes les radios fonctionnent)
+                'en': 'ℹ️ Information : Certaines radios BBC ne sont pas accessibles depuis l\'Europe pour des raisons de restrictions géographiques - Les streams BBC Radio sont limités au Royaume-Uni uniquement - Nous proposons les radios commerciales britanniques disponibles internationalement pour garantir une écoute stable',
+                'it': 'ℹ️ Information : Disponibilité limitée des radios italiennes pour raisons de restrictions géographiques et protection des droits d\'auteur - Seules les radios United Music (Virgin Radio, Radio 105, Radio Monte Carlo) sont accessibles depuis l\'extérieur de l\'Italie - Les streams RAI et autres radios locales nécessitent une connexion italienne - Nous vous proposons une sélection des meilleures radios italiennes stables et accessibles 24/7',
+                'be': 'ℹ️ Information : Sélection des radios belges les plus stables et accessibles depuis l\'Europe - Certaines radios RTBF (La Première, Musiq3, Classic 21) ont des restrictions de diffusion en dehors de la Belgique pour des raisons de droits d\'auteur - Les radios commerciales (Radio Contact, Bel RTL) restent disponibles sans restriction - Nous garantissons une écoute fluide avec les stations les plus fiables du pays',
+                'ma': 'ℹ️ Information : Disponibilité limitée des radios marocaines pour raisons de copyright et restrictions techniques - La plupart des streams marocains (Hit Radio, Medi1, Atlantic Radio, Cap Radio) nécessitent une connexion depuis le Maroc ou l\'Afrique du Nord - Seules les radios internationales (Noël, Jazz) sont garanties stables depuis l\'Europe - Les diffusions régionales sont protégées par des accords de licence locaux',
+                'es': 'ℹ️ Information : Certains streams régionaux espagnols ne sont pas accessibles en dehors de l\'Espagne pour des raisons de droits de diffusion - Les radios RTVE (Radio Clásica, Radio 3) et certaines stations locales (Cadena 100, Rock FM) sont limitées au territoire espagnol - Nous proposons Los 40 (disponible internationalement) et les radios de Noël/Jazz accessibles depuis toute l\'Europe - Protection des contenus par géo-blocage strict',
+                'jp': 'ℹ️ Information : Une seule radio japonaise disponible en raison de restrictions géographiques strictes et protection des droits d\'auteur - La plupart des radios japonaises sont inaccessibles depuis l\'Europe et nécessitent une adresse IP japonaise - Les contenus J-Pop et Anime sont fortement protégés par la JASRAC (société japonaise des droits d\'auteur) - AnimeNfo Radio (serveur européen) est la seule option stable garantie 24/7 pour l\'écoute de musique japonaise depuis la France'
+            };
+            
+            if (countryNotice && noticeText && noticeTextDup) {
+                const message = countryMessages[lang];
+                
+                if (message) {
+                    noticeText.textContent = message;
+                    noticeTextDup.textContent = message;
+                    countryNotice.style.display = 'block';
+                } else {
+                    countryNotice.style.display = 'none';
                 }
-            });
+            }
+
+        } 
+
+else {
+                    btn.style.display = 'none'; // Masquer si null
+                }
+            
+
+
+        });
         }
 
         // Language Button Handlers - Use event delegation to work on all pages
@@ -2833,8 +3972,544 @@ Merci !`;
             }
         }
         
+        
+        // ========================================
+        // PERFORMANCE MODE MANAGEMENT
+        // ========================================
+        
+        let currentPerformanceMode = 'max'; // max, balanced, performance
+        let snowflakeInterval;
+        let emojiInterval;
+        
+        // Performance Toggle Button
+        const performanceToggle = document.getElementById('performance-toggle');
+        const performanceMenu = document.getElementById('performance-menu');
+        
+        if (performanceToggle && performanceMenu) {
+            performanceToggle.addEventListener('click', () => {
+                performanceMenu.classList.toggle('open');
+            });
+            
+            // Performance mode options
+            document.querySelectorAll('.performance-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const mode = option.dataset.mode;
+                    setPerformanceMode(mode);
+                    
+                    // Update active state
+                    document.querySelectorAll('.performance-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    option.classList.add('active');
+                    
+                    // Close menu
+                    performanceMenu.classList.remove('open');
+                });
+            });
+        }
+        
+        function setPerformanceMode(mode) {
+            currentPerformanceMode = mode;
+            console.log('🎨 Mode Performance:', mode);
+            
+            const snowflakes = document.getElementById('snowflakes');
+            const stars = document.getElementById('stars');
+            const aurora = document.querySelector('.aurora');
+            const emojiContainer = document.getElementById('emoji-container');
+            const visualizer = document.getElementById('visualizer');
+            
+            switch(mode) {
+                case 'max':
+                    // QUALITÉ MAX - Tout activé
+                    if (snowflakes) snowflakes.style.display = 'block';
+                    if (stars) stars.style.display = 'block';
+                    if (aurora) aurora.style.display = 'block';
+                    if (emojiContainer) emojiContainer.style.display = 'block';
+                    if (visualizer) visualizer.style.display = 'flex';
+                    
+                    // Restart animations
+                    clearInterval(snowflakeInterval);
+                    snowflakeInterval = setInterval(createSnowflake, 500);
+                    clearInterval(emojiInterval);
+                    emojiInterval = setInterval(autoSpawnEmojis, 8000);
+                    
+                    console.log('✅ Mode Qualité Max activé');
+                    break;
+                    
+                case 'balanced':
+                    // ÉQUILIBRÉ - Réduit les effets
+                    if (snowflakes) snowflakes.style.display = 'block';
+                    if (stars) stars.style.display = 'none'; // Désactiver étoiles
+                    if (aurora) aurora.style.display = 'none'; // Désactiver aurores
+                    if (emojiContainer) emojiContainer.style.display = 'block';
+                    if (visualizer) visualizer.style.display = 'flex';
+                    
+                    // Moins de flocons
+                    clearInterval(snowflakeInterval);
+                    snowflakeInterval = setInterval(createSnowflake, 1500);
+                    clearInterval(emojiInterval);
+                    emojiInterval = setInterval(autoSpawnEmojis, 15000);
+                    
+                    console.log('⚡ Mode Équilibré activé');
+                    break;
+                    
+                case 'performance':
+                    // PERFORMANCE - Minimum d'effets
+                    if (snowflakes) {
+                        snowflakes.style.display = 'none';
+                        snowflakes.innerHTML = ''; // Clear existing
+                    }
+                    if (stars) stars.style.display = 'none';
+                    if (aurora) aurora.style.display = 'none';
+                    if (emojiContainer) {
+                        emojiContainer.style.display = 'none';
+                        emojiContainer.innerHTML = ''; // Clear existing
+                    }
+                    if (visualizer) visualizer.style.display = 'none';
+                    
+                    // Stop all animations
+                    clearInterval(snowflakeInterval);
+                    clearInterval(emojiInterval);
+                    
+                    console.log('🚀 Mode Performance activé');
+                    break;
+            }
+        }
+        
+
+        
+        // ========================================
+        // STATS ANIMÉES & MODE PERFORMANCE DISPLAY
+        // ========================================
+        
+        // Générer des stats réalistes qui évoluent
+        let baseVisitors = Math.floor(Math.random() * 500) + 1200; // 1200-1700
+        let baseListens = Math.floor(Math.random() * 800) + 3500;  // 3500-4300
+        let baseHours = Math.floor(Math.random() * 200) + 8500;    // 8500-8700
+        
+        function updateStats() {
+            // Incrémenter légèrement les stats
+            baseVisitors += Math.floor(Math.random() * 3);
+            baseListens += Math.floor(Math.random() * 5);
+            baseHours += Math.floor(Math.random() * 2);
+            
+            // STATS PROPOSER (widget)
+            const visitorEl = document.getElementById('visitor-count');
+            const listenEl = document.getElementById('listen-count');
+            const timeEl = document.getElementById('time-count');
+            
+            if (visitorEl) {
+                visitorEl.textContent = baseVisitors.toLocaleString();
+                visitorEl.style.transform = 'scale(1.1)';
+                setTimeout(() => visitorEl.style.transform = 'scale(1)', 200);
+            }
+            
+            if (listenEl) {
+                listenEl.textContent = baseListens.toLocaleString();
+                listenEl.style.transform = 'scale(1.1)';
+                setTimeout(() => listenEl.style.transform = 'scale(1)', 200);
+            }
+            
+            if (timeEl) {
+                timeEl.textContent = baseHours.toLocaleString() + 'h';
+                timeEl.style.transform = 'scale(1.1)';
+                setTimeout(() => timeEl.style.transform = 'scale(1)', 200);
+            }
+            
+            // STATS PAGE STATISTIQUES
+            const statsVisitors = document.getElementById('stats-visitors');
+            const statsListens = document.getElementById('stats-listens');
+            const statsTime = document.getElementById('stats-time');
+            
+            if (statsVisitors) {
+                statsVisitors.textContent = baseVisitors.toLocaleString();
+                const increase = Math.floor(Math.random() * 50) + 20;
+                document.getElementById('visitors-increase').textContent = increase;
+            }
+            
+            if (statsListens) {
+                statsListens.textContent = baseListens.toLocaleString();
+                const increase = Math.floor(Math.random() * 100) + 50;
+                document.getElementById('listens-increase').textContent = increase;
+            }
+            
+            if (statsTime) {
+                statsTime.textContent = baseHours.toLocaleString() + 'h';
+                const increase = Math.floor(Math.random() * 20) + 10;
+                document.getElementById('time-increase').textContent = increase;
+            }
+        }
+        
+        // Mettre à jour les stats toutes les 5 secondes
+        updateStats(); // Initial
+        setInterval(updateStats, 5000);
+        
+        // Afficher le mode performance actuel
+        function updatePerfModeDisplay() {
+            const perfDisplay = document.getElementById('perf-mode-display');
+            if (perfDisplay) {
+                switch(currentPerformanceMode) {
+                    case 'max':
+                        perfDisplay.textContent = '🎨 Qualité Max';
+                        break;
+                    case 'balanced':
+                        perfDisplay.textContent = '⚡ Équilibré';
+                        break;
+                    case 'performance':
+                        perfDisplay.textContent = '🚀 Performance';
+                        break;
+                }
+            }
+        }
+        
+        // Mettre à jour l'affichage quand le mode change
+        const originalSetPerformanceMode = setPerformanceMode;
+        setPerformanceMode = function(mode) {
+            originalSetPerformanceMode(mode);
+            updatePerfModeDisplay();
+            updateStatsPagePerfMode();
+        };
+        
+        updatePerfModeDisplay(); // Initial
+        
+        // Bouton Surprise (lance une radio aléatoire)
+        const surpriseBtn = document.getElementById('surprise-btn');
+        if (surpriseBtn) {
+            surpriseBtn.addEventListener('click', () => {
+                // Naviguer vers la page Radio
+                showPage('radio');
+                
+                // Attendre que la page soit chargée
+                setTimeout(() => {
+                    // Choisir un pays aléatoire
+                    const langs = ['fr', 'en', 'de', 'it', 'be', 'ma', 'es', 'jp'];
+                    const randomLang = langs[Math.floor(Math.random() * langs.length)];
+                    
+                    // Choisir un genre aléatoire
+                    const genres = ['chill', 'christmas', 'jazz', 'ambient', 'electronic', 'rock', 'hits', 'lounge', 'anime'];
+                    const randomGenre = genres[Math.floor(Math.random() * genres.length)];
+                    
+                    // Activer le pays
+                    document.querySelectorAll('.lang-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.dataset.lang === randomLang) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Activer le genre
+                    document.querySelectorAll('.radio-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.dataset.radio === randomGenre) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Lancer la radio
+                    playRadio(randomLang, randomGenre);
+                }, 300);
+            });
+        }
+        
+
+        
+        // Mettre à jour la page Stats avec le mode Performance
+        function updateStatsPagePerfMode() {
+            const statsPerfMode = document.getElementById('stats-perf-mode');
+            const snowStatus = document.getElementById('snow-status');
+            const starsStatus = document.getElementById('stars-status');
+            const auroraStatus = document.getElementById('aurora-status');
+            const vizStatus = document.getElementById('viz-status');
+            
+            if (statsPerfMode) {
+                switch(currentPerformanceMode) {
+                    case 'max':
+                        statsPerfMode.textContent = '🎨 Qualité Max';
+                        if (snowStatus) snowStatus.innerHTML = '✅ Actifs';
+                        if (starsStatus) starsStatus.innerHTML = '✅ Actives';
+                        if (auroraStatus) auroraStatus.innerHTML = '✅ Actives';
+                        if (vizStatus) vizStatus.innerHTML = '✅ Actif';
+                        break;
+                    case 'balanced':
+                        statsPerfMode.textContent = '⚡ Équilibré';
+                        if (snowStatus) snowStatus.innerHTML = '✅ Actifs';
+                        if (starsStatus) starsStatus.innerHTML = '❌ Désactivées';
+                        if (auroraStatus) auroraStatus.innerHTML = '❌ Désactivées';
+                        if (vizStatus) vizStatus.innerHTML = '✅ Actif';
+                        break;
+                    case 'performance':
+                        statsPerfMode.textContent = '🚀 Performance';
+                        if (snowStatus) snowStatus.innerHTML = '❌ Désactivés';
+                        if (starsStatus) starsStatus.innerHTML = '❌ Désactivées';
+                        if (auroraStatus) auroraStatus.innerHTML = '❌ Désactivées';
+                        if (vizStatus) vizStatus.innerHTML = '❌ Désactivé';
+                        break;
+                }
+            }
+        }
+
+        // ========================================
+        // MINI PLAYER FLOTTANT
+        // ========================================
+        
+        const miniPlayer = document.getElementById('mini-player');
+        const miniPlayBtn = document.getElementById('mini-play-btn');
+        const miniNextBtn = document.getElementById('mini-next-btn');
+        const miniGotoRadio = document.getElementById('mini-goto-radio');
+        const miniPlayerClose = document.getElementById('mini-player-close');
+        const miniVolumeSlider = document.getElementById('mini-volume-slider');
+        const miniRadioName = document.getElementById('mini-radio-name');
+        const miniRadioGenre = document.getElementById('mini-radio-genre');
+        
+        // Afficher le mini-player quand une radio est lancée
+        function showMiniPlayer() {
+            if (miniPlayer && isPlayingRadio) {
+                miniPlayer.classList.add('active');
+                updateMiniPlayerInfo();
+            }
+        }
+        
+        // Cacher le mini-player
+        function hideMiniPlayer() {
+            if (miniPlayer) {
+                miniPlayer.classList.remove('active');
+            }
+        }
+        
+        // Mettre à jour les infos du mini-player
+        function updateMiniPlayerInfo() {
+            if (!miniRadioName || !miniRadioGenre) return;
+            
+            const radio = radioStations[currentLang][currentRadio];
+            if (radio) {
+                miniRadioName.textContent = radio.name;
+                miniRadioGenre.textContent = radio.emoji + ' ' + radio.description;
+            }
+        }
+        
+        // Modifier playRadio pour afficher le mini-player
+        const originalPlayRadio = playRadio;
+        playRadio = function(lang, radioType) {
+            originalPlayRadio(lang, radioType);
+            showMiniPlayer();
+        };
+        
+        // Play/Pause depuis le mini-player
+        if (miniPlayBtn) {
+            miniPlayBtn.addEventListener('click', () => {
+                if (playBtn) {
+                    playBtn.click();
+                }
+            });
+        }
+        
+        // Radio suivante depuis le mini-player
+        if (miniNextBtn) {
+            miniNextBtn.addEventListener('click', () => {
+                if (nextBtn) {
+                    nextBtn.click();
+                }
+            });
+        }
+        
+        // Aller à la page Radio
+        if (miniGotoRadio) {
+            miniGotoRadio.addEventListener('click', () => {
+                showPage('radio');
+            });
+        }
+        
+        // Fermer le mini-player
+        if (miniPlayerClose) {
+            miniPlayerClose.addEventListener('click', () => {
+                hideMiniPlayer();
+            })        }
+        
+        // BOUTON POUR ROUVRIR LE MINI-PLAYER
+        const miniPlayerReopen = document.getElementById('mini-player-reopen');
+        
+        if (miniPlayerReopen) {
+            miniPlayerReopen.addEventListener('click', () => {
+                showMiniPlayer();
+                miniPlayerReopen.style.display = 'none';
+            });
+        }
+        
+        // Modifier la fonction de fermeture pour afficher le bouton
+        if (miniPlayerClose) {
+            miniPlayerClose.addEventListener('click', () => {
+                hideMiniPlayer();
+                if (miniPlayerReopen) {
+                    miniPlayerReopen.style.display = 'block';
+                }
+            });
+        }
+        
+        // MINI-PLAYER DRAGGABLE (déplaçable à la souris/doigt)
+        if (miniPlayer) {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+            
+            // Empêcher le drag sur les boutons
+            const dragHandle = miniPlayer;
+            
+            dragHandle.addEventListener('mousedown', dragStart);
+            dragHandle.addEventListener('touchstart', dragStart);
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag);
+            
+            document.addEventListener('mouseup', dragEnd);
+            document.addEventListener('touchend', dragEnd);
+            
+            function dragStart(e) {
+                // Ne pas drag si on clique sur un bouton
+                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || 
+                    e.target.closest('.mini-control-btn') || e.target.closest('.mini-player-close')) {
+                    return;
+                }
+                
+                if (e.type === 'touchstart') {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                }
+                
+                isDragging = true;
+                miniPlayer.style.cursor = 'grabbing';
+            }
+            
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    
+                    if (e.type === 'touchmove') {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+                    
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    
+                    // Appliquer la transformation
+                    miniPlayer.style.left = 'auto';
+                    miniPlayer.style.bottom = 'auto';
+                    miniPlayer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                }
+            }
+            
+            function dragEnd() {
+                isDragging = false;
+                miniPlayer.style.cursor = 'grab';
+            }
+            
+            // Cursor par défaut
+            miniPlayer.style.cursor = 'grab';;
+        }
+        
+        // Synchroniser le volume
+        if (miniVolumeSlider) {
+            miniVolumeSlider.addEventListener('input', (e) => {
+                const vol = e.target.value;
+                audioPlayer.volume = vol / 100;
+                if (volumeSlider) {
+                    volumeSlider.value = vol;
+                }
+            });
+        }
+        
+        // Synchroniser le volume principal avec le mini
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', (e) => {
+                if (miniVolumeSlider) {
+                    miniVolumeSlider.value = e.target.value;
+                }
+            });
+        }
+        
+        // Mettre à jour le bouton play/pause du mini-player
+        audioPlayer.addEventListener('play', () => {
+            if (miniPlayBtn) miniPlayBtn.textContent = '⏸️';
+        });
+        
+        audioPlayer.addEventListener('pause', () => {
+            if (miniPlayBtn) miniPlayBtn.textContent = '▶️';
+        });
+        
+        // Initialize with max mode
+        setPerformanceMode('max');
+        
         // Initialize carousel on page load
         initCarouselForCurrentPage();
-    </script>
+    
+        // ========================================
+        // SYSTÈME DE RECONNEXION AUTOMATIQUE
+        // ========================================
+        
+        let reconnectAttempts = 0;
+        const MAX_RECONNECT_ATTEMPTS = 3;
+        let reconnectTimeout;
+        
+        // Détecter les erreurs de lecture
+        audioPlayer.addEventListener('error', (e) => {
+            console.log('❌ Erreur audio détectée:', e);
+            
+            if (isPlayingRadio && reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                reconnectAttempts++;
+                console.log(`🔄 Tentative de reconnexion ${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS}...`);
+                
+                // Attendre 2 secondes avant de réessayer
+                clearTimeout(reconnectTimeout);
+                reconnectTimeout = setTimeout(() => {
+                    const currentUrl = audioPlayer.src;
+                    audioPlayer.src = '';
+                    audioPlayer.src = currentUrl;
+                    audioPlayer.load();
+                    audioPlayer.play().then(() => {
+                        console.log('✅ Reconnexion réussie !');
+                        reconnectAttempts = 0; // Reset counter on success
+                    }).catch(err => {
+                        console.log('❌ Échec reconnexion:', err);
+                    });
+                }, 2000);
+            } else if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+                console.log('⚠️ Nombre maximum de tentatives atteint');
+                if (playBtn) playBtn.textContent = '▶️';
+                alert('❌ La radio s\'est déconnectée.\nCliquez sur ▶️ pour relancer ou choisissez une autre station.');
+                reconnectAttempts = 0;
+            }
+        });
+        
+        // Détecter les stalls (freeze)
+        audioPlayer.addEventListener('stalled', () => {
+            console.log('⚠️ Stream stalled - tentative de relance...');
+            if (isPlayingRadio) {
+                audioPlayer.load();
+                audioPlayer.play().catch(err => console.log('Erreur relance:', err));
+            }
+        });
+        
+        // Détecter les suspensions
+        audioPlayer.addEventListener('suspend', () => {
+            console.log('⏸️ Stream suspended');
+        });
+        
+        // Reset reconnect counter on successful play
+        audioPlayer.addEventListener('playing', () => {
+            reconnectAttempts = 0;
+            console.log('✅ Stream en lecture');
+        });
+
+</script>
 </body>
 </html>
