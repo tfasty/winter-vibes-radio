@@ -1369,7 +1369,7 @@
 
 
 
-        /* EFFETS DE FOND PAR SAISON */
+        /* EFFETS VISUELS PAR SAISON */
         
         /* Printemps : Papillons */
         .butterflies {
@@ -1386,7 +1386,7 @@
         .butterfly {
             position: absolute;
             font-size: 1.5rem;
-            animation: butterfly-fly 15s infinite;
+            animation: butterfly-fly 15s infinite ease-in-out;
         }
         
         @keyframes butterfly-fly {
@@ -1395,6 +1395,33 @@
             50% { transform: translate(200px, 50px) rotate(-20deg); opacity: 0.7; }
             75% { transform: translate(100px, 100px) rotate(20deg); opacity: 1; }
             100% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
+        }
+        
+        /* Printemps : Lucioles */
+        .fireflies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            display: none;
+        }
+        
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+            animation: firefly-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes firefly-glow {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-20px); }
         }
         
         /* Été : Rayons de soleil */
@@ -1407,19 +1434,15 @@
             pointer-events: none;
             z-index: 1;
             display: none;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 100px,
-                rgba(255, 215, 0, 0.05) 100px,
-                rgba(255, 215, 0, 0.05) 200px
-            );
-            animation: sun-rotate 30s linear infinite;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.15) 0%, transparent 30%);
+            animation: sun-glow 10s ease-in-out infinite;
         }
         
-        @keyframes sun-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes sun-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
         
         /* Automne : Brouillard */
@@ -1428,17 +1451,48 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 200px;
+            height: 300px;
             pointer-events: none;
             z-index: 1;
             display: none;
-            background: linear-gradient(to top, rgba(139, 69, 19, 0.3), transparent);
-            animation: fog-move 20s ease-in-out infinite;
+            background: linear-gradient(to top, rgba(139, 69, 19, 0.6), rgba(210, 105, 30, 0.3), transparent);
+            animation: fog-move 15s ease-in-out infinite;
         }
         
         @keyframes fog-move {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 0.8; transform: translateX(20px); }
+        }
+        
+        /* Automne : Feuilles volantes */
+        .floating-leaves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            display: none;
+        }
+        
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            animation: leaf-float 15s ease-in-out infinite;
+        }
+        
+        @keyframes leaf-float {
+            0% { 
+                transform: translate(0, -10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translate(50vw, 110vh) rotate(720deg);
+                opacity: 0;
+            }
         }
         
         /* Season Selector */
@@ -1676,8 +1730,10 @@
     <!-- Snowflakes -->
     <div class="snowflakes" id="snowflakes"></div>
     <div class="butterflies" id="butterflies"></div>
+    <div class="fireflies" id="fireflies"></div>
     <div class="sun-rays" id="sun-rays"></div>
     <div class="fog" id="fog"></div>
+    <div class="floating-leaves" id="floating-leaves"></div>
 
     <!-- Interactive Emojis -->
     <div class="emoji-container" id="emoji-container"></div>
@@ -3430,7 +3486,7 @@
             },
             // 🇯🇵 JAPON - Une seule radio J-Pop/Anime
             jp: {
-                chill: { name: 'J-Pop Sakura', description: 'J-Pop & Anime 🇯🇵', url: 'https://stream.laut.fm/jpopsakura', emoji: '🎧' },
+                chill: { name: 'J1 Xtra', description: 'J-Pop & J-Rock 🇯🇵', url: 'https://stream.laut.fm/j1xtra', emoji: '🎧' },
                 christmas: null,
                 jazz: null,
                 ambient: null,
@@ -4870,15 +4926,25 @@ Merci !`;
                     navbar.style.removeProperty('border-bottom-color');
                 }
                 
-                // AFFICHER les aurores et étoiles pour l'Hiver
-                const aurora = document.querySelector('.aurora');
-                const stars = document.getElementById('stars');
-                if (aurora) aurora.style.display = 'block';
-                if (stars) stars.style.display = 'block';
+                // Masquer effets des autres saisons
+                const auroraW = document.querySelector('.aurora');
+                const starsW = document.getElementById('stars');
+                if (auroraW) auroraW.style.display = 'block';
+                if (starsW) starsW.style.display = 'block';
+                const butterfliesW = document.getElementById('butterflies');
+                const firefliesW = document.getElementById('fireflies');
+                const sunRaysW = document.getElementById('sun-rays');
+                const fogW = document.getElementById('fog');
+                const leavesW = document.getElementById('floating-leaves');
+                if (butterfliesW) { butterfliesW.innerHTML = ''; butterfliesW.style.display = 'none'; }
+                if (firefliesW) { firefliesW.innerHTML = ''; firefliesW.style.display = 'none'; }
+                if (sunRaysW) sunRaysW.style.display = 'none';
+                if (fogW) fogW.style.display = 'none';
+                if (leavesW) { leavesW.innerHTML = ''; leavesW.style.display = 'none'; }
                 
                 console.log('✅ Thème Hiver ORIGINAL restauré');
             } else {
-                // POUR LES AUTRES SAISONS : Appliquer des thèmes colorés
+                // POUR LES AUTRES SAISONS : Appliquer des décors sombres
                 const root = document.documentElement;
                 root.style.setProperty('--season-primary', season.primary);
                 root.style.setProperty('--season-secondary', season.secondary);
@@ -4888,77 +4954,94 @@ Merci !`;
                 root.style.setProperty('--aurora-purple', season.accent);
                 root.style.setProperty('--aurora-green', season.secondary);
                 
-                // DÉCORS SPÉCIAUX PAR SAISON
+                // DÉCORS SOMBRES PAR SAISON
                 if (seasonName === 'spring') {
-                    // 🌸 PRINTEMPS : Rose/Vert SOMBRE, doux pour les yeux
+                    // 🌸 PRINTEMPS : Violet/Rose SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #2D1B2E 0%, #4A2C4B 30%, #5D3A5E 60%, #3D2240 100%)';
-                    // MASQUER aurores et étoiles
-                    const aurora = document.querySelector('.aurora');
-                    const stars = document.getElementById('stars');
-                    if (aurora) aurora.style.display = 'none';
-                    if (stars) stars.style.display = 'none';
-                    // AFFICHER papillons
-                    createButterflies();
-                    document.getElementById('sun-rays').style.display = 'none';
-                    document.getElementById('fog').style.display = 'none';
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(77, 44, 78, 0.85)';
                         card.style.borderColor = '#FF69B4';
                         card.style.borderWidth = '2px';
                         card.style.boxShadow = '0 8px 32px rgba(255, 105, 180, 0.3)';
                     });
-                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(61, 34, 64, 0.95), rgba(93, 58, 94, 0.95))';
-                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #FF69B4';
-                    
-                } else if (seasonName === 'summer') {
-                    // ☀️ ÉTÉ : Orange/Marron SOMBRE, chaleureux
-                    document.body.style.background = 'linear-gradient(180deg, #3D2817 0%, #5C3A1E 30%, #704B28 60%, #4A3018 100%)';
-                    // MASQUER aurores et étoiles
-                    const aurora = document.querySelector('.aurora');
-                    const stars = document.getElementById('stars');
-                    if (aurora) aurora.style.display = 'none';
-                    if (stars) stars.style.display = 'none';
-                    // AFFICHER rayons de soleil
-                    document.getElementById('butterflies').style.display = 'none';
-                    document.getElementById('sun-rays').style.display = 'block';
-                    document.getElementById('fog').style.display = 'none';
-                    // AFFICHER papillons
+                    const navMenuSpring = document.querySelector('.nav-menu');
+                    if (navMenuSpring) {
+                        navMenuSpring.style.background = 'linear-gradient(135deg, rgba(61, 34, 64, 0.95), rgba(93, 58, 94, 0.95))';
+                        navMenuSpring.style.borderBottom = '2px solid #FF69B4';
+                    }
+                    // Masquer aurores et étoiles
+                    const auroraS = document.querySelector('.aurora');
+                    const starsS = document.getElementById('stars');
+                    if (auroraS) auroraS.style.display = 'none';
+                    if (starsS) starsS.style.display = 'none';
+                    // Activer papillons + lucioles
                     createButterflies();
+                    createFireflies();
                     document.getElementById('sun-rays').style.display = 'none';
                     document.getElementById('fog').style.display = 'none';
+                    document.getElementById('floating-leaves').style.display = 'none';
+                    
+                } else if (seasonName === 'summer') {
+                    // ☀️ ÉTÉ : Marron/Orange SOMBRE
+                    document.body.style.background = 'linear-gradient(180deg, #3D2817 0%, #5C3A1E 30%, #704B28 60%, #4A3018 100%)';
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(92, 58, 30, 0.85)';
                         card.style.borderColor = '#FFA500';
                         card.style.borderWidth = '2px';
                         card.style.boxShadow = '0 8px 32px rgba(255, 165, 0, 0.3)';
                     });
-                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(74, 48, 24, 0.95), rgba(112, 75, 40, 0.95))';
-                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #FFA500';
+                    const navMenuSummer = document.querySelector('.nav-menu');
+                    if (navMenuSummer) {
+                        navMenuSummer.style.background = 'linear-gradient(135deg, rgba(74, 48, 24, 0.95), rgba(112, 75, 40, 0.95))';
+                        navMenuSummer.style.borderBottom = '2px solid #FFA500';
+                    }
+                    // Masquer aurores et étoiles
+                    const auroraSu = document.querySelector('.aurora');
+                    const starsSu = document.getElementById('stars');
+                    if (auroraSu) auroraSu.style.display = 'none';
+                    if (starsSu) starsSu.style.display = 'none';
+                    // Activer rayons de soleil
+                    const butterfliesSu = document.getElementById('butterflies');
+                    const firefliesSu = document.getElementById('fireflies');
+                    const floatingLeavesSu = document.getElementById('floating-leaves');
+                    if (butterfliesSu) butterfliesSu.innerHTML = '';
+                    if (firefliesSu) firefliesSu.innerHTML = '';
+                    if (floatingLeavesSu) floatingLeavesSu.innerHTML = '';
+                    document.getElementById('butterflies').style.display = 'none';
+                    document.getElementById('fireflies').style.display = 'none';
+                    document.getElementById('sun-rays').style.display = 'block';
+                    document.getElementById('fog').style.display = 'none';
+                    document.getElementById('floating-leaves').style.display = 'none';
                     
                 } else if (seasonName === 'autumn') {
-                    // 🍂 AUTOMNE : Marron/Rouge SOMBRE, ambiance cosy
+                    // 🍂 AUTOMNE : Marron TRÈS SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #2A1810 0%, #3D2415 30%, #4F2F1A 60%, #352018 100%)';
-                    // MASQUER aurores et étoiles
-                    const aurora = document.querySelector('.aurora');
-                    const stars = document.getElementById('stars');
-                    if (aurora) aurora.style.display = 'none';
-                    if (stars) stars.style.display = 'none';
-                    // AFFICHER brouillard
-                    document.getElementById('butterflies').style.display = 'none';
-                    document.getElementById('sun-rays').style.display = 'none';
-                    document.getElementById('fog').style.display = 'block';
-                    // AFFICHER papillons
-                    createButterflies();
-                    document.getElementById('sun-rays').style.display = 'none';
-                    document.getElementById('fog').style.display = 'none';
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(61, 36, 21, 0.85)';
                         card.style.borderColor = '#D2691E';
                         card.style.borderWidth = '2px';
                         card.style.boxShadow = '0 8px 32px rgba(210, 105, 30, 0.3)';
                     });
-                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(53, 32, 24, 0.95), rgba(79, 47, 26, 0.95))';
-                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #D2691E';
+                    const navMenuAutumn = document.querySelector('.nav-menu');
+                    if (navMenuAutumn) {
+                        navMenuAutumn.style.background = 'linear-gradient(135deg, rgba(53, 32, 24, 0.95), rgba(79, 47, 26, 0.95))';
+                        navMenuAutumn.style.borderBottom = '2px solid #D2691E';
+                    }
+                    // Masquer aurores et étoiles
+                    const auroraA = document.querySelector('.aurora');
+                    const starsA = document.getElementById('stars');
+                    if (auroraA) auroraA.style.display = 'none';
+                    if (starsA) starsA.style.display = 'none';
+                    // Activer brouillard + feuilles
+                    const butterfliesA = document.getElementById('butterflies');
+                    const firefliesA = document.getElementById('fireflies');
+                    if (butterfliesA) butterfliesA.innerHTML = '';
+                    if (firefliesA) firefliesA.innerHTML = '';
+                    document.getElementById('butterflies').style.display = 'none';
+                    document.getElementById('fireflies').style.display = 'none';
+                    document.getElementById('sun-rays').style.display = 'none';
+                    document.getElementById('fog').style.display = 'block';
+                    createFloatingLeaves();
                 }
                 
                 console.log('✅ Décor saison appliqué:', season.name);
@@ -4988,11 +5071,11 @@ Merci !`;
 
         
         // ========================================
-        // FONCTION : Créer des papillons pour le Printemps
+        // FONCTIONS EFFETS VISUELS
+        
         function createButterflies() {
             const container = document.getElementById('butterflies');
             if (!container) return;
-            
             container.innerHTML = '';
             container.style.display = 'block';
             
@@ -5005,6 +5088,41 @@ Merci !`;
                 butterfly.style.animationDelay = Math.random() * 5 + 's';
                 butterfly.style.animationDuration = (Math.random() * 10 + 10) + 's';
                 container.appendChild(butterfly);
+            }
+        }
+        
+        function createFireflies() {
+            const container = document.getElementById('fireflies');
+            if (!container) return;
+            container.innerHTML = '';
+            container.style.display = 'block';
+            
+            for (let i = 0; i < 20; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                firefly.style.left = Math.random() * 100 + '%';
+                firefly.style.top = Math.random() * 100 + '%';
+                firefly.style.animationDelay = Math.random() * 3 + 's';
+                firefly.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                container.appendChild(firefly);
+            }
+        }
+        
+        function createFloatingLeaves() {
+            const container = document.getElementById('floating-leaves');
+            if (!container) return;
+            container.innerHTML = '';
+            container.style.display = 'block';
+            
+            const leafEmojis = ['🍂', '🍁'];
+            for (let i = 0; i < 15; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'floating-leaf';
+                leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+                leaf.style.left = Math.random() * 100 + '%';
+                leaf.style.animationDelay = (Math.random() * 10) + 's';
+                leaf.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(leaf);
             }
         }
         
