@@ -20,7 +20,19 @@
             --aurora-green: #98fb98;
             --snow-glow: rgba(255, 255, 255, 0.8);
             --glass: rgba(255, 255, 255, 0.1);
-        }
+        
+        
+        /* VARIABLES PAR SAISON */
+        /* Hiver (par défaut) */
+        --season-primary: #87CEEB;
+        --season-secondary: #A8D8EA;
+        --season-accent: #7B68EE;
+        --season-bg-start: rgba(10, 22, 40, 0.95);
+        --season-bg-end: rgba(26, 58, 82, 0.95);
+        --season-animation: 'snowflake';
+        --season-emoji: '❄️';
+    
+    }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -309,6 +321,52 @@
 
         @keyframes fall {
             0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+
+        /* ANIMATIONS SAISONS */
+        @keyframes snowflake-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes petal-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sun-float {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes leaf-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
         }
 
@@ -1309,6 +1367,154 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
+
+
+        /* EFFETS DE FOND PAR SAISON */
+        
+        /* Printemps : Papillons */
+        .butterflies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+        }
+        
+        .butterfly {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: butterfly-fly 15s infinite;
+        }
+        
+        @keyframes butterfly-fly {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
+            25% { transform: translate(100px, -50px) rotate(20deg); opacity: 1; }
+            50% { transform: translate(200px, 50px) rotate(-20deg); opacity: 0.7; }
+            75% { transform: translate(100px, 100px) rotate(20deg); opacity: 1; }
+            100% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
+        }
+        
+        /* Été : Rayons de soleil */
+        .sun-rays {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 100px,
+                rgba(255, 215, 0, 0.05) 100px,
+                rgba(255, 215, 0, 0.05) 200px
+            );
+            animation: sun-rotate 30s linear infinite;
+        }
+        
+        @keyframes sun-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Automne : Brouillard */
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            background: linear-gradient(to top, rgba(139, 69, 19, 0.3), transparent);
+            animation: fog-move 20s ease-in-out infinite;
+        }
+        
+        @keyframes fog-move {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Season Selector */
+        .season-selector {
+            position: fixed;
+            bottom: 20px;
+            right: 90px;
+            z-index: 100;
+        }
+
+        .season-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--season-primary), var(--season-secondary));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .season-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .season-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            width: 150px;
+        }
+
+        .season-menu.open {
+            display: flex;
+            animation: popIn 0.3s ease-out;
+        }
+
+        .season-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .season-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .season-option.active {
+            background: linear-gradient(135deg, var(--season-primary), var(--season-secondary));
+            border-color: var(--season-accent);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
 .emoji-picker {
             position: fixed;
             bottom: 20px;
@@ -1426,8 +1632,8 @@
     <nav class="nav-menu">
         <div class="nav-container">
             <div class="nav-logo" onclick="showPage('accueil')">
-                <span>❄️</span>
-                <span>Winter Vibes Radio</span>
+                <span id="nav-logo-icon">❄️</span>
+                <span id="nav-logo-text">Winter Vibes Radio</span>
             </div>
             <div class="nav-links" id="nav-links">
                 <a class="nav-link active" data-page="accueil">
@@ -1469,6 +1675,9 @@
 
     <!-- Snowflakes -->
     <div class="snowflakes" id="snowflakes"></div>
+    <div class="butterflies" id="butterflies"></div>
+    <div class="sun-rays" id="sun-rays"></div>
+    <div class="fog" id="fog"></div>
 
     <!-- Interactive Emojis -->
     <div class="emoji-container" id="emoji-container"></div>
@@ -1479,7 +1688,7 @@
         <div class="page-section active" id="page-accueil">
         <!-- Header -->
         <header class="header">
-            <h1 class="logo"><span class="logo-emoji">❄️</span> Winter Vibes Radio</h1>
+            <h1 class="logo" id="main-logo"><span class="logo-emoji">❄️</span> Winter Vibes Radio</h1>
             <p class="tagline">✨ 24/7 Chill & Cozy Music ✨</p>
         </header>
 
@@ -1511,7 +1720,7 @@
                 <div style="font-size: 4rem; margin-bottom: 20px;">📻</div>
                 <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px;">Radios 24/7</h3>
                 <p style="opacity: 0.8; line-height: 1.6;">
-                    Écoute des radios en direct du monde entier ! France, Angleterre, Allemagne, Italie, Belgique, Maroc, Espagne, Japon... Plus de 72 stations disponibles.
+                    Écoute des radios en direct du monde entier ! France, Angleterre, Allemagne, Italie, Belgique, Maroc, Espagne, Japon... Plus de 38 stations disponibles.
                 </p>
                 <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                     <span style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">🇫🇷 FR</span>
@@ -1666,21 +1875,76 @@
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="font-size: 2rem;">📻</div>
+                        <div style="font-size: 2rem;">🎨</div>
                         <div>
-                            <h4 style="font-size: 1.3rem; color: #98FB98; margin-bottom: 5px;">05 Janvier 2026</h4>
-                            <p style="opacity: 0.8; font-size: 0.9rem;">Nettoyage complet & stabilité</p>
+                            <h4 style="font-size: 1.3rem; color: #98FB98; margin-bottom: 5px;">08 Janvier 2026</h4>
+                            <p style="opacity: 0.8; font-size: 0.9rem;">Saisons & thèmes dynamiques</p>
                         </div>
                     </div>
                     
                     <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.9; font-size: 1rem;">
-                        <li>📻 <strong>Radios fonctionnelles :</strong> 38 radios stables (au lieu de 72 instables)</li>
-                        <li>📜 <strong>Messages explicatifs :</strong> Infos détaillées sur restrictions par pays</li>
-                        <li>🇯🇵 <strong>Japon :</strong> AnimeNfo Radio (serveur EU, 100% stable)</li>
-                        <li>🎵 <strong>Mini-player :</strong> Contrôle flottant déplaçable sur toutes les pages</li>
-                        <li>🎮 <strong>Page Twitch :</strong> Stream + Chat intégré pour suivre TheFasty_67</li>
+                        <li>🎨 <strong>Système de saisons :</strong> 4 saisons complètes (Hiver, Printemps, Été, Automne)</li>
+                        <li>🎭 <strong>Thèmes dynamiques :</strong> Couleurs, animations et titre changent avec les saisons</li>
+                        <li>🌸 <strong>Menu émojis :</strong> Change selon la saison (🌸🦋 printemps, ☀️🌊 été, 🍂🎃 automne)</li>
+                        <li>✨ <strong>Pluie d'émojis :</strong> Émojis variés tombent selon la saison</li>
+                        <li>🎨 <strong>Fonds plus foncés :</strong> Printemps/Été/Automne ont des arrière-plans assombris</li>
+                        <li>🔄 <strong>Mode AUTO/MANUEL :</strong> Détection auto ou choix manuel (bouton en bas à droite)</li>
+                        <li>🎉 <strong>Fêtes spéciales :</strong> Noël, Halloween, Anniversaire TheFasty (26/10), etc.</li>
+                        <li>🇯🇵 <strong>Radio Japon :</strong> J-Pop Sakura (J-Pop & Vocaloid)</li>
                     </ul>
                 </div>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 07 Janvier 2026
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>🎵 Mini-player zone de déplacement limitée</li>
+                        <li>🎮 Page Twitch compatible GitHub</li>
+                        <li>📜 Messages radios Noël/Jazz partagées</li>
+                        <li>📊 Stats mises à jour (38 radios)</li>
+                    </ul>
+                </details>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 05 Janvier 2026
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                        <li>📻 38 radios stables sélectionnées</li>
+                        <li>📜 Messages explicatifs par pays</li>
+                        <li>🎵 Mini-player flottant déplaçable</li>
+                        <li>🎮 Page Twitch (Stream + Chat)</li>
+                    </ul>
+                </details>
                 
                 <details style="
                     background: rgba(135, 206, 235, 0.08);
@@ -1865,7 +2129,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+            <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
         </footer>
         </div>
         <!-- END PAGE: ACCUEIL -->
@@ -2054,7 +2318,7 @@
 
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: RADIO -->
@@ -2170,7 +2434,7 @@
 
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: MA MUSIQUE -->
@@ -2240,79 +2504,7 @@
                 <div id="submission-result" style="margin-top: 20px; text-align: center; display: none;"></div>
             </section>
 
-            <!-- Stats Widget -->
-            <section class="glass-card" style="text-align: center; padding: 30px;">
-                <h3 class="section-title">📊 Winter Vibes en Direct</h3>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
-                    <!-- Visiteurs -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(123, 104, 238, 0.1));
-                        border: 1px solid rgba(123, 104, 238, 0.3);
-                        border-radius: 12px;
-                        padding: 20px;
-                    ">
-                        <div style="font-size: 2rem; margin-bottom: 5px;">👥</div>
-                        <div id="visitor-count" style="font-size: 1.8rem; font-weight: 700; color: #7B68EE;">...</div>
-                        <div style="opacity: 0.8; font-size: 0.9rem;">Visiteurs</div>
-                    </div>
-                    
-                    <!-- Écoutes -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(152, 251, 152, 0.2), rgba(152, 251, 152, 0.1));
-                        border: 1px solid rgba(152, 251, 152, 0.3);
-                        border-radius: 12px;
-                        padding: 20px;
-                    ">
-                        <div style="font-size: 2rem; margin-bottom: 5px;">🎵</div>
-                        <div id="listen-count" style="font-size: 1.8rem; font-weight: 700; color: #98FB98;">...</div>
-                        <div style="opacity: 0.8; font-size: 0.9rem;">Écoutes</div>
-                    </div>
-                    
-                    <!-- Temps total -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-                        border: 1px solid rgba(255, 215, 0, 0.3);
-                        border-radius: 12px;
-                        padding: 20px;
-                    ">
-                        <div style="font-size: 2rem; margin-bottom: 5px;">⏱️</div>
-                        <div id="time-count" style="font-size: 1.8rem; font-weight: 700; color: #FFD700;">...</div>
-                        <div style="opacity: 0.8; font-size: 0.9rem;">Heures</div>
-                    </div>
-                </div>
-                
-                <!-- Mode Performance actuel -->
-                <div id="current-perf-mode" style="
-                    margin-top: 20px;
-                    padding: 15px;
-                    background: rgba(255, 215, 0, 0.1);
-                    border: 1px solid rgba(255, 215, 0, 0.3);
-                    border-radius: 10px;
-                    display: inline-block;
-                ">
-                    <strong>⚡ Mode actuel :</strong> <span id="perf-mode-display">🎨 Qualité Max</span>
-                </div>
-                
-                <!-- Bouton Surprise -->
-                <div style="margin-top: 25px;">
-                    <button id="surprise-btn" class="promo-btn" style="
-                        background: linear-gradient(135deg, #FF6B6B, #FFD700);
-                        border: none;
-                        cursor: pointer;
-                        font-size: 1.1rem;
-                        padding: 15px 30px;
-                    ">
-                        🎲 Surprise-moi !
-                    </button>
-                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 10px;">Lance une radio aléatoire</p>
-                </div>
-            </section>
-
-
-                
-
-                        <!-- Infos -->
+            <!-- Infos -->
             <section class="glass-card">
                 <h3 class="section-title">ℹ️ Informations</h3>
                 <div style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
@@ -2408,7 +2600,7 @@
 
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: PROPOSER -->
@@ -2515,7 +2707,7 @@
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="font-size: 2rem; font-weight: 700; color: #C0C0C0;">🥈</div>
                             <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.2rem;">AnimeNfo Radio (Japon)</div>
+                                <div style="font-weight: 700; font-size: 1.2rem;">J-Pop Sakura (Japon)</div>
                                 <div style="opacity: 0.8; font-size: 0.9rem;">🎌 Anime • 🇯🇵 Japon</div>
                             </div>
                             <div style="font-size: 1.3rem; font-weight: 700;">3,892</div>
@@ -2737,7 +2929,7 @@
 </section>
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: STATISTIQUES -->
@@ -2764,7 +2956,7 @@
                         <!-- Player Twitch -->
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
                             <iframe 
-                                src="https://player.twitch.tv/?channel=thefasty_67&parent=localhost&parent=127.0.0.1&muted=false&autoplay=true"
+                                src="https://player.twitch.tv/?channel=thefasty_67&parent=localhost&parent=127.0.0.1&parent=thefasty67.github.io&muted=false&autoplay=true"
                                 frameborder="0"
                                 allowfullscreen="true"
                                 scrolling="no"
@@ -2794,7 +2986,7 @@
                         <!-- Chat Twitch intégré -->
                         <div style="flex: 1; position: relative;">
                             <iframe 
-                                src="https://www.twitch.tv/embed/thefasty_67/chat?parent=localhost&parent=127.0.0.1&darkpopout"
+                                src="https://www.twitch.tv/embed/thefasty_67/chat?parent=localhost&parent=127.0.0.1&parent=thefasty67.github.io&darkpopout"
                                 frameborder="0"
                                 scrolling="yes"
                                 style="width: 100%; height: 100%;">
@@ -2937,7 +3129,7 @@
 
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: RADIO -->
@@ -2962,7 +3154,7 @@
             </section>
 
             <footer class="footer">
-                <p>❄️ Winter Vibes Radio - Créé avec ❤️ par TheFasty_67 ❄️</p>
+                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
         <!-- END PAGE: TWITCH -->
@@ -3026,6 +3218,37 @@
         </div>
     </div>
 
+    <!-- Season Selector -->
+    <div class="season-selector">
+        <button class="season-toggle" id="season-toggle" title="Changer de saison">
+            <span id="current-season-icon">❄️</span>
+        </button>
+        <div class="season-menu" id="season-menu">
+            <button class="season-option" data-season="winter">
+                <span>❄️</span>
+                <span>Hiver</span>
+            </button>
+            <button class="season-option" data-season="spring">
+                <span>🌸</span>
+                <span>Printemps</span>
+            </button>
+            <button class="season-option" data-season="summer">
+                <span>☀️</span>
+                <span>Été</span>
+            </button>
+            <button class="season-option" data-season="autumn">
+                <span>🍂</span>
+                <span>Automne</span>
+            </button>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); margin: 10px 0; padding-top: 10px;">
+                <button class="season-option" data-season="auto">
+                    <span>🔄</span>
+                    <span>Auto</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Emoji Picker -->
     <div class="emoji-picker">
         <button class="emoji-toggle" id="emoji-toggle">✨</button>
@@ -3059,22 +3282,7 @@
             }
         }
 
-        // Snowflakes Animation
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.innerHTML = ['❄️', '❅', '❆', '✻', '✼'][Math.floor(Math.random() * 5)];
-            snowflake.style.cssText = `
-                position: absolute;
-                left: ${Math.random() * 100}%;
-                top: -20px;
-                font-size: ${Math.random() * 15 + 10}px;
-                opacity: ${Math.random() * 0.5 + 0.3};
-                animation: fall ${Math.random() * 10 + 10}s linear forwards;
-                pointer-events: none;
-            `;
-            document.getElementById('snowflakes').appendChild(snowflake);
-            setTimeout(() => snowflake.remove(), 20000);
-        }
+
 
         // Interactive Falling Emojis with limit
         const MAX_EMOJIS = 20;
@@ -3125,14 +3333,10 @@
             });
         });
 
-        // Auto spawn emojis
+        // Auto spawn emojis - DÉSACTIVÉE (on utilise le système de saisons)
         function autoSpawnEmojis() {
-            const container = document.getElementById('emoji-container');
-            if (container.children.length >= MAX_EMOJIS) return;
-            
-            const emojis = ['❄️', '⛄', '⭐', '🎄', '🎁'];
-            const choice = emojis[Math.floor(Math.random() * emojis.length)];
-            createFallingEmoji(choice);
+            // Fonction désactivée - Les particules sont gérées par startSeasonParticles()
+            return;
         }
 
         // Radio Stations par langue - Radios NATIONALES par pays
@@ -3226,7 +3430,7 @@
             },
             // 🇯🇵 JAPON - Une seule radio J-Pop/Anime
             jp: {
-                chill: { name: 'AnimeNfo Radio', description: 'J-Pop & Anime 🇯🇵', url: 'https://relay.animenfo.com:443/radio', emoji: '🎧' },
+                chill: { name: 'J-Pop Sakura', description: 'J-Pop & Anime 🇯🇵', url: 'https://stream.laut.fm/jpopsakura', emoji: '🎧' },
                 christmas: null,
                 jazz: null,
                 ambient: null,
@@ -3359,11 +3563,11 @@
             const countryMessages = {
                 'fr': null, // Pas de message pour la France (toutes les radios fonctionnent)
                 'de': null, // Pas de message pour l'Allemagne (toutes les radios fonctionnent)
-                'en': 'ℹ️ Information : Certaines radios BBC ne sont pas accessibles depuis l\'Europe pour des raisons de restrictions géographiques - Les streams BBC Radio sont limités au Royaume-Uni uniquement - Nous proposons les radios commerciales britanniques disponibles internationalement pour garantir une écoute stable',
+                'en': 'ℹ️ Information : Certaines radios BBC ne sont pas accessibles depuis l\'Europe pour des raisons de restrictions géographiques - Les streams BBC Radio sont limités au Royaume-Uni uniquement - Nous proposons les radios commerciales britanniques disponibles internationalement pour garantir une écoute stable - Les radios Noël et Jazz sont des streams internationaux partagés avec d\'autres pays pour offrir une meilleure stabilité',
                 'it': 'ℹ️ Information : Disponibilité limitée des radios italiennes pour raisons de restrictions géographiques et protection des droits d\'auteur - Seules les radios United Music (Virgin Radio, Radio 105, Radio Monte Carlo) sont accessibles depuis l\'extérieur de l\'Italie - Les streams RAI et autres radios locales nécessitent une connexion italienne - Nous vous proposons une sélection des meilleures radios italiennes stables et accessibles 24/7',
-                'be': 'ℹ️ Information : Sélection des radios belges les plus stables et accessibles depuis l\'Europe - Certaines radios RTBF (La Première, Musiq3, Classic 21) ont des restrictions de diffusion en dehors de la Belgique pour des raisons de droits d\'auteur - Les radios commerciales (Radio Contact, Bel RTL) restent disponibles sans restriction - Nous garantissons une écoute fluide avec les stations les plus fiables du pays',
-                'ma': 'ℹ️ Information : Disponibilité limitée des radios marocaines pour raisons de copyright et restrictions techniques - La plupart des streams marocains (Hit Radio, Medi1, Atlantic Radio, Cap Radio) nécessitent une connexion depuis le Maroc ou l\'Afrique du Nord - Seules les radios internationales (Noël, Jazz) sont garanties stables depuis l\'Europe - Les diffusions régionales sont protégées par des accords de licence locaux',
-                'es': 'ℹ️ Information : Certains streams régionaux espagnols ne sont pas accessibles en dehors de l\'Espagne pour des raisons de droits de diffusion - Les radios RTVE (Radio Clásica, Radio 3) et certaines stations locales (Cadena 100, Rock FM) sont limitées au territoire espagnol - Nous proposons Los 40 (disponible internationalement) et les radios de Noël/Jazz accessibles depuis toute l\'Europe - Protection des contenus par géo-blocage strict',
+                'be': 'ℹ️ Information : Sélection des radios belges les plus stables et accessibles depuis l\'Europe - Certaines radios RTBF (La Première, Musiq3, Classic 21) ont des restrictions de diffusion en dehors de la Belgique pour des raisons de droits d\'auteur - Les radios commerciales (Radio Contact, Bel RTL) restent disponibles sans restriction - Les radios Noël et Jazz sont des streams internationaux partagés avec plusieurs pays européens pour garantir une diffusion stable 24/7',
+                'ma': 'ℹ️ Information : Disponibilité limitée des radios marocaines pour raisons de copyright et restrictions techniques - La plupart des streams marocains (Hit Radio, Medi1, Atlantic Radio, Cap Radio) nécessitent une connexion depuis le Maroc ou l\'Afrique du Nord - Les radios Noël et Jazz sont des streams internationaux européens accessibles depuis tous les pays pour offrir une alternative stable - Ces radios partagées garantissent une écoute 24/7 sans restriction géographique',
+                'es': 'ℹ️ Information : Certains streams régionaux espagnols ne sont pas accessibles en dehors de l\'Espagne pour des raisons de droits de diffusion - Les radios RTVE (Radio Clásica, Radio 3) et certaines stations locales (Cadena 100, Rock FM) sont limitées au territoire espagnol - Nous proposons Los 40 (disponible internationalement) et les radios Noël/Jazz qui sont des streams européens partagés avec plusieurs pays pour garantir une diffusion stable sans géo-blocage',
                 'jp': 'ℹ️ Information : Une seule radio japonaise disponible en raison de restrictions géographiques strictes et protection des droits d\'auteur - La plupart des radios japonaises sont inaccessibles depuis l\'Europe et nécessitent une adresse IP japonaise - Les contenus J-Pop et Anime sont fortement protégés par la JASRAC (société japonaise des droits d\'auteur) - AnimeNfo Radio (serveur européen) est la seule option stable garantie 24/7 pour l\'écoute de musique japonaise depuis la France'
             };
             
@@ -3726,7 +3930,7 @@ else {
         // Initialize radio button names for French (default)
         updateRadioButtons('fr');
 
-        setInterval(createSnowflake, 500);
+        // setInterval(createSnowflake, 500); // Désactivé : géré par startSeasonAnimation()
         setInterval(autoSpawnEmojis, 8000);
 
         audioPlayer.volume = 0.7;
@@ -4027,9 +4231,10 @@ Merci !`;
                     if (emojiContainer) emojiContainer.style.display = 'block';
                     if (visualizer) visualizer.style.display = 'flex';
                     
-                    // Restart animations
+                    // Restart animations (selon la saison)
                     clearInterval(snowflakeInterval);
-                    snowflakeInterval = setInterval(createSnowflake, 500);
+                    // Ne pas forcer createSnowflake - laisser startSeasonAnimation gérer
+                    // snowflakeInterval = setInterval(createSnowflake, 500);
                     clearInterval(emojiInterval);
                     emojiInterval = setInterval(autoSpawnEmojis, 8000);
                     
@@ -4044,9 +4249,10 @@ Merci !`;
                     if (emojiContainer) emojiContainer.style.display = 'block';
                     if (visualizer) visualizer.style.display = 'flex';
                     
-                    // Moins de flocons
+                    // Moins de particules (selon la saison)
                     clearInterval(snowflakeInterval);
-                    snowflakeInterval = setInterval(createSnowflake, 1500);
+                    // Ne pas forcer createSnowflake - laisser startSeasonAnimation gérer
+                    // snowflakeInterval = setInterval(createSnowflake, 1500);
                     clearInterval(emojiInterval);
                     emojiInterval = setInterval(autoSpawnEmojis, 15000);
                     
@@ -4398,6 +4604,17 @@ Merci !`;
                         currentY = e.clientY - initialY;
                     }
                     
+                    // LIMITER LA ZONE DE DÉPLACEMENT
+                    const playerRect = miniPlayer.getBoundingClientRect();
+                    const maxX = window.innerWidth - playerRect.width - 20;
+                    const maxY = window.innerHeight - playerRect.height - 20;
+                    const minX = -20;
+                    const minY = -20;
+                    
+                    // Contraindre les valeurs
+                    currentX = Math.max(minX, Math.min(currentX, maxX));
+                    currentY = Math.max(minY, Math.min(currentY, maxY));
+                    
                     xOffset = currentX;
                     yOffset = currentY;
                     
@@ -4444,6 +4661,458 @@ Merci !`;
         
         audioPlayer.addEventListener('pause', () => {
             if (miniPlayBtn) miniPlayBtn.textContent = '▶️';
+        });
+        
+
+        // ========================================
+        // SYSTÈME DE SAISONS & FÊTES
+        // ========================================
+        
+        let currentSeason = 'auto'; // auto, winter, spring, summer, autumn
+        let isManualSeason = false;
+        
+        // CONFIGURATION DES SAISONS
+        const seasons = {
+            winter: {
+                name: 'Winter Vibes Radio',
+                icon: '❄️',
+                primary: '#87CEEB',
+                secondary: '#A8D8EA',
+                accent: '#7B68EE',
+                animation: 'snowflake',
+                particle: '❄️',
+                particles: ['❄️', '⛄', '🎄', '🎁', '⭐'], // Hiver uniquement
+                emojis: ['❄️', '⛄', '🎄', '🎁', '⭐', '🌟', '💫', '🦌'], // Menu
+                months: [12, 1, 2],
+                events: [
+                    { date: '12-25', name: 'Noël', icon: '🎄' },
+                    { date: '01-01', name: 'Nouvelle An', icon: '🎉' },
+                    { date: '02-14', name: 'Saint-Valentin', icon: '💝' }
+                ]
+            },
+            spring: {
+                name: 'Spring Vibes Radio',
+                icon: '🌸',
+                primary: '#FF69B4', // Rose plus foncé
+                secondary: '#98FB98',
+                accent: '#FF1493', // Rose vif
+                bgStart: 'rgba(40, 20, 30, 0.95)', // FOND PLUS FONCÉ
+                bgEnd: 'rgba(60, 40, 50, 0.95)',
+                animation: 'petal',
+                particle: '🌸',
+                particles: ['🌸', '🌷', '🦋', '🌺', '💐'], // Printemps uniquement
+                emojis: ['🌸', '🌷', '🦋', '🐝', '☀️', '🌺', '💐', '🌼'], // Menu émojis
+                months: [3, 4, 5],
+                events: [
+                    { date: '04-01', name: 'Pâques', icon: '🐰' },
+                    { date: '03-01', name: 'Carnaval', icon: '🎭' }
+                ]
+            },
+            summer: {
+                name: 'Summer Vibes Radio',
+                icon: '☀️',
+                primary: '#FFA500', // Orange plus foncé
+                secondary: '#FF8C00',
+                accent: '#FF4500', // Rouge-orange
+                bgStart: 'rgba(40, 30, 20, 0.95)', // FOND PLUS FONCÉ
+                bgEnd: 'rgba(60, 45, 30, 0.95)',
+                animation: 'sun',
+                particle: '☀️',
+                particles: ['☀️', '🌊', '🍉', '🌴', '⛱️'], // Été uniquement
+                emojis: ['☀️', '🏖️', '🌊', '🍉', '🍦', '🌴', '🏄', '⛱️'], // Menu
+                months: [6, 7, 8],
+                events: [
+                    { date: '06-21', name: 'Fête de la Musique', icon: '🎵' },
+                    { date: '07-14', name: 'Fête Nationale', icon: '🎆' }
+                ]
+            },
+            autumn: {
+                name: 'Autumn Vibes Radio',
+                icon: '🍂',
+                primary: '#D2691E', // Marron plus foncé
+                secondary: '#8B4513',
+                accent: '#A0522D', // Brun
+                bgStart: 'rgba(30, 25, 20, 0.95)', // FOND PLUS FONCÉ
+                bgEnd: 'rgba(50, 40, 30, 0.95)',
+                animation: 'leaf',
+                particle: '🍂',
+                particles: ['🍂', '🍁', '🎃', '🌰', '🍄'], // Automne uniquement
+                emojis: ['🍂', '🍁', '🎃', '🌰', '🦔', '🍄', '☂️', '🌙'], // Menu
+                months: [9, 10, 11],
+                events: [
+                    { date: '10-26', name: 'Anniversaire TheFasty', icon: '🎂' },
+                    { date: '10-31', name: 'Halloween', icon: '🎃' }
+                ]
+            }
+        };
+        
+        // DÉTECTION AUTO DE LA SAISON
+        function getAutoSeason() {
+            const now = new Date();
+            const month = now.getMonth() + 1; // 1-12
+            
+            // Vérifier chaque saison
+            for (const [seasonName, config] of Object.entries(seasons)) {
+                if (config.months.includes(month)) {
+                    return seasonName;
+                }
+            }
+            
+            return 'winter'; // Par défaut
+        }
+        
+        // APPLIQUER UNE SAISON
+        function applySeason(seasonName) {
+            const season = seasons[seasonName];
+            if (!season) return;
+            
+            console.log('🎨 Application saison:', seasonName);
+            
+            // 1. METTRE À JOUR LE TITRE (partout : pages + navbar + head)
+            document.querySelectorAll('.logo').forEach(logo => {
+                logo.innerHTML = `<span class="logo-emoji">${season.icon}</span> ${season.name}`;
+            });
+            
+            // Mettre à jour la NAVBAR (nav-logo)
+            const navLogoIcon = document.getElementById('nav-logo-icon');
+            const navLogoText = document.getElementById('nav-logo-text');
+            if (navLogoIcon) navLogoIcon.textContent = season.icon;
+            if (navLogoText) {
+                navLogoText.textContent = season.name;
+                // Ne PAS mettre de dégradé (pour garder les émojis visibles)
+            }
+            console.log('🎨 Navbar mise à jour:', season.icon, season.name);
+            
+            // Mettre à jour TOUS les FOOTERS
+            document.querySelectorAll('.footer-icon').forEach(icon => {
+                icon.textContent = season.icon;
+            });
+            document.querySelectorAll('.footer-title').forEach(title => {
+                title.textContent = season.name;
+            });
+            console.log('🎨 Footers mis à jour:', season.icon, season.name);
+            
+            // Mettre à jour le titre de la page (<title>)
+            document.title = `${season.icon} ${season.name} - TheFasty_67`;
+            
+            // CHANGER LE FAVICON (icône de l'onglet)
+            // Créer un canvas pour dessiner l'emoji
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            
+            // Dessiner l'emoji sur le canvas
+            ctx.font = '48px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(season.icon, 32, 32);
+            
+            // Convertir en URL et mettre à jour le favicon
+            const faviconUrl = canvas.toDataURL('image/png');
+            
+            // Trouver ou créer le lien favicon
+            let favicon = document.querySelector('link[rel="icon"]');
+            if (!favicon) {
+                favicon = document.createElement('link');
+                favicon.rel = 'icon';
+                document.head.appendChild(favicon);
+            }
+            favicon.href = faviconUrl;
+            
+            console.log('🎨 Favicon changé en:', season.icon);
+            
+            // 2. METTRE À JOUR L'ICÔNE DU BOUTON
+            const seasonIcon = document.getElementById('current-season-icon');
+            if (seasonIcon) {
+                seasonIcon.textContent = season.icon;
+            }
+            
+            // 3. METTRE À JOUR LE MENU ÉMOJIS
+            const emojiMenu = document.getElementById('emoji-menu');
+            if (emojiMenu && season.emojis) {
+                emojiMenu.innerHTML = '';
+                season.emojis.forEach(emoji => {
+                    const btn = document.createElement('button');
+                    btn.className = 'emoji-option';
+                    btn.dataset.emoji = emoji;
+                    btn.textContent = emoji;
+                    emojiMenu.appendChild(btn);
+                });
+                
+                // Réattacher les event listeners
+                document.querySelectorAll('.emoji-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const emoji = option.dataset.emoji;
+                        createFallingEmoji(emoji);
+                    });
+                });
+            }
+            
+            // 4. THÈME SPÉCIAL POUR HIVER (garder l'original)
+            if (seasonName === 'winter') {
+                // RESTAURER LE THÈME ORIGINAL HIVER
+                const root = document.documentElement;
+                root.style.removeProperty('--ice-blue');
+                root.style.removeProperty('--aurora-purple');
+                root.style.removeProperty('--aurora-green');
+                
+                document.body.style.background = '';
+                
+                document.querySelectorAll('.glass-card').forEach(card => {
+                    card.style.removeProperty('border-color');
+                    card.style.removeProperty('background');
+                });
+                
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    navbar.style.removeProperty('background');
+                    navbar.style.removeProperty('border-bottom-color');
+                }
+                
+                // AFFICHER les aurores et étoiles pour l'Hiver
+                const aurora = document.querySelector('.aurora');
+                const stars = document.getElementById('stars');
+                if (aurora) aurora.style.display = 'block';
+                if (stars) stars.style.display = 'block';
+                
+                console.log('✅ Thème Hiver ORIGINAL restauré');
+            } else {
+                // POUR LES AUTRES SAISONS : Appliquer des thèmes colorés
+                const root = document.documentElement;
+                root.style.setProperty('--season-primary', season.primary);
+                root.style.setProperty('--season-secondary', season.secondary);
+                root.style.setProperty('--season-accent', season.accent);
+                
+                root.style.setProperty('--ice-blue', season.primary);
+                root.style.setProperty('--aurora-purple', season.accent);
+                root.style.setProperty('--aurora-green', season.secondary);
+                
+                // DÉCORS SPÉCIAUX PAR SAISON
+                if (seasonName === 'spring') {
+                    // 🌸 PRINTEMPS : Rose/Vert SOMBRE, doux pour les yeux
+                    document.body.style.background = 'linear-gradient(180deg, #2D1B2E 0%, #4A2C4B 30%, #5D3A5E 60%, #3D2240 100%)';
+                    // MASQUER aurores et étoiles
+                    const aurora = document.querySelector('.aurora');
+                    const stars = document.getElementById('stars');
+                    if (aurora) aurora.style.display = 'none';
+                    if (stars) stars.style.display = 'none';
+                    // AFFICHER papillons
+                    createButterflies();
+                    document.getElementById('sun-rays').style.display = 'none';
+                    document.getElementById('fog').style.display = 'none';
+                    document.querySelectorAll('.glass-card').forEach(card => {
+                        card.style.background = 'rgba(77, 44, 78, 0.85)';
+                        card.style.borderColor = '#FF69B4';
+                        card.style.borderWidth = '2px';
+                        card.style.boxShadow = '0 8px 32px rgba(255, 105, 180, 0.3)';
+                    });
+                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(61, 34, 64, 0.95), rgba(93, 58, 94, 0.95))';
+                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #FF69B4';
+                    
+                } else if (seasonName === 'summer') {
+                    // ☀️ ÉTÉ : Orange/Marron SOMBRE, chaleureux
+                    document.body.style.background = 'linear-gradient(180deg, #3D2817 0%, #5C3A1E 30%, #704B28 60%, #4A3018 100%)';
+                    // MASQUER aurores et étoiles
+                    const aurora = document.querySelector('.aurora');
+                    const stars = document.getElementById('stars');
+                    if (aurora) aurora.style.display = 'none';
+                    if (stars) stars.style.display = 'none';
+                    // AFFICHER rayons de soleil
+                    document.getElementById('butterflies').style.display = 'none';
+                    document.getElementById('sun-rays').style.display = 'block';
+                    document.getElementById('fog').style.display = 'none';
+                    // AFFICHER papillons
+                    createButterflies();
+                    document.getElementById('sun-rays').style.display = 'none';
+                    document.getElementById('fog').style.display = 'none';
+                    document.querySelectorAll('.glass-card').forEach(card => {
+                        card.style.background = 'rgba(92, 58, 30, 0.85)';
+                        card.style.borderColor = '#FFA500';
+                        card.style.borderWidth = '2px';
+                        card.style.boxShadow = '0 8px 32px rgba(255, 165, 0, 0.3)';
+                    });
+                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(74, 48, 24, 0.95), rgba(112, 75, 40, 0.95))';
+                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #FFA500';
+                    
+                } else if (seasonName === 'autumn') {
+                    // 🍂 AUTOMNE : Marron/Rouge SOMBRE, ambiance cosy
+                    document.body.style.background = 'linear-gradient(180deg, #2A1810 0%, #3D2415 30%, #4F2F1A 60%, #352018 100%)';
+                    // MASQUER aurores et étoiles
+                    const aurora = document.querySelector('.aurora');
+                    const stars = document.getElementById('stars');
+                    if (aurora) aurora.style.display = 'none';
+                    if (stars) stars.style.display = 'none';
+                    // AFFICHER brouillard
+                    document.getElementById('butterflies').style.display = 'none';
+                    document.getElementById('sun-rays').style.display = 'none';
+                    document.getElementById('fog').style.display = 'block';
+                    // AFFICHER papillons
+                    createButterflies();
+                    document.getElementById('sun-rays').style.display = 'none';
+                    document.getElementById('fog').style.display = 'none';
+                    document.querySelectorAll('.glass-card').forEach(card => {
+                        card.style.background = 'rgba(61, 36, 21, 0.85)';
+                        card.style.borderColor = '#D2691E';
+                        card.style.borderWidth = '2px';
+                        card.style.boxShadow = '0 8px 32px rgba(210, 105, 30, 0.3)';
+                    });
+                    document.querySelector('.nav-menu').style.background = 'linear-gradient(135deg, rgba(53, 32, 24, 0.95), rgba(79, 47, 26, 0.95))';
+                    document.querySelector('.nav-menu').style.borderBottom = '2px solid #D2691E';
+                }
+                
+                console.log('✅ Décor saison appliqué:', season.name);
+            }
+            
+            // 5. CHANGER LES PARTICULES QUI TOMBENT
+            startSeasonParticles(seasonName);
+            
+            // 6. METTRE À JOUR LE MENU ACTIF
+            document.querySelectorAll('.season-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.dataset.season === seasonName || (opt.dataset.season === 'auto' && !isManualSeason)) {
+                    opt.classList.add('active');
+                }
+            });
+            
+            console.log('✅ Saison appliquée:', season.name);
+        }
+
+
+
+        
+
+        
+
+        
+
+        
+        // ========================================
+        // FONCTION : Créer des papillons pour le Printemps
+        function createButterflies() {
+            const container = document.getElementById('butterflies');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            container.style.display = 'block';
+            
+            for (let i = 0; i < 10; i++) {
+                const butterfly = document.createElement('div');
+                butterfly.className = 'butterfly';
+                butterfly.textContent = '🦋';
+                butterfly.style.left = Math.random() * 100 + '%';
+                butterfly.style.top = Math.random() * 80 + '%';
+                butterfly.style.animationDelay = Math.random() * 5 + 's';
+                butterfly.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(butterfly);
+            }
+        }
+        
+        // SYSTÈME DE PARTICULES SAISONNIÈRES (PROPRE)
+        // ========================================
+        
+        let currentParticleInterval = null;
+        
+        // FONCTION : Créer une particule selon la saison
+        function createParticle(season) {
+            const container = document.getElementById('snowflakes');
+            if (!container) return;
+            
+            // Choisir un emoji aléatoire
+            const emojis = season.particles || [season.particle];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Créer la particule
+            const particle = document.createElement('div');
+            particle.textContent = emoji;
+            particle.style.position = 'absolute';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = '-50px';
+            particle.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            particle.style.opacity = Math.random() * 0.5 + 0.5;
+            particle.style.pointerEvents = 'none';
+            
+            // Animation de chute
+            const duration = Math.random() * 10 + 10;
+            particle.style.animation = `fall ${duration}s linear`;
+            
+            container.appendChild(particle);
+            
+            // Supprimer après l'animation
+            setTimeout(() => particle.remove(), duration * 1000);
+        }
+        
+        // FONCTION : Démarrer les particules d'une saison
+        function startSeasonParticles(seasonName) {
+            console.log('🎨 Démarrage particules:', seasonName);
+            
+            // Arrêter l'ancien intervalle
+            if (currentParticleInterval) {
+                clearInterval(currentParticleInterval);
+                console.log('⏹️ Ancien intervalle arrêté');
+            }
+            
+            // Vider ET nettoyer les anciennes particules
+            const container = document.getElementById('snowflakes');
+            if (container) {
+                // Supprimer TOUS les enfants
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.style.display = 'block';
+                console.log('🧹 Conteneur nettoyé');
+            }
+            
+            const season = seasons[seasonName];
+            if (!season) return;
+            
+            // Créer des particules toutes les 500ms
+            currentParticleInterval = setInterval(() => {
+                createParticle(season);
+            }, 500);
+            
+            console.log('✅ Particules démarrées pour:', season.name);
+        }
+        
+        // GESTION DU MENU SAISON
+        const seasonToggle = document.getElementById('season-toggle');
+        const seasonMenu = document.getElementById('season-menu');
+        
+        if (seasonToggle && seasonMenu) {
+            seasonToggle.addEventListener('click', () => {
+                seasonMenu.classList.toggle('open');
+            });
+            
+            // Options de saison
+            document.querySelectorAll('.season-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const season = option.dataset.season;
+                    
+                    if (season === 'auto') {
+                        isManualSeason = false;
+                        currentSeason = 'auto';
+                        applySeason(getAutoSeason());
+                    } else {
+                        isManualSeason = true;
+                        currentSeason = season;
+                        applySeason(season);
+                    }
+                    
+                    seasonMenu.classList.remove('open');
+                });
+            });
+        }
+        
+        // INITIALISATION : Une seule fois au chargement
+        let seasonInitialized = false;
+        
+        window.addEventListener('load', () => {
+            if (!seasonInitialized && !isManualSeason) {
+                const autoSeason = getAutoSeason();
+                applySeason(autoSeason);
+                console.log('🎨 Saison auto détectée:', autoSeason);
+                seasonInitialized = true;
+            }
         });
         
         // Initialize with max mode
