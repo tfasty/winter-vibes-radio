@@ -1495,6 +1495,119 @@
             }
         }
         
+
+        /* EASTER EGGS CACHÉS */
+        .easter-egg-hidden {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .easter-egg-hidden:hover {
+            transform: scale(1.2);
+            filter: brightness(1.5);
+        }
+        
+        /* Papillon doré (Printemps) */
+        .golden-butterfly {
+            animation: butterfly-fly 15s infinite ease-in-out, golden-glow 2s ease-in-out infinite;
+            cursor: pointer !important;
+            font-size: 2rem !important;
+        }
+        
+        .golden-butterfly:hover {
+            transform: scale(1.5) !important;
+            filter: brightness(3) drop-shadow(0 0 20px gold) !important;
+        }
+        
+        @keyframes golden-glow {
+            0%, 100% { filter: brightness(2) drop-shadow(0 0 10px gold); }
+            50% { filter: brightness(2.5) drop-shadow(0 0 20px gold); }
+        }
+        
+        /* Flocon arc-en-ciel (Hiver) */
+        .rainbow-snowflake {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 200% 200%;
+            animation: rainbow-shift 3s ease infinite, fall 10s linear;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+        
+        @keyframes rainbow-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Lettre cachée (Été) */
+        .hidden-letter {
+            position: relative;
+            cursor: pointer !important;
+            display: inline-block;
+            transition: all 0.3s ease;
+            filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+            animation: shell-pulse 2s ease-in-out infinite;
+        }
+        
+        .hidden-letter:hover {
+            transform: scale(1.3) rotate(10deg);
+            filter: brightness(1.5) drop-shadow(0 0 15px gold);
+        }
+        
+        @keyframes shell-pulse {
+            0%, 100% { filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+            50% { filter: brightness(1.5) drop-shadow(0 0 10px gold); }
+        }
+        
+        /* Popup Easter Egg */
+        .egg-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 255, 0.95));
+            border: 3px solid #FFD700;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            z-index: 10000;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .egg-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .egg-popup h2 {
+            color: #FFD700;
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+        
+        .egg-popup p {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 10px 0 20px 0;
+        }
+        
+        .egg-popup button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .egg-popup button:hover {
+            transform: scale(1.05);
+        }
+        
         /* Season Selector */
         .season-selector {
             position: fixed;
@@ -1734,6 +1847,14 @@
     <div class="sun-rays" id="sun-rays"></div>
     <div class="fog" id="fog"></div>
     <div class="floating-leaves" id="floating-leaves"></div>
+
+    
+    <!-- POPUP EASTER EGG -->
+    <div class="egg-popup" id="egg-popup">
+        <h2 id="egg-title">🎉 Easter Egg Trouvé !</h2>
+        <p id="egg-message">Bravo !</p>
+        <button onclick="closeEggPopup()">Fermer</button>
+    </div>
 
     <!-- Interactive Emojis -->
     <div class="emoji-container" id="emoji-container"></div>
@@ -3344,6 +3465,16 @@
         const MAX_EMOJIS = 20;
         let emojiCooldown = false;
 
+        function createFallingEmojiOrEasterEgg(emoji) {
+            // Si c'est l'étoile (flocon arc-en-ciel easter egg)
+            if (emoji === '⭐') {
+                onEasterEggClick('winter');
+                console.log('❄️🌈 Flocon arc-en-ciel cliqué !');
+                return;
+            }
+            createFallingEmoji(emoji);
+        }
+        
         function createFallingEmoji(emoji) {
             const container = document.getElementById('emoji-container');
             
@@ -3383,8 +3514,16 @@
                 setTimeout(() => emojiCooldown = false, 1000);
 
                 const emoji = option.dataset.emoji;
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => createFallingEmoji(emoji), i * 200);
+                
+                // Si c'est l'étoile (easter egg hiver), déclencher l'easter egg
+                if (emoji === '⭐') {
+                    onEasterEggClick('winter');
+                    console.log('❄️🌈 Easter egg Hiver cliqué !');
+                } else {
+                    // Sinon créer les emojis qui tombent
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => createFallingEmoji(emoji), i * 200);
+                    }
                 }
             });
         });
@@ -4984,6 +5123,39 @@ Merci !`;
                 } else if (seasonName === 'summer') {
                     // ☀️ ÉTÉ : Marron/Orange SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #3D2817 0%, #5C3A1E 30%, #704B28 60%, #4A3018 100%)';
+                    
+                    // EASTER EGG ÉTÉ : U cliquable dans "Summer"
+                    setTimeout(() => {
+                        const mainTitle = document.getElementById('main-logo');
+                        console.log('🔍 Titre trouvé:', mainTitle);
+                        if (mainTitle) {
+                            const text = mainTitle.textContent;
+                            console.log('🔍 Texte du titre:', text);
+                            
+                            // Remplacer juste le "U" de "Summer" par un U cliquable
+                            if (text.includes('Summer')) {
+                                const newHTML = mainTitle.innerHTML.replace(
+                                    'Summer',
+                                    'S<span style="cursor: pointer; color: inherit; font-size: inherit; display: inline;" onclick="onEasterEggClick(&quot;summer&quot;)">u</span>mmer'
+                                );
+                                mainTitle.innerHTML = newHTML;
+                                console.log('🐚 Easter egg été activé ! U cliquable créé');
+                            } else {
+                                console.log('❌ Pas de "Summer" dans le titre');
+                            }
+                        } else {
+                            console.log('❌ Titre #main-logo introuvable');
+                        }
+                    }, 500);
+                    
+                    // Easter egg: cacher 🐚 dans le titre
+                    const mainTitle = document.querySelector('.hero h1');
+                    if (mainTitle) {
+                        const titleParts = mainTitle.textContent.split('U');
+                        if (titleParts.length > 1) {
+                            mainTitle.innerHTML = titleParts[0] + '<span class="hidden-letter easter-egg-hidden" style="display: inline-block; font-size: 1em;" onclick="onEasterEggClick(&quot;summer&quot;)">🐚</span>' + titleParts.slice(1).join('U');
+                        }
+                    }
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(92, 58, 30, 0.85)';
                         card.style.borderColor = '#FFA500';
@@ -5016,6 +5188,15 @@ Merci !`;
                 } else if (seasonName === 'autumn') {
                     // 🍂 AUTOMNE : Marron TRÈS SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #2A1810 0%, #3D2415 30%, #4F2F1A 60%, #352018 100%)';
+                    
+                    // EASTER EGG AUTOMNE : Champignon dans footer
+                    setTimeout(() => {
+                        const footerText = document.querySelector('.footer-text');
+                        if (footerText && footerText.innerHTML.includes('❤️')) {
+                            footerText.innerHTML = footerText.innerHTML.replace('❤️', '<span class="easter-egg-hidden" onclick="onEasterEggClick(&quot;autumn&quot;)" style="cursor: pointer; display: inline-block;">🍄</span>');
+                            console.log('🍄 Easter egg automne activé');
+                        }
+                    }, 100);
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(61, 36, 21, 0.85)';
                         card.style.borderColor = '#D2691E';
@@ -5059,6 +5240,7 @@ Merci !`;
             });
             
             console.log('✅ Saison appliquée:', season.name);
+
         }
 
 
@@ -5071,6 +5253,52 @@ Merci !`;
 
         
         // ========================================
+        // SYSTÈME EASTER EGGS
+        
+        const easterEggMessages = {
+            spring: { title: "🌸 Secret du Printemps Trouvé !", message: "Le renouveau commence par un premier pas 🌱✨" },
+            summer: { title: "☀️ Trésor de l'Été Découvert !", message: "Profite de chaque rayon de soleil ! 🏖️☀️" },
+            autumn: { title: "🍂 Mystère de l'Automne Révélé !", message: "Chaque feuille qui tombe raconte une histoire 🍄🍂" },
+            winter: { title: "❄️ Cristal d'Hiver Trouvé !", message: "Dans le froid, les cœurs se réchauffent ⛄❄️" }
+        };
+        
+        // Charger les easter eggs trouvés depuis localStorage
+        let foundEggs = JSON.parse(localStorage.getItem('foundEasterEggs') || '{}');
+        
+
+        
+        function onEasterEggClick(season) {
+            const popup = document.getElementById('egg-popup');
+            const title = document.getElementById('egg-title');
+            const message = document.getElementById('egg-message');
+            
+            console.log('🎉 Easter Egg cliqué:', season);
+            
+            // Marquer comme trouvé
+            if (!foundEggs[season]) {
+                foundEggs[season] = true;
+                localStorage.setItem('foundEasterEggs', JSON.stringify(foundEggs));
+                console.log('✅ Easter Egg sauvegardé:', season);
+            }
+            
+            // Afficher popup
+            if (easterEggMessages[season]) {
+                title.textContent = easterEggMessages[season].title;
+                message.textContent = easterEggMessages[season].message;
+                popup.classList.add('show');
+                console.log('✅ Popup affichée');
+            } else {
+                console.log('❌ Message non trouvé pour:', season);
+            }
+        }
+        
+        function closeEggPopup() {
+            const popup = document.getElementById('egg-popup');
+            popup.classList.remove('show');
+        }
+        
+
+        
         // FONCTIONS EFFETS VISUELS
         
         function createButterflies() {
@@ -5082,7 +5310,25 @@ Merci !`;
             for (let i = 0; i < 10; i++) {
                 const butterfly = document.createElement('div');
                 butterfly.className = 'butterfly';
-                butterfly.textContent = '🦋';
+                
+                // UN SEUL papillon doré (easter egg) - QUI BOUGE
+                if (i === 5) {
+                    butterfly.textContent = '🦋';
+                    butterfly.classList.add('golden-butterfly');
+                    butterfly.style.fontSize = '2.5rem';
+                    butterfly.style.filter = 'hue-rotate(40deg) brightness(3) drop-shadow(0 0 20px gold)';
+                    butterfly.style.cursor = 'pointer';
+                    butterfly.style.zIndex = '100';
+                    butterfly.style.pointerEvents = 'auto'; // ← LA CLÉ !
+                    butterfly.onclick = function() {
+                        console.log('🦋 PAPILLON CLIQUÉ !');
+                        onEasterEggClick('spring');
+                    };
+                    console.log('🦋 Papillon doré créé (cliquable) !');
+                } else {
+                    butterfly.textContent = '🦋';
+                }
+                
                 butterfly.style.left = Math.random() * 100 + '%';
                 butterfly.style.top = Math.random() * 80 + '%';
                 butterfly.style.animationDelay = Math.random() * 5 + 's';
