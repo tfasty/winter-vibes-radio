@@ -160,6 +160,8 @@
 
         .page-section.active {
             display: block;
+            position: relative;
+            z-index: 10;
         }
 
         @media (max-width: 768px) {
@@ -782,10 +784,11 @@
         /* Language Selector */
         .language-selector {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             margin-bottom: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            row-gap: 15px;
         }
 
         .lang-btn {
@@ -1156,12 +1159,12 @@
             bottom: 160px;
             left: 20px;
             z-index: 99;
-            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
+            background: linear-gradient(135deg, var(--mini-player-bg1, rgba(26, 58, 82, 0.95)), var(--mini-player-bg2, rgba(10, 22, 40, 0.95)));
             backdrop-filter: blur(20px);
-            border: 2px solid rgba(168, 216, 234, 0.4);
-            border-radius: 15px;
-            padding: 15px;
-            width: 280px;
+            border: 2px solid var(--mini-player-border, rgba(168, 216, 234, 0.4));
+            border-radius: 12px;
+            padding: 12px;
+            width: 220px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
             display: none;
@@ -1226,14 +1229,14 @@
         }
 
         .mini-player-radio {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 3px;
             color: var(--ice-blue);
         }
 
         .mini-player-genre {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0.7;
         }
 
@@ -1305,68 +1308,6 @@
             right: 20px;
             z-index: 100;
         }
-
-        .performance-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .performance-btn:hover {
-            transform: scale(1.1) rotate(-10deg);
-        }
-
-        .performance-menu {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 15px;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            width: 200px;
-        }
-
-        .performance-menu.open {
-            display: flex;
-            animation: popIn 0.3s ease-out;
-        }
-
-        .performance-option {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 12px;
-            color: white;
-            cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .performance-option:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-5px);
-        }
-
-        .performance-option.active {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-color: #FFD700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
 
 
         /* EFFETS VISUELS PAR SAISON */
@@ -1495,67 +1436,140 @@
             }
         }
         
-        /* Season Selector */
-        .season-selector {
-            position: fixed;
-            bottom: 20px;
-            right: 90px;
-            z-index: 100;
-        }
 
-        .season-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--season-primary), var(--season-secondary));
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            font-size: 2rem;
+        /* EASTER EGGS CACHÉS */
+        .easter-egg-hidden {
             cursor: pointer;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
-        .season-toggle:hover {
-            transform: scale(1.1) rotate(15deg);
+        
+        .easter-egg-hidden:hover {
+            transform: scale(1.2);
+            filter: brightness(1.5);
         }
-
-        .season-menu {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        
+        /* Papillon doré (Printemps) */
+        .golden-butterfly {
+            animation: butterfly-fly 15s infinite ease-in-out, golden-glow 2s ease-in-out infinite;
+            cursor: pointer !important;
+            font-size: 2rem !important;
+        }
+        
+        .golden-butterfly:hover {
+            transform: scale(1.5) !important;
+            filter: brightness(3) drop-shadow(0 0 20px gold) !important;
+        }
+        
+        @keyframes golden-glow {
+            0%, 100% { filter: brightness(2) drop-shadow(0 0 10px gold); }
+            50% { filter: brightness(2.5) drop-shadow(0 0 20px gold); }
+        }
+        
+        /* Flocon arc-en-ciel (Hiver) */
+        .rainbow-snowflake {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 200% 200%;
+            animation: rainbow-shift 3s ease infinite, fall 10s linear;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+        
+        @keyframes rainbow-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Lettre cachée (Été) */
+        .hidden-letter {
+            position: relative;
+            cursor: pointer !important;
+            display: inline-block;
+            transition: all 0.3s ease;
+            filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+            animation: shell-pulse 2s ease-in-out infinite;
+        }
+        
+        .hidden-letter:hover {
+            transform: scale(1.3) rotate(10deg);
+            filter: brightness(1.5) drop-shadow(0 0 15px gold);
+        }
+        
+        @keyframes shell-pulse {
+            0%, 100% { filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+            50% { filter: brightness(1.5) drop-shadow(0 0 10px gold); }
+        }
+        
+        /* Popup Easter Egg */
+        .egg-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 255, 0.95));
+            border: 3px solid #FFD700;
             border-radius: 20px;
-            padding: 15px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            width: 150px;
+            padding: 30px;
+            text-align: center;
+            z-index: 10000;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
         }
+        
+        .egg-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .egg-popup h2 {
+            color: #FFD700;
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+        
+        .egg-popup p {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 10px 0 20px 0;
+        }
+        
+        .egg-popup button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .egg-popup button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Season Selector */
 
-        .season-menu.open {
-            display: flex;
-            animation: popIn 0.3s ease-out;
-        }
+
+
+
+
 
         .season-option {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 10px 15px;
+            border-radius: 8px;
+            padding: 6px 10px;
             color: white;
             cursor: pointer;
             font-family: 'Quicksand', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.7rem;
             font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .season-option:hover {
@@ -1567,6 +1581,18 @@
             background: linear-gradient(135deg, var(--season-primary), var(--season-secondary));
             border-color: var(--season-accent);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .season-option-auto {
+            justify-content: center !important;
+            width: 100% !important;
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(100, 149, 237, 0.2)) !important;
+            border-color: rgba(135, 206, 235, 0.4) !important;
+        }
+        
+        .season-option-auto:hover {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.3), rgba(100, 149, 237, 0.3)) !important;
+            transform: scale(1.05) !important;
         }
 
 .emoji-picker {
@@ -1598,7 +1624,7 @@
             right: 0;
             background: linear-gradient(135deg, rgba(26, 58, 82, 0.95), rgba(10, 22, 40, 0.95));
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(168, 216, 234, 0.4);
             border-radius: 20px;
             padding: 15px;
             display: none;
@@ -1707,13 +1733,10 @@
                     <span>Proposer</span>
                 </a>
                 <a class="nav-link" data-page="stats">
-                    <span>📊</span>
-                    <span>Statistiques</span>
+                    <span>🎛️</span>
+                    <span>Centre de Contrôle</span>
                 </a>
-                <a class="nav-link" data-page="twitch">
-                    <span>🎮</span>
-                    <span>Twitch</span>
-                </a>
+
 
 
             </div>
@@ -1734,6 +1757,14 @@
     <div class="sun-rays" id="sun-rays"></div>
     <div class="fog" id="fog"></div>
     <div class="floating-leaves" id="floating-leaves"></div>
+
+    
+    <!-- POPUP EASTER EGG -->
+    <div class="egg-popup" id="egg-popup">
+        <h2 id="egg-title">🎉 Easter Egg Trouvé !</h2>
+        <p id="egg-message">Bravo !</p>
+        <button onclick="closeEggPopup()">Fermer</button>
+    </div>
 
     <!-- Interactive Emojis -->
     <div class="emoji-container" id="emoji-container"></div>
@@ -1818,7 +1849,7 @@
             </section>
         </div>
 
-        <!-- Stats Section -->
+<!-- Stats Section -->
         <section class="glass-card" style="padding: 40px 30px;">
             <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; margin-bottom: 40px;">
                 🌟 Winter Vibes en chiffres
@@ -1933,12 +1964,43 @@
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
                         <div style="font-size: 2rem;">🎨</div>
                         <div>
-                            <h4 style="font-size: 1.3rem; color: #98FB98; margin-bottom: 5px;">08 Janvier 2026</h4>
-                            <p style="opacity: 0.8; font-size: 0.9rem;">Saisons & thèmes dynamiques</p>
+                            <h4 style="font-size: 1.3rem; color: #98FB98; margin-bottom: 5px;">11 Janvier 2026</h4>
+                            <p style="opacity: 0.8; font-size: 0.9rem;">Centre de Contrôle & optimisations</p>
                         </div>
                     </div>
                     
                     <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.9; font-size: 1rem;">
+                        <li>🎛️ <strong>Centre de Contrôle :</strong> Nouvelle page combinant statistiques, choix de saison et mode performance</li>
+                        <li>🗑️ <strong>Interface épurée :</strong> Suppression des boutons flottants (saison, performance) et page Twitch</li>
+                        <li>📏 <strong>Mini-player compact :</strong> Taille réduite (220px), non déplaçable, fixe en bas à gauche</li>
+                        <li>❄️ <strong>Correction saisons :</strong> L'hiver se réinitialise correctement (variables CSS, navbar, couleurs)</li>
+                        <li>🎨 <strong>Mini-player thématisé :</strong> Change de couleur selon la saison (violet/printemps, orange/été, chocolat/automne, bleu/hiver)</li>
+                        <li>😊 <strong>Menus unifiés :</strong> Tous les menus en bleu glacé fixe pour toutes les saisons</li>
+                        <li>🎁 <strong>Easter eggs saisonniers :</strong> Des surprises cachées à découvrir selon la saison... À toi de les trouver ! 🔍</li>
+                        <li>📐 <strong>Espacement amélioré :</strong> Bulles de choix (pays, genres) mieux espacées (gap 20px)</li>
+                        <li>⚡ <strong>Performance :</strong> Mode performance fonctionnel avec 3 niveaux (Max, Équilibré, Performance)</li>
+                    </ul>
+                </div>
+                
+                <details style="
+                    background: rgba(135, 206, 235, 0.08);
+                    border: 1px solid rgba(135, 206, 235, 0.3);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                ">
+                    <summary style="
+                        color: #87CEEB;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        user-select: none;
+                        list-style: none;
+                    ">
+                        📅 08 Janvier 2026
+                    </summary>
+                    <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
                         <li>🎨 <strong>Système de saisons :</strong> 4 saisons complètes (Hiver, Printemps, Été, Automne)</li>
                         <li>🎭 <strong>Thèmes dynamiques :</strong> Couleurs, animations et titre changent avec les saisons</li>
                         <li>🌸 <strong>Menu émojis :</strong> Change selon la saison (🌸🦋 printemps, ☀️🌊 été, 🍂🎃 automne)</li>
@@ -1948,7 +2010,7 @@
                         <li>🎉 <strong>Fêtes spéciales :</strong> Noël, Halloween, Anniversaire TheFasty (26/10), etc.</li>
                         <li>🇯🇵 <strong>Radio Japon :</strong> J-Pop Sakura (J-Pop & Vocaloid)</li>
                     </ul>
-                </div>
+                </details>
                 
                 <details style="
                     background: rgba(135, 206, 235, 0.08);
@@ -2664,325 +2726,134 @@
         <!-- PAGE: STATISTIQUES -->
         <div class="page-section" id="page-stats">
             <header class="header">
-                <h1 class="logo"><span class="logo-emoji">📊</span> Statistiques</h1>
-                <p class="tagline">✨ Winter Vibes Radio en chiffres ✨</p>
+                <h1 class="logo"><span class="logo-emoji">🎛️</span> Centre de Contrôle</h1>
+                <p class="tagline">✨ Statistiques & Paramètres ✨</p>
             </header>
 
-            <!-- Stats en temps réel -->
+            <!-- Section Statistiques -->
             <section class="glass-card">
-                <h3 class="section-title">📈 Stats en Direct</h3>
+                <h3 class="section-title">📊 Winter Vibes en Chiffres</h3>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
-                    <!-- Visiteurs -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(123, 104, 238, 0.05));
-                        border: 2px solid rgba(123, 104, 238, 0.4);
-                        border-radius: 15px;
-                        padding: 30px;
-                        text-align: center;
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">👥</div>
-                        <div id="stats-visitors" style="font-size: 2.5rem; font-weight: 700; color: #7B68EE; margin-bottom: 5px;">...</div>
-                        <div style="opacity: 0.8; font-size: 1rem;">Visiteurs</div>
-                        <div style="margin-top: 10px; padding: 8px; background: rgba(123, 104, 238, 0.2); border-radius: 8px; font-size: 0.9rem;">
-                            +<span id="visitors-increase">...</span> aujourd'hui
-                        </div>
-                    </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto;">
                     
-                    <!-- Écoutes -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(152, 251, 152, 0.2), rgba(152, 251, 152, 0.05));
-                        border: 2px solid rgba(152, 251, 152, 0.4);
-                        border-radius: 15px;
-                        padding: 30px;
-                        text-align: center;
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
-                        <div id="stats-listens" style="font-size: 2.5rem; font-weight: 700; color: #98FB98; margin-bottom: 5px;">...</div>
-                        <div style="opacity: 0.8; font-size: 1rem;">Écoutes totales</div>
-                        <div style="margin-top: 10px; padding: 8px; background: rgba(152, 251, 152, 0.2); border-radius: 8px; font-size: 0.9rem;">
-                            +<span id="listens-increase">...</span> aujourd'hui
-                        </div>
-                    </div>
-                    
-                    <!-- Temps total -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
-                        border: 2px solid rgba(255, 215, 0, 0.4);
-                        border-radius: 15px;
-                        padding: 30px;
-                        text-align: center;
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">⏱️</div>
-                        <div id="stats-time" style="font-size: 2.5rem; font-weight: 700; color: #FFD700; margin-bottom: 5px;">...</div>
-                        <div style="opacity: 0.8; font-size: 1rem;">Heures d'écoute</div>
-                        <div style="margin-top: 10px; padding: 8px; background: rgba(255, 215, 0, 0.2); border-radius: 8px; font-size: 0.9rem;">
-                            +<span id="time-increase">...</span>h aujourd'hui
-                        </div>
-                    </div>
-                    
-                    <!-- Radios disponibles -->
-                    <div style="
-                        background: linear-gradient(135deg, rgba(168, 216, 234, 0.2), rgba(168, 216, 234, 0.05));
-                        border: 2px solid rgba(168, 216, 234, 0.4);
-                        border-radius: 15px;
-                        padding: 30px;
-                        text-align: center;
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="background: linear-gradient(135deg, rgba(123, 104, 238, 0.2), rgba(123, 104, 238, 0.05)); border: 2px solid rgba(123, 104, 238, 0.4); border-radius: 15px; padding: 25px; text-align: center;">
                         <div style="font-size: 3rem; margin-bottom: 10px;">📻</div>
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #87CEEB; margin-bottom: 5px;">38</div>
-                        <div style="opacity: 0.8; font-size: 1rem;">Radios disponibles</div>
-                        <div style="margin-top: 10px; padding: 8px; background: rgba(168, 216, 234, 0.2); border-radius: 8px; font-size: 0.9rem;">
-                            8 pays • 9 genres
-                        </div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #7B68EE; margin-bottom: 5px;">38</div>
+                        <div style="opacity: 0.8;">Radios disponibles</div>
                     </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(152, 251, 152, 0.2), rgba(152, 251, 152, 0.05)); border: 2px solid rgba(152, 251, 152, 0.4); border-radius: 15px; padding: 25px; text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🌍</div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #98FB98; margin-bottom: 5px;">8</div>
+                        <div style="opacity: 0.8;">Pays disponibles</div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 25px; text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #FFD700; margin-bottom: 5px;">9</div>
+                        <div style="opacity: 0.8;">Genres musicaux</div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(168, 216, 234, 0.2), rgba(168, 216, 234, 0.05)); border: 2px solid rgba(168, 216, 234, 0.4); border-radius: 15px; padding: 25px; text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">⏰</div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #87CEEB; margin-bottom: 5px;">24/7</div>
+                        <div style="opacity: 0.8;">Diffusion continue</div>
+                    </div>
+                    
                 </div>
             </section>
 
-            <!-- Top Radios -->
+            <!-- Section Choix de Saison -->
             <section class="glass-card">
-                <h3 class="section-title">🏆 Top 5 Radios</h3>
+                <h3 class="section-title">🌸 Choix de la Saison</h3>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 25px;">
+                    Change l'ambiance et les couleurs de la radio selon la saison
+                </p>
                 
-                <div style="max-width: 700px; margin: 0 auto;">
-                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)); border: 2px solid #FFD700; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #FFD700;">🥇</div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.2rem;">FIP (France)</div>
-                                <div style="opacity: 0.8; font-size: 0.9rem;">🎧 Chill • 🇫🇷 France</div>
-                            </div>
-                            <div style="font-size: 1.3rem; font-weight: 700; color: #FFD700;">4,521</div>
-                        </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
+                    
+                    <!-- Hiver -->
+                    <div class="season-card" data-season="winter" onclick="changeSeasonFromSettings('winter')" style="cursor: pointer; background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(70, 130, 180, 0.2)); border: 2px solid rgba(135, 206, 235, 0.4); border-radius: 15px; padding: 20px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">❄️</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 5px;">Hiver</h4>
+                        <p style="opacity: 0.7; font-size: 0.85rem;">Bleu glacé</p>
                     </div>
                     
-                    <div style="background: rgba(192, 192, 192, 0.15); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #C0C0C0;">🥈</div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.2rem;">J-Pop Sakura (Japon)</div>
-                                <div style="opacity: 0.8; font-size: 0.9rem;">🎌 Anime • 🇯🇵 Japon</div>
-                            </div>
-                            <div style="font-size: 1.3rem; font-weight: 700;">3,892</div>
-                        </div>
+                    <!-- Printemps -->
+                    <div class="season-card" data-season="spring" onclick="changeSeasonFromSettings('spring')" style="cursor: pointer; background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(219, 112, 147, 0.2)); border: 2px solid rgba(255, 105, 180, 0.4); border-radius: 15px; padding: 20px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🌸</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 5px;">Printemps</h4>
+                        <p style="opacity: 0.7; font-size: 0.85rem;">Rose</p>
                     </div>
                     
-                    <div style="background: rgba(205, 127, 50, 0.15); border: 2px solid rgba(205, 127, 50, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #CD7F32;">🥉</div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.2rem;">BBC Radio 1 (UK)</div>
-                                <div style="opacity: 0.8; font-size: 0.9rem;">⚡ Dance • 🇬🇧 UK</div>
-                            </div>
-                            <div style="font-size: 1.3rem; font-weight: 700;">3,104</div>
-                        </div>
+                    <!-- Été -->
+                    <div class="season-card" data-season="summer" onclick="changeSeasonFromSettings('summer')" style="cursor: pointer; background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.2)); border: 2px solid rgba(255, 140, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">☀️</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 5px;">Été</h4>
+                        <p style="opacity: 0.7; font-size: 0.85rem;">Orange</p>
                     </div>
                     
-                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 15px; margin-bottom: 10px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 1.5rem; font-weight: 700; opacity: 0.6;">4</div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 600;">I Love Chill (Allemagne)</div>
-                                <div style="opacity: 0.7; font-size: 0.85rem;">🎧 Chill • 🇩🇪 DE</div>
-                            </div>
-                            <div style="font-weight: 700;">2,567</div>
-                        </div>
+                    <!-- Automne -->
+                    <div class="season-card" data-season="autumn" onclick="changeSeasonFromSettings('autumn')" style="cursor: pointer; background: linear-gradient(135deg, rgba(210, 105, 30, 0.2), rgba(139, 69, 19, 0.2)); border: 2px solid rgba(210, 105, 30, 0.4); border-radius: 15px; padding: 20px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🍂</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 5px;">Automne</h4>
+                        <p style="opacity: 0.7; font-size: 0.85rem;">Marron</p>
                     </div>
                     
-                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 15px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 1.5rem; font-weight: 700; opacity: 0.6;">5</div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 600;">TSF Jazz (France)</div>
-                                <div style="opacity: 0.7; font-size: 0.85rem;">🎷 Jazz • 🇫🇷 France</div>
-                            </div>
-                            <div style="font-weight: 700;">2,198</div>
+                </div>
+                
+                <!-- Auto Mode -->
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="season-card" data-season="auto" onclick="changeSeasonFromSettings('auto')" style="cursor: pointer; background: linear-gradient(135deg, rgba(135, 206, 235, 0.3), rgba(100, 149, 237, 0.3)); border: 2px solid rgba(135, 206, 235, 0.5); border-radius: 15px; padding: 18px 30px; display: inline-flex; align-items: center; gap: 12px; font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 600; color: white; transition: all 0.3s ease;">
+                        <span style="font-size: 1.8rem;">🔄</span>
+                        <div style="text-align: left;">
+                            <div>Mode Automatique</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8; font-weight: 400;">Saison selon la date</div>
                         </div>
-                    </div>
+                    </button>
                 </div>
             </section>
 
-            <!-- Top Genres -->
+            <!-- Section Performance -->
             <section class="glass-card">
-                <h3 class="section-title">🎸 Genres Tendances</h3>
+                <h3 class="section-title">⚡ Mode Performance</h3>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 25px;">
+                    Ajuste les effets visuels selon les capacités de ton appareil
+                </p>
                 
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <div style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span style="font-weight: 600;">🎧 Chill / Lofi</span>
-                            <span style="font-weight: 700; color: #7B68EE;">42%</span>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, #7B68EE, #A8D8EA); height: 100%; width: 42%; border-radius: 10px; transition: width 1s ease;"></div>
-                        </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Qualité Max -->
+                    <div class="performance-card" data-mode="max" onclick="changePerformanceMode('max')" style="cursor: pointer; background: linear-gradient(135deg, rgba(50, 205, 50, 0.15), rgba(34, 139, 34, 0.15)); border: 2px solid rgba(50, 205, 50, 0.4); border-radius: 15px; padding: 22px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 2.3rem; margin-bottom: 12px;">🎨</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 10px;">Qualité Max</h4>
+                        <p style="opacity: 0.8; font-size: 0.85rem; line-height: 1.4;">Tous les effets visuels et animations</p>
                     </div>
                     
-                    <div style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span style="font-weight: 600;">🎌 Anime / J-Pop</span>
-                            <span style="font-weight: 700; color: #98FB98;">28%</span>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, #98FB98, #7B68EE); height: 100%; width: 28%; border-radius: 10px; transition: width 1s ease;"></div>
-                        </div>
+                    <!-- Équilibré -->
+                    <div class="performance-card active" data-mode="balanced" onclick="changePerformanceMode('balanced')" style="cursor: pointer; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.15)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 22px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 2.3rem; margin-bottom: 12px;">⚖️</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 10px;">Équilibré</h4>
+                        <p style="background: rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 8px;">RECOMMANDÉ</p>
+                        <p style="opacity: 0.8; font-size: 0.85rem; line-height: 1.4;">Bon compromis qualité/fluidité</p>
                     </div>
                     
-                    <div style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span style="font-weight: 600;">⚡ Électro / Dance</span>
-                            <span style="font-weight: 700; color: #FFD700;">18%</span>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, #FFD700, #FFA500); height: 100%; width: 18%; border-radius: 10px; transition: width 1s ease;"></div>
-                        </div>
+                    <!-- Performance -->
+                    <div class="performance-card" data-mode="performance" onclick="changePerformanceMode('performance')" style="cursor: pointer; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15), rgba(178, 34, 34, 0.15)); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 15px; padding: 22px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: 2.3rem; margin-bottom: 12px;">🚀</div>
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 10px;">Performance</h4>
+                        <p style="opacity: 0.8; font-size: 0.85rem; line-height: 1.4;">Effets minimaux, fluidité maximale</p>
                     </div>
                     
-                    <div style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span style="font-weight: 600;">🎷 Jazz</span>
-                            <span style="font-weight: 700; color: #87CEEB;">7%</span>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, #87CEEB, #A8D8EA); height: 100%; width: 7%; border-radius: 10px; transition: width 1s ease;"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span style="font-weight: 600;">🎸 Autres</span>
-                            <span style="font-weight: 700;">5%</span>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 20px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)); height: 100%; width: 5%; border-radius: 10px; transition: width 1s ease;"></div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
-            <!-- Performance -->
-            <section class="glass-card">
-                <h3 class="section-title">⚡ Performance & Optimisation</h3>
-                
-                <div style="max-width: 600px; margin: 0 auto;">
-                    <!-- Mode actuel -->
-                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 25px; text-align: center; margin-bottom: 25px;">
-                        <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
-                        <div style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Mode actuel</div>
-                        <div id="stats-perf-mode" style="font-size: 1.8rem; font-weight: 700; color: #FFD700;">🎨 Qualité Max</div>
-                        <div style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">
-                            Cliquez sur ⚡ en bas à droite pour changer
-                        </div>
-                    </div>
-                    
-                    <!-- Optimisations -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
-                            <div style="font-size: 1.5rem; margin-bottom: 5px;">❄️</div>
-                            <div style="font-size: 0.85rem; opacity: 0.9;">Flocons de neige</div>
-                            <div id="snow-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actifs</div>
-                        </div>
-                        
-                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
-                            <div style="font-size: 1.5rem; margin-bottom: 5px;">⭐</div>
-                            <div style="font-size: 0.85rem; opacity: 0.9;">Étoiles</div>
-                            <div id="stars-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actives</div>
-                        </div>
-                        
-                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
-                            <div style="font-size: 1.5rem; margin-bottom: 5px;">🌌</div>
-                            <div style="font-size: 0.85rem; opacity: 0.9;">Aurores</div>
-                            <div id="aurora-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actives</div>
-                        </div>
-                        
-                        <div style="background: rgba(152, 251, 152, 0.1); border: 1px solid rgba(152, 251, 152, 0.3); border-radius: 10px; padding: 15px; text-align: center;">
-                            <div style="font-size: 1.5rem; margin-bottom: 5px;">📊</div>
-                            <div style="font-size: 0.85rem; opacity: 0.9;">Visualizer</div>
-                            <div id="viz-status" style="margin-top: 5px; font-weight: 700; color: #98FB98;">✅ Actif</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Info -->
+            <section class="glass-card" style="text-align: center;">
+                <p style="opacity: 0.8; line-height: 1.8; font-size: 0.95rem;">
+                    💡 <strong>Astuce :</strong> Les paramètres sont sauvegardés automatiquement dans ton navigateur !
+                </p>
             </section>
-
-            <section class="glass-card promo-carousel">
-    <!-- Slides Container -->
-    <div class="promo-slides-container">
-        <!-- Twitch Slide -->
-        <div class="promo-slide twitch active" data-promo="twitch">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
-                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
-                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
-                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
-                        <span>👾</span> Suivre TheFasty_67
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- X (Twitter) Slide -->
-        <div class="promo-slide x-twitter" data-promo="x">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>🐦 Suis-moi sur X !</h3>
-                    <p>Actus, clips & moments fun - TheFasty_67</p>
-                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
-                        <span>✨</span> Suivre sur X
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Discord Slide -->
-        <div class="promo-slide discord" data-promo="discord">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
-                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>💬 Rejoins le Discord !</h3>
-                    <p>La communauté, les discussions & les events</p>
-                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
-                        <span>🎉</span> Rejoindre le serveur
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Dots -->
-    <div class="promo-nav">
-        <button class="promo-dot active" data-target="twitch" title="Twitch">
-            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
-                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
-            </svg>
-        </button>
-        <button class="promo-dot" data-target="x" title="X (Twitter)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-        </button>
-        <button class="promo-dot" data-target="discord" title="Discord">
-            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
-                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
-            </svg>
-        </button>
-    </div>
-</section>
 
             <footer class="footer">
                 <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
@@ -2990,222 +2861,122 @@
         </div>
         <!-- END PAGE: STATISTIQUES -->
 
-        <!-- PAGE: TWITCH -->
-        <div class="page-section" id="page-twitch">
+        <!-- PAGE: EASTER EGGS -->
+        <div class="page-section" id="page-easter-eggs">
             <header class="header">
-                <h1 class="logo"><span class="logo-emoji">🎮</span> Twitch - TheFasty_67</h1>
-                <p class="tagline">✨ Rejoins le stream en direct ! ✨</p>
+                <h1 class="logo"><span class="logo-emoji">🎁</span> Easter Eggs</h1>
+                <p class="tagline">✨ Découvre les secrets cachés ✨</p>
             </header>
 
-            <!-- Container Stream + Chat -->
-            <section class="glass-card" style="padding: 30px;">
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; height: 600px;">
-                    
-                    <!-- STREAM (gauche) -->
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; overflow: hidden; position: relative;">
-                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-bottom: 2px solid rgba(145, 70, 255, 0.4);">
-                            <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; margin: 0; color: #9146FF;">
-                                📺 Stream en Direct
-                            </h3>
-                        </div>
-                        
-                        <!-- Player Twitch -->
-                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                            <iframe 
-                                src="https://player.twitch.tv/?channel=thefasty_67&parent=localhost&parent=127.0.0.1&parent=thefasty67.github.io&muted=false&autoplay=true"
-                                frameborder="0"
-                                allowfullscreen="true"
-                                scrolling="no"
-                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            </iframe>
-                        </div>
-                        
-                        <!-- Info stream -->
-                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-top: 2px solid rgba(145, 70, 255, 0.4);">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 12px; height: 12px; background: #FF0000; border-radius: 50%; animation: pulse 2s infinite;"></div>
-                                <span style="font-weight: 600; color: #FF0000;">EN DIRECT</span>
-                                <span style="opacity: 0.7;">•</span>
-                                <span style="opacity: 0.8;">twitch.tv/thefasty_67</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- CHAT (droite) -->
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="padding: 15px; background: linear-gradient(135deg, rgba(145, 70, 255, 0.2), rgba(145, 70, 255, 0.1)); border-bottom: 2px solid rgba(145, 70, 255, 0.4);">
-                            <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; margin: 0; color: #9146FF;">
-                                💬 Chat Twitch
-                            </h3>
-                        </div>
-                        
-                        <!-- Chat Twitch intégré -->
-                        <div style="flex: 1; position: relative;">
-                            <iframe 
-                                src="https://www.twitch.tv/embed/thefasty_67/chat?parent=localhost&parent=127.0.0.1&parent=thefasty67.github.io&darkpopout"
-                                frameborder="0"
-                                scrolling="yes"
-                                style="width: 100%; height: 100%;">
-                            </iframe>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <!-- Animation pulse pour le point rouge -->
-                <style>
-                    @keyframes pulse {
-                        0%, 100% { opacity: 1; transform: scale(1); }
-                        50% { opacity: 0.5; transform: scale(1.2); }
-                    }
-                </style>
-                
-                <!-- Responsive -->
-                <style>
-                    @media (max-width: 968px) {
-                        div[style*="grid-template-columns: 2fr 1fr"] {
-                            grid-template-columns: 1fr !important;
-                            height: auto !important;
-                        }
-                        div[style*="grid-template-columns: 2fr 1fr"] > div:first-child {
-                            height: 400px;
-                        }
-                        div[style*="grid-template-columns: 2fr 1fr"] > div:last-child {
-                            height: 500px;
-                        }
-                    }
-                </style>
+            <!-- Introduction -->
+            <section class="glass-card" style="text-align: center;">
+                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                    Explore Winter Vibes Radio et découvre les <strong>4 easter eggs secrets</strong> cachés dans chaque saison ! 
+                    Clique sur les éléments mystérieux pour les débloquer ! 🔍
+                </p>
             </section>
 
-            <!-- Infos complémentaires -->
+            <!-- Stats globales -->
+            <section class="glass-card" style="text-align: center;">
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 20px;">📊 Ta Progression</h3>
+                <div style="font-size: 3rem; font-weight: 700; margin-bottom: 10px; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    <span id="eggs-found-page">0</span> / 4
+                </div>
+                <p style="opacity: 0.8;">Easter Eggs trouvés</p>
+            </section>
+
+            <!-- Liste des Easter Eggs -->
             <section class="glass-card">
-                <h3 class="section-title">ℹ️ Informations</h3>
+                <h3 class="section-title">🎯 Liste des Easter Eggs</h3>
                 
-                <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
-                    <div style="background: rgba(145, 70, 255, 0.1); border: 1px solid rgba(145, 70, 255, 0.3); border-radius: 10px; padding: 20px; margin-bottom: 15px;">
-                        <p style="margin: 0; opacity: 0.9;">
-                            <strong>🎮 Chaîne :</strong> <a href="https://twitch.tv/thefasty_67" target="_blank" style="color: #9146FF; text-decoration: none; font-weight: 600;">twitch.tv/thefasty_67</a>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    
+                    <!-- Easter Egg 1 : Hiver -->
+                    <div class="easter-egg-item" id="egg-winter-page" style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 20px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                            <div style="font-size: 3rem;">❄️</div>
+                            <div style="flex: 1;">
+                                <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 8px;">Flocon Mystérieux</h3>
+                                <p style="opacity: 0.7; font-size: 1rem;">Saison : ❄️ Hiver</p>
+                            </div>
+                            <div style="font-size: 2rem;" id="egg-winter-status-page">🔒</div>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px;">
+                            Une étoile magique se cache dans le menu des émojis... Clique dessus pour débloquer cet easter egg !
                         </p>
+                        <div style="padding: 15px; background: rgba(135, 206, 235, 0.2); border-radius: 10px; border-left: 4px solid #87CEEB;">
+                            <strong>💡 Indice :</strong> Ouvre le menu emoji (😊) en bas à droite et cherche une étoile brillante ⭐
+                        </div>
                     </div>
                     
-                    <div style="background: rgba(135, 206, 235, 0.08); border: 1px solid rgba(135, 206, 235, 0.3); border-radius: 10px; padding: 20px; margin-bottom: 15px;">
-                        <p style="margin: 0 0 10px 0;"><strong>💡 Fonctionnalités :</strong></p>
-                        <ul style="margin: 0; padding-left: 20px; opacity: 0.9;">
-                            <li>Regarde le stream en direct depuis la radio</li>
-                            <li>Interagis dans le chat Twitch directement</li>
-                            <li>Pas besoin de quitter Winter Vibes Radio !</li>
-                        </ul>
+                    <!-- Easter Egg 2 : Printemps -->
+                    <div class="easter-egg-item" id="egg-spring-page" style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 20px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                            <div style="font-size: 3rem;">🌸</div>
+                            <div style="flex: 1;">
+                                <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 8px;">Papillon Doré</h3>
+                                <p style="opacity: 0.7; font-size: 1rem;">Saison : 🌸 Printemps</p>
+                            </div>
+                            <div style="font-size: 2rem;" id="egg-spring-status-page">🔒</div>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px;">
+                            Un papillon doré voltige sur l'écran... Clique dessus rapidement avant qu'il ne s'envole !
+                        </p>
+                        <div style="padding: 15px; background: rgba(255, 192, 203, 0.2); border-radius: 10px; border-left: 4px solid #FFB6C1;">
+                            <strong>💡 Indice :</strong> Va dans Centre de Contrôle, change la saison en Printemps et cherche le papillon doré qui vole à l'écran
+                        </div>
                     </div>
                     
-                    <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; padding: 20px;">
-                        <p style="margin: 0; opacity: 0.9;">
-                            <strong>⚠️ Note :</strong> Si le stream n'est pas en ligne, le lecteur affichera une vidéo hors ligne ou une rediffusion.
+                    <!-- Easter Egg 3 : Été -->
+                    <div class="easter-egg-item" id="egg-summer-page" style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 20px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                            <div style="font-size: 3rem;">☀️</div>
+                            <div style="flex: 1;">
+                                <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 8px;">Lettre Cachée</h3>
+                                <p style="opacity: 0.7; font-size: 1rem;">Saison : ☀️ Été</p>
+                            </div>
+                            <div style="font-size: 2rem;" id="egg-summer-status-page">🔒</div>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px;">
+                            Une lettre spéciale se cache dans le titre "Summer"... Trouve-la et clique dessus !
                         </p>
+                        <div style="padding: 15px; background: rgba(255, 165, 0, 0.2); border-radius: 10px; border-left: 4px solid #FFA500;">
+                            <strong>💡 Indice :</strong> Va dans Centre de Contrôle, change en Été et regarde attentivement le titre "Summer" dans le logo en haut
+                        </div>
                     </div>
+                    
+                    <!-- Easter Egg 4 : Automne -->
+                    <div class="easter-egg-item" id="egg-autumn-page" style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 20px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                            <div style="font-size: 3rem;">🍂</div>
+                            <div style="flex: 1;">
+                                <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 8px;">Champignon Secret</h3>
+                                <p style="opacity: 0.7; font-size: 1rem;">Saison : 🍂 Automne</p>
+                            </div>
+                            <div style="font-size: 2rem;" id="egg-autumn-status-page">🔒</div>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px;">
+                            Un champignon mystérieux pousse dans le footer... Clique dessus pour le découvrir !
+                        </p>
+                        <div style="padding: 15px; background: rgba(210, 105, 30, 0.2); border-radius: 10px; border-left: 4px solid #D2691E;">
+                            <strong>💡 Indice :</strong> Va dans Centre de Contrôle, change en Automne et regarde tout en bas de la page, dans le footer
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
 
-                        <section class="glass-card promo-carousel">
-    <!-- Slides Container -->
-    <div class="promo-slides-container">
-        <!-- Twitch Slide -->
-        <div class="promo-slide twitch active" data-promo="twitch">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 256 268" fill="white">
-                        <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>🎮 Rejoins-moi sur Twitch !</h3>
-                    <p>Lives gaming, chill & bonne ambiance - TheFasty_67</p>
-                    <a href="https://twitch.tv/thefasty_67" target="_blank" class="promo-btn">
-                        <span>👾</span> Suivre TheFasty_67
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- X (Twitter) Slide -->
-        <div class="promo-slide x-twitter" data-promo="x">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="white">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>🐦 Suis-moi sur X !</h3>
-                    <p>Actus, clips & moments fun - TheFasty_67</p>
-                    <a href="https://x.com/FastytF1561" target="_blank" class="promo-btn">
-                        <span>✨</span> Suivre sur X
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Discord Slide -->
-        <div class="promo-slide discord" data-promo="discord">
-            <div class="promo-content">
-                <div class="promo-logo">
-                    <svg width="64" height="64" viewBox="0 0 256 199" fill="white">
-                        <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
-                    </svg>
-                </div>
-                <div class="promo-text">
-                    <h3>💬 Rejoins le Discord !</h3>
-                    <p>La communauté, les discussions & les events</p>
-                    <a href="http://discord.com/invite/TAW7ZnwRf6" target="_blank" class="promo-btn">
-                        <span>🎉</span> Rejoindre le serveur
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Dots -->
-    <div class="promo-nav">
-        <button class="promo-dot active" data-target="twitch" title="Twitch">
-            <svg width="24" height="24" viewBox="0 0 256 268" fill="white">
-                <path d="M17.458 0L0 46.556v186.201h63.983v34.934h34.931l34.898-34.934h52.36L256 162.954V0H17.458zm23.259 23.263H232.73v128.029l-40.739 40.741H128L93.113 226.92v-34.886H40.717V23.263zm64.008 116.405H128V69.844h-23.275v69.824zm63.997 0h23.27V69.844h-23.27v69.824z"/>
-            </svg>
-        </button>
-        <button class="promo-dot" data-target="x" title="X (Twitter)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-        </button>
-        <button class="promo-dot" data-target="discord" title="Discord">
-            <svg width="24" height="24" viewBox="0 0 256 199" fill="white">
-                <path d="M216.856 16.597A208.502 208.502 0 00164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 00-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0079.735 175.3a136.413 136.413 0 01-21.846-10.632 108.636 108.636 0 005.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 005.355 4.237 136.07 136.07 0 01-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36zM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18zm85.051 0c-12.645 0-23.015-11.805-23.015-26.18s10.148-26.2 23.015-26.2c12.866 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18z"/>
-            </svg>
-        </button>
-    </div>
-</section>
-
-
-            <footer class="footer">
-                <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
-            </footer>
-        </div>
-        <!-- END PAGE: RADIO -->
-
-        <!-- PAGE: MA MUSIQUE -->
-        <div class="page-section" id="page-ma-musique">
-            <header class="header">
-                <h1 class="logo"><span class="logo-emoji">🎵</span> Ma Playlist Personnelle</h1>
-                <p class="tagline">✨ Gère ta collection de musiques ✨</p>
-            </header>
-
-            <!-- Ma Musique Section -->
-            <section class="glass-card playlist-section">
-                <h3 class="section-title">🎵 Ma Musique</h3>
-                
-                <div class="track-list" id="track-list">
-                    <div style="text-align: center; padding: 40px; opacity: 0.6;">
-                        <p>🎵 Aucune musique ajoutée</p>
-                        <p style="font-size: 0.9rem; margin-top: 10px;">Ajoutez vos fichiers MP3 ci-dessous !</p>
-                    </div>
+            <!-- Message prochainement -->
+            <section class="glass-card">
+                <div style="padding: 35px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.15)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🔜</div>
+                    <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 15px; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        À venir prochainement...
+                    </h3>
+                    <p style="opacity: 0.9; font-size: 1.1rem; line-height: 1.7;">
+                        D'autres easter eggs mystérieux seront ajoutés régulièrement ! 
+                        Reviens souvent pour les découvrir et compléter ta collection ! ✨
+                    </p>
                 </div>
             </section>
 
@@ -3213,7 +2984,10 @@
                 <p class="footer-text"><span class="footer-icon">❄️</span> <span class="footer-title">Winter Vibes Radio</span> - Créé avec ❤️ par TheFasty_67 <span class="footer-icon">❄️</span></p>
             </footer>
         </div>
-        <!-- END PAGE: TWITCH -->
+        <!-- END PAGE: EASTER EGGS -->
+
+
+
     </div>
 
     <!-- Bouton pour rouvrir le mini-player -->
@@ -3232,6 +3006,8 @@
             🎵
         </button>
     </div>
+
+
 
     <!-- Mini Player Flottant -->
     <div class="mini-player" id="mini-player">
@@ -3260,48 +3036,6 @@
 
     <!-- Performance Mode Toggle -->
     <div class="performance-toggle">
-        <button class="performance-btn" id="performance-toggle" title="Mode Performance">⚡</button>
-        <div class="performance-menu" id="performance-menu">
-            <button class="performance-option active" data-mode="max">
-                🎨 Qualité Max
-            </button>
-            <button class="performance-option" data-mode="balanced">
-                ⚡ Équilibré
-            </button>
-            <button class="performance-option" data-mode="performance">
-                🚀 Performance
-            </button>
-        </div>
-    </div>
-
-    <!-- Season Selector -->
-    <div class="season-selector">
-        <button class="season-toggle" id="season-toggle" title="Changer de saison">
-            <span id="current-season-icon">❄️</span>
-        </button>
-        <div class="season-menu" id="season-menu">
-            <button class="season-option" data-season="winter">
-                <span>❄️</span>
-                <span>Hiver</span>
-            </button>
-            <button class="season-option" data-season="spring">
-                <span>🌸</span>
-                <span>Printemps</span>
-            </button>
-            <button class="season-option" data-season="summer">
-                <span>☀️</span>
-                <span>Été</span>
-            </button>
-            <button class="season-option" data-season="autumn">
-                <span>🍂</span>
-                <span>Automne</span>
-            </button>
-            <div style="border-top: 1px solid rgba(255,255,255,0.2); margin: 10px 0; padding-top: 10px;">
-                <button class="season-option" data-season="auto">
-                    <span>🔄</span>
-                    <span>Auto</span>
-                </button>
-            </div>
         </div>
     </div>
 
@@ -3344,6 +3078,16 @@
         const MAX_EMOJIS = 20;
         let emojiCooldown = false;
 
+        function createFallingEmojiOrEasterEgg(emoji) {
+            // Si c'est l'étoile (flocon arc-en-ciel easter egg)
+            if (emoji === '⭐') {
+                onEasterEggClick('winter');
+                console.log('❄️🌈 Flocon arc-en-ciel cliqué !');
+                return;
+            }
+            createFallingEmoji(emoji);
+        }
+        
         function createFallingEmoji(emoji) {
             const container = document.getElementById('emoji-container');
             
@@ -3383,8 +3127,16 @@
                 setTimeout(() => emojiCooldown = false, 1000);
 
                 const emoji = option.dataset.emoji;
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => createFallingEmoji(emoji), i * 200);
+                
+                // Si c'est l'étoile (easter egg hiver), déclencher l'easter egg
+                if (emoji === '⭐') {
+                    onEasterEggClick('winter');
+                    console.log('❄️🌈 Easter egg Hiver cliqué !');
+                } else {
+                    // Sinon créer les emojis qui tombent
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => createFallingEmoji(emoji), i * 200);
+                    }
                 }
             });
         });
@@ -3486,7 +3238,7 @@
             },
             // 🇯🇵 JAPON - Une seule radio J-Pop/Anime
             jp: {
-                chill: { name: 'J1 Xtra', description: 'J-Pop & J-Rock 🇯🇵', url: 'https://stream.laut.fm/j1xtra', emoji: '🎧' },
+                chill: { name: 'Listen.moe', description: 'Anime & J-Pop 🇯🇵', url: 'https://listen.moe/stream', emoji: '🎧' },
                 christmas: null,
                 jazz: null,
                 ambient: null,
@@ -4609,85 +4361,7 @@ Merci !`;
         
         // MINI-PLAYER DRAGGABLE (déplaçable à la souris/doigt)
         if (miniPlayer) {
-            let isDragging = false;
-            let currentX;
-            let currentY;
-            let initialX;
-            let initialY;
-            let xOffset = 0;
-            let yOffset = 0;
-            
-            // Empêcher le drag sur les boutons
-            const dragHandle = miniPlayer;
-            
-            dragHandle.addEventListener('mousedown', dragStart);
-            dragHandle.addEventListener('touchstart', dragStart);
-            
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('touchmove', drag);
-            
-            document.addEventListener('mouseup', dragEnd);
-            document.addEventListener('touchend', dragEnd);
-            
-            function dragStart(e) {
-                // Ne pas drag si on clique sur un bouton
-                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || 
-                    e.target.closest('.mini-control-btn') || e.target.closest('.mini-player-close')) {
-                    return;
-                }
-                
-                if (e.type === 'touchstart') {
-                    initialX = e.touches[0].clientX - xOffset;
-                    initialY = e.touches[0].clientY - yOffset;
-                } else {
-                    initialX = e.clientX - xOffset;
-                    initialY = e.clientY - yOffset;
-                }
-                
-                isDragging = true;
-                miniPlayer.style.cursor = 'grabbing';
-            }
-            
-            function drag(e) {
-                if (isDragging) {
-                    e.preventDefault();
-                    
-                    if (e.type === 'touchmove') {
-                        currentX = e.touches[0].clientX - initialX;
-                        currentY = e.touches[0].clientY - initialY;
-                    } else {
-                        currentX = e.clientX - initialX;
-                        currentY = e.clientY - initialY;
-                    }
-                    
-                    // LIMITER LA ZONE DE DÉPLACEMENT
-                    const playerRect = miniPlayer.getBoundingClientRect();
-                    const maxX = window.innerWidth - playerRect.width - 20;
-                    const maxY = window.innerHeight - playerRect.height - 20;
-                    const minX = -20;
-                    const minY = -20;
-                    
-                    // Contraindre les valeurs
-                    currentX = Math.max(minX, Math.min(currentX, maxX));
-                    currentY = Math.max(minY, Math.min(currentY, maxY));
-                    
-                    xOffset = currentX;
-                    yOffset = currentY;
-                    
-                    // Appliquer la transformation
-                    miniPlayer.style.left = 'auto';
-                    miniPlayer.style.bottom = 'auto';
-                    miniPlayer.style.transform = `translate(${currentX}px, ${currentY}px)`;
-                }
-            }
-            
-            function dragEnd() {
-                isDragging = false;
-                miniPlayer.style.cursor = 'grab';
-            }
-            
-            // Cursor par défaut
-            miniPlayer.style.cursor = 'grab';;
+            // Mini-player fixe (non déplaçable)
         }
         
         // Synchroniser le volume
@@ -4829,6 +4503,21 @@ Merci !`;
                 logo.innerHTML = `<span class="logo-emoji">${season.icon}</span> ${season.name}`;
             });
             
+            // EASTER EGG ÉTÉ : U cliquable dans TOUS les titres
+            if (seasonName === 'summer') {
+                setTimeout(() => {
+                    document.querySelectorAll('.logo').forEach(logo => {
+                        if (logo.innerHTML.includes('Summer') && !logo.innerHTML.includes('onclick')) {
+                            logo.innerHTML = logo.innerHTML.replace(
+                                'Summer',
+                                'S<span style="cursor: pointer; color: inherit; font-size: inherit; display: inline;" onclick="onEasterEggClick(&quot;summer&quot;)">u</span>mmer'
+                            );
+                        }
+                    });
+                    console.log('🐚 Easter egg été : U cliquable dans TOUS les titres');
+                }, 100);
+            }
+            
             // Mettre à jour la NAVBAR (nav-logo)
             const navLogoIcon = document.getElementById('nav-logo-icon');
             const navLogoText = document.getElementById('nav-logo-text');
@@ -4907,11 +4596,22 @@ Merci !`;
             
             // 4. THÈME SPÉCIAL POUR HIVER (garder l'original)
             if (seasonName === 'winter') {
-                // RESTAURER LE THÈME ORIGINAL HIVER
+                // ❄️ RESTAURER LE THÈME ORIGINAL HIVER COMPLET
                 const root = document.documentElement;
+                
+                // Réinitialiser les variables CSS des saisons
+                root.style.removeProperty('--season-primary');
+                root.style.removeProperty('--season-secondary');
+                root.style.removeProperty('--season-accent');
+                
                 root.style.removeProperty('--ice-blue');
                 root.style.removeProperty('--aurora-purple');
                 root.style.removeProperty('--aurora-green');
+                
+                // Mini-player Hiver (original)
+                root.style.removeProperty('--mini-player-bg1');
+                root.style.removeProperty('--mini-player-bg2');
+                root.style.removeProperty('--mini-player-border');
                 
                 document.body.style.background = '';
                 
@@ -4954,6 +4654,21 @@ Merci !`;
                 root.style.setProperty('--aurora-purple', season.accent);
                 root.style.setProperty('--aurora-green', season.secondary);
                 
+                // Mini-player : Couleurs assombries selon saison
+                if (seasonName === 'spring') {
+                    root.style.setProperty('--mini-player-bg1', 'rgba(61, 34, 64, 0.92)');
+                    root.style.setProperty('--mini-player-bg2', 'rgba(45, 27, 46, 0.92)');
+                    root.style.setProperty('--mini-player-border', 'rgba(155, 93, 139, 0.5)');
+                } else if (seasonName === 'summer') {
+                    root.style.setProperty('--mini-player-bg1', 'rgba(92, 58, 30, 0.92)');
+                    root.style.setProperty('--mini-player-bg2', 'rgba(61, 42, 23, 0.92)');
+                    root.style.setProperty('--mini-player-border', 'rgba(184, 134, 11, 0.5)');
+                } else if (seasonName === 'autumn') {
+                    root.style.setProperty('--mini-player-bg1', 'rgba(74, 48, 24, 0.92)');
+                    root.style.setProperty('--mini-player-bg2', 'rgba(50, 32, 18, 0.92)');
+                    root.style.setProperty('--mini-player-border', 'rgba(139, 69, 19, 0.5)');
+                }
+                
                 // DÉCORS SOMBRES PAR SAISON
                 if (seasonName === 'spring') {
                     // 🌸 PRINTEMPS : Violet/Rose SOMBRE
@@ -4984,6 +4699,39 @@ Merci !`;
                 } else if (seasonName === 'summer') {
                     // ☀️ ÉTÉ : Marron/Orange SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #3D2817 0%, #5C3A1E 30%, #704B28 60%, #4A3018 100%)';
+                    
+                    // EASTER EGG ÉTÉ : U cliquable dans "Summer"
+                    setTimeout(() => {
+                        const mainTitle = document.getElementById('main-logo');
+                        console.log('🔍 Titre trouvé:', mainTitle);
+                        if (mainTitle) {
+                            const text = mainTitle.textContent;
+                            console.log('🔍 Texte du titre:', text);
+                            
+                            // Remplacer juste le "U" de "Summer" par un U cliquable
+                            if (text.includes('Summer')) {
+                                const newHTML = mainTitle.innerHTML.replace(
+                                    'Summer',
+                                    'S<span style="cursor: pointer; color: inherit; font-size: inherit; display: inline;" onclick="onEasterEggClick(&quot;summer&quot;)">u</span>mmer'
+                                );
+                                mainTitle.innerHTML = newHTML;
+                                console.log('🐚 Easter egg été activé ! U cliquable créé');
+                            } else {
+                                console.log('❌ Pas de "Summer" dans le titre');
+                            }
+                        } else {
+                            console.log('❌ Titre #main-logo introuvable');
+                        }
+                    }, 500);
+                    
+                    // Easter egg: cacher 🐚 dans le titre
+                    const mainTitle = document.querySelector('.hero h1');
+                    if (mainTitle) {
+                        const titleParts = mainTitle.textContent.split('U');
+                        if (titleParts.length > 1) {
+                            mainTitle.innerHTML = titleParts[0] + '<span class="hidden-letter easter-egg-hidden" style="display: inline-block; font-size: 1em;" onclick="onEasterEggClick(&quot;summer&quot;)">🐚</span>' + titleParts.slice(1).join('U');
+                        }
+                    }
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(92, 58, 30, 0.85)';
                         card.style.borderColor = '#FFA500';
@@ -5016,6 +4764,16 @@ Merci !`;
                 } else if (seasonName === 'autumn') {
                     // 🍂 AUTOMNE : Marron TRÈS SOMBRE
                     document.body.style.background = 'linear-gradient(180deg, #2A1810 0%, #3D2415 30%, #4F2F1A 60%, #352018 100%)';
+                    
+                    // EASTER EGG AUTOMNE : Champignon dans TOUS les footers
+                    setTimeout(() => {
+                        document.querySelectorAll('.footer-text').forEach(footerText => {
+                            if (footerText && footerText.innerHTML.includes('❤️')) {
+                                footerText.innerHTML = footerText.innerHTML.replace('❤️', '<span class="easter-egg-hidden" onclick="onEasterEggClick(&quot;autumn&quot;)" style="cursor: pointer; display: inline-block;">🍄</span>');
+                            }
+                        });
+                        console.log('🍄 Easter egg automne : TOUS les footers');
+                    }, 100);
                     document.querySelectorAll('.glass-card').forEach(card => {
                         card.style.background = 'rgba(61, 36, 21, 0.85)';
                         card.style.borderColor = '#D2691E';
@@ -5059,6 +4817,7 @@ Merci !`;
             });
             
             console.log('✅ Saison appliquée:', season.name);
+
         }
 
 
@@ -5071,6 +4830,216 @@ Merci !`;
 
         
         // ========================================
+        // SYSTÈME EASTER EGGS
+        
+        const easterEggMessages = {
+            spring: { title: "🌸 Secret du Printemps Trouvé !", message: "Le renouveau commence par un premier pas 🌱✨" },
+            summer: { title: "☀️ Trésor de l'Été Découvert !", message: "Profite de chaque rayon de soleil ! 🏖️☀️" },
+            autumn: { title: "🍂 Mystère de l'Automne Révélé !", message: "Chaque feuille qui tombe raconte une histoire 🍄🍂" },
+            winter: { title: "❄️ Cristal d'Hiver Trouvé !", message: "Dans le froid, les cœurs se réchauffent ⛄❄️" }
+        };
+        
+        // Charger les easter eggs trouvés depuis localStorage
+        let foundEggs = JSON.parse(localStorage.getItem('foundEasterEggs') || '{}');
+        
+
+        
+        function onEasterEggClick(season) {
+            const popup = document.getElementById('egg-popup');
+            const title = document.getElementById('egg-title');
+            const message = document.getElementById('egg-message');
+            
+            console.log('🎉 Easter Egg cliqué:', season);
+            
+            // Marquer comme trouvé
+            if (!foundEggs[season]) {
+                foundEggs[season] = true;
+                localStorage.setItem('foundEasterEggs', JSON.stringify(foundEggs));
+                console.log('✅ Easter Egg sauvegardé:', season);
+                
+                // Mettre à jour la page easter eggs
+                updateEasterEggsPage();
+            }
+            
+            // Afficher popup
+            if (easterEggMessages[season]) {
+                title.textContent = easterEggMessages[season].title;
+                message.textContent = easterEggMessages[season].message;
+                popup.classList.add('show');
+                console.log('✅ Popup affichée');
+            } else {
+                console.log('❌ Message non trouvé pour:', season);
+            }
+        }
+        
+        function closeEggPopup() {
+            const popup = document.getElementById('egg-popup');
+            popup.classList.remove('show');
+        }
+        
+        // Mettre à jour la page Easter Eggs
+        function updateEasterEggsPage() {
+            const seasons = ['winter', 'spring', 'summer', 'autumn'];
+            let count = 0;
+            
+            seasons.forEach(season => {
+                const item = document.getElementById(`egg-${season}-page`);
+                const status = document.getElementById(`egg-${season}-status-page`);
+                
+                if (item && status) {
+                    if (foundEggs[season]) {
+                        item.style.opacity = '1';
+                        item.style.filter = 'grayscale(0%)';
+                        item.style.borderColor = 'rgba(255, 215, 0, 0.6)';
+                        status.textContent = '✅';
+                        count++;
+                    } else {
+                        item.style.opacity = '0.6';
+                        item.style.filter = 'grayscale(70%)';
+                        item.style.borderColor = 'rgba(255, 215, 0, 0.3)';
+                        status.textContent = '🔒';
+                    }
+                }
+            });
+            
+            const foundElement = document.getElementById('eggs-found-page');
+            if (foundElement) {
+                foundElement.textContent = count;
+            }
+        }
+        
+        // Mettre à jour au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateEasterEggsPage();
+        });
+
+
+        
+        // FONCTIONS PARAMÈTRES
+        
+        function changeSeasonFromSettings(seasonName) {
+            console.log('🌸 Changement saison depuis Paramètres:', seasonName);
+            
+            if (seasonName === 'auto') {
+                localStorage.setItem('seasonMode', 'auto');
+                detectSeason();
+            } else {
+                localStorage.setItem('seasonMode', 'manual');
+                localStorage.setItem('selectedSeason', seasonName);
+                applySeason(seasonName);
+            }
+            
+            // Mettre à jour l'apparence des cartes
+            updateSeasonCards(seasonName);
+        }
+        
+        function updateSeasonCards(activeSeason) {
+            document.querySelectorAll('.season-card').forEach(card => {
+                const season = card.dataset.season;
+                if (season === activeSeason) {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.5)';
+                } else {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                }
+            });
+        }
+        
+        
+        // Hover effects pour les cartes
+        document.addEventListener('DOMContentLoaded', () => {
+            // Season cards hover
+            document.querySelectorAll('.season-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.style.transform.includes('1.05')) {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                    }
+                });
+                card.addEventListener('mouseleave', function() {
+                    if (!this.style.transform.includes('1.05')) {
+                        this.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Performance cards hover
+            document.querySelectorAll('.performance-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                    }
+                });
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Charger l'état actuel au chargement de la page paramètres
+            const currentSeason = localStorage.getItem('seasonMode') === 'auto' ? 'auto' : localStorage.getItem('selectedSeason') || 'winter';
+            const currentPerformance = localStorage.getItem('performanceMode') || 'balanced';
+            updateSeasonCards(currentSeason);
+            changePerformanceMode(currentPerformance);
+        });
+        
+        // FONCTIONS CENTRE DE CONTRÔLE
+        
+        function changeSeasonFromSettings(seasonName) {
+            console.log('🌸 Changement saison depuis Centre de Contrôle:', seasonName);
+            
+            if (seasonName === 'auto') {
+                localStorage.setItem('seasonMode', 'auto');
+                detectSeason();
+            } else {
+                localStorage.setItem('seasonMode', 'manual');
+                localStorage.setItem('selectedSeason', seasonName);
+                applySeason(seasonName);
+            }
+            
+            // Mettre à jour l'apparence des cartes
+            updateSeasonCards(seasonName);
+        }
+        
+        function updateSeasonCards(activeSeason) {
+            document.querySelectorAll('.season-card').forEach(card => {
+                const season = card.dataset.season;
+                if (season === activeSeason) {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.5)';
+                } else {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                }
+            });
+        }
+        
+        function changePerformanceMode(mode) {
+            console.log('⚡ Changement mode performance:', mode);
+            localStorage.setItem('performanceMode', mode);
+            
+            // Mettre à jour l'apparence des cartes
+            document.querySelectorAll('.performance-card').forEach(card => {
+                card.classList.remove('active');
+                if (card.dataset.mode === mode) {
+                    card.classList.add('active');
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.4)';
+                } else {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = 'none';
+                }
+            });
+            
+            applyPerformanceMode(mode);
+        }
+        
+        function applyPerformanceMode(mode) {
+            // Appliquer les changements de performance via setPerformanceMode
+            setPerformanceMode(mode);
+        }
+        
         // FONCTIONS EFFETS VISUELS
         
         function createButterflies() {
@@ -5082,7 +5051,25 @@ Merci !`;
             for (let i = 0; i < 10; i++) {
                 const butterfly = document.createElement('div');
                 butterfly.className = 'butterfly';
-                butterfly.textContent = '🦋';
+                
+                // UN SEUL papillon doré (easter egg) - QUI BOUGE
+                if (i === 5) {
+                    butterfly.textContent = '🦋';
+                    butterfly.classList.add('golden-butterfly');
+                    butterfly.style.fontSize = '2.5rem';
+                    butterfly.style.filter = 'hue-rotate(40deg) brightness(3) drop-shadow(0 0 20px gold)';
+                    butterfly.style.cursor = 'pointer';
+                    butterfly.style.zIndex = '100';
+                    butterfly.style.pointerEvents = 'auto'; // ← LA CLÉ !
+                    butterfly.onclick = function() {
+                        console.log('🦋 PAPILLON CLIQUÉ !');
+                        onEasterEggClick('spring');
+                    };
+                    console.log('🦋 Papillon doré créé (cliquable) !');
+                } else {
+                    butterfly.textContent = '🦋';
+                }
+                
                 butterfly.style.left = Math.random() * 100 + '%';
                 butterfly.style.top = Math.random() * 80 + '%';
                 butterfly.style.animationDelay = Math.random() * 5 + 's';
