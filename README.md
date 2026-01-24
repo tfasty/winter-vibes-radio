@@ -58,13 +58,33 @@ Vibes Radio PC est une expérience d'écoute radio optimisée pour grand écran 
 
 ## 📦 Installation
 
-### En ligne
+### 🌐 En ligne
 Accède directement à l'application :
 ```
 https://tfasty.github.io/winter-vibes-radio/
 ```
 
-### Local
+### 💻 Installer comme application (PWA)
+
+**Chrome / Edge / Brave :**
+1. Ouvre l'application dans ton navigateur
+2. Clique sur l'icône **💻 Installer** dans la barre d'adresse
+3. Clique sur **"Installer"**
+4. L'app s'installe sur ton bureau ! 🎉
+
+**Ou via le menu :**
+- Chrome/Brave : Menu **⋮** > **"Installer Vibes Radio PC..."**
+- Edge : Menu **⋯** > **"Applications"** > **"Installer ce site"**
+
+**Avantages de l'installation :**
+- 🚀 Lancement rapide depuis le bureau
+- 🖥️ Fenêtre dédiée (sans barre de navigation)
+- ⚡ Performances optimisées avec cache
+- 💾 Fonctionne même hors ligne (interface uniquement)
+
+📖 **[Guide d'installation détaillé](INSTALLATION_GUIDE_PC.md)**
+
+### 🔧 Local
 1. Clone le repository :
 ```bash
 git clone https://github.com/TheFasty/winter-vibes-radio.git
